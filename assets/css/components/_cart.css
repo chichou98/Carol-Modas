@@ -1,3 +1,7 @@
+/* ======================================================= */
+/* ESTILOS DO CARRINHO - VERSÃO COM FOCO EM LEITURA     */
+/* ======================================================= */
+
 .header-actions {
     display: flex;
     align-items: center;
@@ -25,15 +29,19 @@
     font-weight: 600;
 }
 
+/* 1. PAINEL MAIOR E COM FUNDO BRANCO */
 .cart-panel {
     position: fixed;
     top: 0;
     right: -100%;
     width: 90%;
-    max-width: 400px;
+    /* Ocupa 90% da tela, mais espaçoso */
+    max-width: 420px;
+    /* Limite para telas maiores como tablets */
     height: 100%;
     background-color: #fff;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+    /* Fundo branco para máximo contraste */
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
     z-index: 1002;
     transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: flex;
@@ -54,13 +62,13 @@
 
 .cart-header h3 {
     margin: 0;
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
 .close-cart-btn {
     background: none;
     border: none;
-    font-size: 2em;
+    font-size: 2.2em;
     cursor: pointer;
     color: #888;
 }
@@ -71,59 +79,112 @@
     padding: 20px;
 }
 
+/* 2. MAIS ESPAÇO E MELHOR ALINHAMENTO PARA OS ITENS */
 .cart-item {
     display: flex;
+    justify-content: space-between;
     gap: 15px;
+    padding-bottom: 20px;
     margin-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
-.cart-item img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.cart-item-details {
+.cart-item-info {
+    display: flex;
+    gap: 15px;
     flex-grow: 1;
 }
 
+.cart-item img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 3. FONTES MAIORES E COM MAIS CONTRASTE */
 .cart-item-details h4 {
-    margin: 0 0 5px;
-    font-size: 1em;
+    margin: 0 0 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
 }
 
 .cart-item-details p {
     margin: 0 0 10px;
-    font-size: 0.9em;
-    color: #666;
+    font-size: 1em;
+    color: #555;
+    /* Cor mais escura para melhor leitura */
+}
+
+.cart-item-details .price {
+    font-weight: 600;
+}
+
+/* 4. BOTÕES MAIORES E MAIS FÁCEIS DE TOCAR */
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .quantity-control {
     display: flex;
     align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 50px;
 }
 
 .quantity-control button {
-    width: 25px;
-    height: 25px;
-    border: 1px solid #ccc;
+    background: none;
+    border: none;
     cursor: pointer;
+    font-size: 1.4em;
+    width: 35px;
+    height: 35px;
+    color: #555;
 }
 
 .quantity-control span {
-    padding: 0 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+    min-width: 25px;
+    text-align: center;
 }
 
+.remove-item-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 0.9em;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+.remove-item-btn:hover {
+    color: #B5838D;
+}
+
+/* --- Rodapé do Carrinho --- */
 .cart-footer {
     padding: 20px;
     border-top: 1px solid #eee;
+    background-color: #f9f9f9;
 }
 
 .cart-total {
     display: flex;
     justify-content: space-between;
-    font-size: 1.2em;
+    font-size: 1.3em;
+    font-weight: 600;
     margin-bottom: 20px;
 }
 
@@ -138,12 +199,7 @@
     text-align: center;
 }
 
-.empty-cart-message {
-    color: #888;
-    text-align: center;
-    margin-top: 40px;
-}
-
+/* --- Mensagem de Carrinho Vazio --- */
 .empty-cart-view {
     text-align: center;
     padding: 60px 20px;
@@ -167,59 +223,4 @@
 .empty-cart-view p {
     font-size: 1em;
     margin: 0;
-}
-
-.cart-item {
-    align-items: flex-start;
-    /* Alinha no topo */
-}
-
-.cart-item-info {
-    flex-grow: 1;
-    display: flex;
-    gap: 15px;
-}
-
-.cart-item-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-}
-
-.quantity-control {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-}
-
-.quantity-control button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2em;
-    width: 30px;
-    height: 30px;
-    color: #555;
-}
-
-.quantity-control span {
-    padding: 0 5px;
-    font-size: 1em;
-    min-width: 20px;
-    text-align: center;
-}
-
-.remove-item-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #aaa;
-    font-size: 0.8em;
-    text-decoration: underline;
-}
-
-.remove-item-btn:hover {
-    color: #B5838D;
 }

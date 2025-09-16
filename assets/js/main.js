@@ -27,6 +27,7 @@ const CarolModas = {
         { id: 5, name: "Calça Ciganinha", price: 159.90, brand: "Carol Modas", images: ["assets/images/products/ciganinha.png"], options: { colors: [{ name: "Estampado", code: "#000000" }], sizes: ["Único"] }, details: ["Detalhe para Calça Ciganinha."] },
         { id: 6, name: "Blusa Listrada - Vermelha", price: 119.90, brand: "Carol Modas", images: ["assets/images/products/listrado-cor-vermelha.png"], options: { colors: [{ name: "Listrado", code: "#ff4500" }], sizes: ["P", "M", "G"] }, details: ["Detalhe para Blusa Listrada."] },
         { id: 7, name: "Blusa Xadrez - Verde", price: 129.90, brand: "Carol Modas", images: ["assets/images/products/xadrez-verde.png"], options: { colors: [{ name: "Xadrez Verde", code: "#008000" }], sizes: ["M", "G"] }, details: ["Detalhe para Blusa Xadrez."] },
+
     ],
 
     // Módulo para controlar o Preloader
