@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calça Wide Leg Alfaiataria - Carol Modas</title>
+    <title>Carregando... - Carol Modas</title>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -23,91 +23,29 @@
                     <li><a href="contato.html"><span>Contato</span></a></li>
                 </ul>
             </nav>
-            <a href="#" class="btn-cta">Promoções</a>
-            <button class="mobile-nav-toggle" aria-controls="nav-links" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            <div class="header-actions">
+                <div class="cart-icon" id="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </div>
+                <button class="mobile-nav-toggle" aria-label="Abrir menu">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </button>
+            </div>
         </div>
     </header>
 
+    <div class="cart-panel" id="cart-panel">
+    </div>
+
     <main>
         <section class="product-detail-page container">
-            <div class="product-layout">
-
-                <div class="product-images">
-                    <div class="main-image">
-                        <img src="./assets/images/products/canelado-manga-fina-preto.jpg" alt="" id="mainProductImage">
-                    </div>
-                    <div class="thumbnail-gallery">
-                        <img src="./assets/images/products/canelado-manga-fina-vermelho.jpg" alt=""
-                            class="thumbnail active">
-                        <img src="./assets/images/products/canelado-manga-fina-vermelho.jpg" alt="" class="thumbnail">
-                        <img src="./assets/images/products/canelado-manga-fina-vermelho.jpg" alt="" class="thumbnail">
-                        <img src="./assets/images/products/canelado-manga-fina-vermelho.jp" alt="" class="thumbnail">
-                    </div>
-                </div>
-
-                <div class="product-info">
-                    <span class="brand">Carol Modas</span>
-                    <h1>Blusa Manga Curta Canelado</h1>
-                    <!-- <div class="rating">
-                        <span>3,4</span>
-                        <a href="#">(37 Avaliações)</a>
-                    </div>-->
-
-                    <p class="price">R$ 49,90</p>
-                    <span class="installments">em até 2x R$ 24,95 sem juros</span>
-
-                    <div class="selector">
-                        <label>Cor: <strong>Preto</strong></label>
-                        <div class="color-swatches">
-                            <button class="swatch active" style="background-color: #212121;"
-                                aria-label="Preto"></button>
-                            <button class="swatch" style="background-color: #D2B48C;" aria-label="Bege"></button>
-                            <button class="swatch" style="background-color: #A9A9A9;" aria-label="Cinza"></button>
-                        </div>
-                    </div>
-
-                    <div class="selector">
-                        <label>Tamanho:</label>
-                        <div class="size-options">
-                            <button class="size-btn">P</button>
-                            <button class="size-btn active">M</button>
-                            <button class="size-btn">G</button>
-                            <button class="size-btn">GG</button>
-                        </div>
-                    </div>
-
-                    <a href="#" class="btn-primary btn-buy">Quero!</a>
-                </div>
-            </div>
-
-            <div class="product-description-details">
-                <div class="details-section">
-                    <h2>Sobre este item</h2>
-                    <ul>
-                        <li>✨ <strong>Elegância:</strong> Design sofisticado que eleva qualquer look.</li>
-                        <li>👖 <strong>Caimento Perfeito:</strong> Ajuste que valoriza a silhueta feminina.</li>
-                        <li>⬆️ <strong>Cintura Alta:</strong> Proporciona um visual moderno e alonga as pernas.</li>
-                        <li>☁️ <strong>Tecido Leve:</strong> Conforto garantido para o uso diário.</li>
-                        <li>👜 <strong>Bolsos Funcionais:</strong> Praticidade para carregar pequenos itens.</li>
-                        <li>🎨 <strong>Variedade de Cores:</strong> Disponível em Preto, Bege e Cinza para combinar com
-                            diferentes estilos.</li>
-                    </ul>
-                </div>
-                <div class="details-section">
-                    <h2>Detalhes do produto</h2>
-                    <dl>
-                        <dt>Instruções de cuidados:</dt>
-                        <dd>testestes</dd>
-                        <dt>Tipo de fecho:</dt>
-                        <dd>testestes</dd>
-                        <dt>Material:</dt>
-                        <dd>testestes</dd>
-                    </dl>
-                </div>
+            <div id="product-detail-content">
+                <p style="text-align: center; padding: 50px;">Carregando informações do produto...</p>
             </div>
         </section>
     </main>
@@ -118,26 +56,7 @@
         </div>
     </footer>
 
-    <script src="./assets/js/main.js"></script>
-    <script>
-        // Pequeno script para a galeria de imagens
-        document.addEventListener('DOMContentLoaded', function () {
-            const mainImage = document.getElementById('mainProductImage');
-            const thumbnails = document.querySelectorAll('.thumbnail');
-
-            thumbnails.forEach(thumb => {
-                thumb.addEventListener('click', function () {
-                    // Remove a classe 'active' de todas as thumbnails
-                    thumbnails.forEach(t => t.classList.remove('active'));
-                    // Adiciona a classe 'active' na thumbnail clicada
-                    this.classList.add('active');
-                    // Troca a imagem principal
-                    mainImage.src = this.src;
-                    mainImage.alt = this.alt;
-                });
-            });
-        });
-    </script>
+    <script src="assets/js/main.js" defer></script>
 </body>
 
 </html>

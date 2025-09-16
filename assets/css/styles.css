@@ -8,6 +8,7 @@
 
 /* 2. Estilos do Cabeçalho e Navegação */
 @import url('./components/_header.css');
+@import url('./components/_cart.css');
 
 /* 3. Estilos específicos das seções da Home e Rodapé */
 @import url('./components/_home.css');
@@ -17,3 +18,5 @@
 
 /* 5. Estilos Responsivos  */
 @import url('./components/_responsive.css');
+
+@import url('./components/_products-page.css');

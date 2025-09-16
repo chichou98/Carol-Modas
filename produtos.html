@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Produtos - Carol Modas</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div id="preloader">
+        <img src="assets/images/layout/logo.png" alt="Logo Carol Modas" class="preloader-logo">
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/layout/logo.png" alt="Logo Carol Modas">
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html"><span>Início</span></a></li>
+                    <li><a href="produtos.html"><span>Produtos</span></a></li>
+                    <li><a href="sobre.html"><span>Sobre</span></a></li>
+                    <li><a href="contato.html"><span>Contato</span></a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-cta">Promoções</a>
+            <button class="mobile-nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Nossos Produtos</h1>
+        </section>
+
+        <div class="container">
+            <section class="toolbar">
+                <div class="product-count">Mostrando 1–8 de 20 resultados</div>
+                <div class="toolbar-actions">
+                    <button class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+                            <path
+                                d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1.5A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
+                        </svg>
+                        Filtrar
+                    </button>
+                    <div class="sort-by">
+                        <select name="orderby" id="orderby">
+                            <option value="menu_order" selected="selected">Padrão</option>
+                            <option value="popularity">Popularidade</option>
+                            <option value="date">Mais recentes</option>
+                            <option value="price">Preço: menor para maior</option>
+                            <option value="price-desc">Preço: maior para menor</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="product-listing">
+                <div class="product-grid" id="product-list-grid">
+                </div>
+
+                <nav class="pagination">
+                    <span class="current">1</span>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&rarr;</a>
+                </nav>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Carol Modas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>
