@@ -329,7 +329,7 @@ const CarolModas = {
             });
             const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             message += `*TOTAL DO PEDIDO: R$ ${totalPrice.toFixed(2).replace('.', ',')}*`;
-            const phoneNumber = "5511999999999"; // <-- TROQUE PELO SEU NÚMERO
+            const phoneNumber = "5511988817216"; // <-- TROQUE PELO SEU NÚMERO
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         },
