@@ -108,11 +108,9 @@ const CarolModas = {
         init: function () {
             const contentArea = document.getElementById('product-detail-content');
             if (!contentArea) return;
-
             const urlParams = new URLSearchParams(window.location.search);
             const productId = parseInt(urlParams.get('id'));
             const product = CarolModas.productsData.find(p => p.id === productId);
-
             if (product) {
                 this.render(product, contentArea);
             } else {
@@ -123,9 +121,8 @@ const CarolModas = {
             document.title = `${product.name} - Carol Modas`;
             const colorsHTML = product.options.colors.map((color, index) => `<button class="swatch ${index === 0 ? 'active' : ''}" style="background-color: ${color.code};" aria-label="${color.name}"></button>`).join('');
             const sizesHTML = product.options.sizes.map((size, index) => `<button class="size-btn ${index === 0 ? 'active' : ''}">${size}</button>`).join('');
-            const thumbnailsHTML = product.images.map((img, index) => `<img src="${img}" alt="${product.name} - imagem ${index + 1}" class="thumbnail ${index === 0 ? 'active' : ''}">`).join('');
+            const thumbnailsHTML = product.images.map((img, index) => `<img src="${img}" alt="${product.name}" class="thumbnail ${index === 0 ? 'active' : ''}">`).join('');
             const detailsHTML = product.details.map(d => `<li>✨ ${d}</li>`).join('');
-
             contentArea.innerHTML = `
                 <div class="product-layout">
                     <div class="product-images">
@@ -144,6 +141,14 @@ const CarolModas = {
                             <label>Tamanho:</label>
                             <div class="size-options">${sizesHTML}</div>
                         </div>
+                        <div class="selector">
+                            <label>Quantidade:</label>
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" id="decrease-qty">-</button>
+                                <span id="product-quantity">1</span>
+                                <button class="quantity-btn" id="increase-qty">+</button>
+                            </div>
+                        </div>
                         <button class="btn-primary btn-buy" id="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
@@ -153,9 +158,9 @@ const CarolModas = {
                         <ul>${detailsHTML}</ul>
                     </div>
                 </div>`;
-
             this.activateThumbnailGallery();
             this.activateOptionSelectors();
+            this.activateQuantitySelector();
         },
         activateThumbnailGallery: function () {
             const mainImage = document.getElementById('mainProductImage');
@@ -188,6 +193,21 @@ const CarolModas = {
                     this.classList.add('active');
                 });
             });
+        },
+        activateQuantitySelector: function () {
+            const decreaseBtn = document.getElementById('decrease-qty');
+            const increaseBtn = document.getElementById('increase-qty');
+            const quantitySpan = document.getElementById('product-quantity');
+            if (!decreaseBtn || !increaseBtn || !quantitySpan) return;
+            increaseBtn.addEventListener('click', () => {
+                quantitySpan.textContent = parseInt(quantitySpan.textContent) + 1;
+            });
+            decreaseBtn.addEventListener('click', () => {
+                let currentQty = parseInt(quantitySpan.textContent);
+                if (currentQty > 1) {
+                    quantitySpan.textContent = currentQty - 1;
+                }
+            });
         }
     },
 
@@ -202,12 +222,11 @@ const CarolModas = {
         attachEvents: function () {
             document.getElementById('cart-icon')?.addEventListener('click', () => this.togglePanel(true));
             document.getElementById('close-cart-btn')?.addEventListener('click', () => this.togglePanel(false));
-            // O event listener para 'add-to-cart-btn' é adicionado dinamicamente na página de produto
-            // para garantir que ele só seja ativado depois que o botão existir.
             document.body.addEventListener('click', (event) => {
-                if (event.target.id === 'add-to-cart-btn') {
-                    this.addItemFromDetailPage();
-                }
+                if (event.target.id === 'add-to-cart-btn') { this.addItemFromDetailPage(); }
+                if (event.target.matches('.cart-quantity-increase')) { const { id, color, size } = event.target.dataset; this.updateQuantity(id, color, size, 1); }
+                if (event.target.matches('.cart-quantity-decrease')) { const { id, color, size } = event.target.dataset; this.updateQuantity(id, color, size, -1); }
+                if (event.target.matches('.remove-item-btn')) { const { id, color, size } = event.target.dataset; this.removeItem(id, color, size); }
             });
             document.getElementById('btn-clear-cart')?.addEventListener('click', () => this.clear());
             document.getElementById('btn-checkout')?.addEventListener('click', () => this.checkout());
@@ -218,9 +237,10 @@ const CarolModas = {
             const productId = parseInt(urlParams.get('id'));
             const product = CarolModas.productsData.find(p => p.id === productId);
             if (product) {
+                const quantity = parseInt(document.getElementById('product-quantity')?.textContent || '1');
                 const size = document.querySelector('.size-btn.active')?.textContent || product.options.sizes[0];
                 const color = document.querySelector('.swatch.active')?.getAttribute('aria-label') || product.options.colors[0].name;
-                this.add(product, { size, color });
+                this.add(product, { size, color, quantity });
                 const btn = document.getElementById('add-to-cart-btn');
                 btn.textContent = 'Adicionado!';
                 btn.style.backgroundColor = '#B5838D';
@@ -228,12 +248,30 @@ const CarolModas = {
             }
         },
         add: function (product, options) {
-            const existingItem = this.cart.find(item => item.id === product.id && item.size === options.size && item.color === options.color);
+            const existingItem = this.cart.find(item => item.id == product.id && item.size === options.size && item.color === options.color);
             if (existingItem) {
-                existingItem.quantity++;
+                existingItem.quantity += options.quantity;
             } else {
-                this.cart.push({ id: product.id, name: product.name, price: product.price, image: product.images[0], size: options.size, color: options.color, quantity: 1 });
+                this.cart.push({ id: product.id, name: product.name, price: product.price, image: product.images[0], size: options.size, color: options.color, quantity: options.quantity });
             }
+            this.saveCart();
+            this.updateDisplay();
+            this.togglePanel(true);
+        },
+        updateQuantity: function (id, color, size, change) {
+            const item = this.cart.find(i => i.id == id && i.color === color && i.size === size);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    this.removeItem(id, color, size);
+                } else {
+                    this.saveCart();
+                    this.updateDisplay();
+                }
+            }
+        },
+        removeItem: function (id, color, size) {
+            this.cart = this.cart.filter(i => !(i.id == id && i.color === color && i.size === size));
             this.saveCart();
             this.updateDisplay();
         },
@@ -244,22 +282,35 @@ const CarolModas = {
             if (!badge || !cartItemsContainer || !totalElement) return;
             let totalItems = 0;
             let totalPrice = 0;
-            cartItemsContainer.innerHTML = this.cart.length === 0 ? '<p class="empty-cart-message">Seu carrinho está vazio.</p>' : '';
-            this.cart.forEach(item => {
-                totalItems += item.quantity;
-                totalPrice += item.price * item.quantity;
-                const itemHTML = `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="cart-item-details">
-                            <h4>${item.name}</h4>
-                            <p>Tamanho: ${item.size}, Cor: ${item.color}</p>
-                            <p class="price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p>
-                        </div>
-                        <div class="quantity-control"><span>Qtd: ${item.quantity}</span></div>
-                    </div>`;
-                cartItemsContainer.innerHTML += itemHTML;
-            });
+            if (this.cart.length === 0) {
+                cartItemsContainer.innerHTML = `<div class="empty-cart-view"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><h4>Op! Ainda nada por aqui...</h4><p>Adicione produtos para vê-los no carrinho.</p></div>`;
+            } else {
+                const cartItemsHTML = this.cart.map(item => {
+                    totalItems += item.quantity;
+                    totalPrice += item.price * item.quantity;
+                    const itemIdentifier = `data-id="${item.id}" data-color="${item.color}" data-size="${item.size}"`;
+                    return `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <img src="${item.image}" alt="${item.name}">
+                                <div class="cart-item-details">
+                                    <h4>${item.name}</h4>
+                                    <p>Tamanho: ${item.size}, Cor: ${item.color}</p>
+                                    <p class="price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p>
+                                </div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <div class="quantity-control">
+                                    <button class="cart-quantity-decrease" ${itemIdentifier}>-</button>
+                                    <span>${item.quantity}</span>
+                                    <button class="cart-quantity-increase" ${itemIdentifier}>+</button>
+                                </div>
+                                <button class="remove-item-btn" ${itemIdentifier}>Remover</button>
+                            </div>
+                        </div>`;
+                }).join('');
+                cartItemsContainer.innerHTML = cartItemsHTML;
+            }
             badge.textContent = totalItems;
             totalElement.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
         },
@@ -267,11 +318,17 @@ const CarolModas = {
             if (this.cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
             let message = "Olá, Carol Modas! Gostaria de fazer o seguinte pedido:\n\n";
             this.cart.forEach(item => {
-                message += `*Produto:* ${item.name}\n*Cor:* ${item.color}, *Tamanho:* ${item.size}\n*Qtd:* ${item.quantity}\n\n`;
+                const subtotal = item.price * item.quantity;
+                message += `*Produto:* ${item.name}\n`;
+                message += `*Cor:* ${item.color}, *Tamanho:* ${item.size}\n`;
+                message += `*Preço Unidade:* R$ ${item.price.toFixed(2).replace('.', ',')}\n`;
+                message += `*Qtd:* ${item.quantity}\n`;
+                message += `*Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+                message += `--------------------------------\n\n`;
             });
             const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             message += `*TOTAL DO PEDIDO: R$ ${totalPrice.toFixed(2).replace('.', ',')}*`;
-            const phoneNumber = "5511969228664"; // <-- NÚMERO
+            const phoneNumber = "5511999999999"; // <-- TROQUE PELO SEU NÚMERO
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         },

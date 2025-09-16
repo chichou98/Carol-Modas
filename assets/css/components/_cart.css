@@ -143,3 +143,83 @@
     text-align: center;
     margin-top: 40px;
 }
+
+.empty-cart-view {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.empty-cart-view svg {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-cart-view h4 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #555;
+    margin: 0 0 10px;
+}
+
+.empty-cart-view p {
+    font-size: 1em;
+    margin: 0;
+}
+
+.cart-item {
+    align-items: flex-start;
+    /* Alinha no topo */
+}
+
+.cart-item-info {
+    flex-grow: 1;
+    display: flex;
+    gap: 15px;
+}
+
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+.quantity-control button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 30px;
+    height: 30px;
+    color: #555;
+}
+
+.quantity-control span {
+    padding: 0 5px;
+    font-size: 1em;
+    min-width: 20px;
+    text-align: center;
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 0.8em;
+    text-decoration: underline;
+}
+
+.remove-item-btn:hover {
+    color: #B5838D;
+}

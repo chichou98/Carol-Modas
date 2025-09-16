@@ -1,9 +1,9 @@
 /* ======================================================= */
-/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER)                       */
+/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER)                   */
 /* ======================================================= */
 .navbar {
-    background: linear-gradient(to right, #C58E95 0%, #F5E8E9 50%, #C58E95 100%);
-    padding: 20px 0;
+    background: linear-gradient(to right, #F5E8E9 0%, #C58E95 50%, #F5E8E9 100%);
+    padding: 15px 0;
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -22,12 +22,12 @@
     display: block;
 }
 
-.mobile-nav-toggle,
-.mobile-menu-header,
-.mobile-menu-footer {
+/* Esconde o botão do menu mobile na versão de computador */
+.mobile-nav-toggle {
     display: none;
 }
 
+/* Estilos da navegação principal (horizontal) */
 .nav-links {
     display: flex;
     align-items: center;
@@ -40,10 +40,8 @@
 .nav-links a {
     color: #000000;
     text-decoration: none;
-    font-size: 1.15em;
+    font-size: 1.1em;
     padding: 5px 0;
-    position: relative;
-    transition: color 0.3s ease;
 }
 
 .nav-links a span {
@@ -64,20 +62,4 @@
 
 .nav-links a:hover span::after {
     width: 100%;
-}
-
-.btn-cta {
-    background-color: #ffffff;
-    color: #C58E95;
-    padding: 12px 24px;
-    font-size: 1.1em;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.btn-cta:hover {
-    background-color: #f1f1f1;
-    transform: scale(1.05);
 }
