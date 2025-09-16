@@ -379,7 +379,20 @@ body {
         font-size: 2.5em;
     }
 
-    /* --- Estilos do Menu Flutuante para Mobile --- */
+    /* --- Estilos do Cabeçalho e Menu Flutuante para Mobile --- */
+
+    /* NOVO: Prepara o container para o posicionamento absoluto do logo */
+    .navbar .container {
+        position: relative;
+    }
+
+    /* NOVO: Centraliza o logo na versão mobile */
+    .navbar .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .navbar .btn-cta {
         display: none;
     }
@@ -395,6 +408,8 @@ body {
         cursor: pointer;
         padding: 0;
         z-index: 1001;
+        margin-left: auto;
+        /* Garante que ele fique à direita */
     }
 
     .mobile-nav-toggle .bar {
