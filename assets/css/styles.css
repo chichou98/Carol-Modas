@@ -100,7 +100,7 @@ body {
 /* 3. CABEÇALHO E NAVEGAÇÃO (HEADER)                   */
 /* ======================================================= */
 .navbar {
-    background: linear-gradient(to right, #F5E8E9 0%, #C58E95 50%, #F5E8E9 100%);
+    background: linear-gradient(to right, #C58E95 0%, #F5E8E9 50%, #C58E95 100%);
     padding: 20px 0;
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -444,7 +444,7 @@ body {
         right: -300px;
         width: 250px;
         height: auto;
-        background: linear-gradient(to right, #F5E8E9 0%, #C58E95 50%, #F5E8E9 100%);
+        background: linear-gradient(to right, #C58E95 0%, #F5E8E9 50%, #C58E95 100%);
         border-radius: 15px;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         display: flex;
