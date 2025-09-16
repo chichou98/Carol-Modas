@@ -12,5 +12,8 @@
 /* 3. Estilos específicos das seções da Home e Rodapé */
 @import url('./components/_home.css');
 
-/* 4. Estilos Responsivos  */
+/* 4. [NOVO] Estilos da Página de Detalhes do Produto */
+@import url('./components/_product-detail.css');
+
+/* 5. Estilos Responsivos  */
 @import url('./components/_responsive.css');
