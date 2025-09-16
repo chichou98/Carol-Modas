@@ -1,0 +1,165 @@
+/* ======================================================= */
+/* 6. ESTILOS RESPONSIVOS (MOBILE)                         */
+/* ======================================================= */
+@media (max-width: 800px) {
+
+    /* --- Ajustes Gerais para Mobile --- */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .brand-story-content {
+        flex-direction: column;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    /* --- Estilos do Cabeçalho e Menu Flutuante para Mobile --- */
+
+    /* NOVO: Prepara o container para o posicionamento absoluto do logo */
+    .navbar .container {
+        position: relative;
+    }
+
+    /* NOVO: Centraliza o logo na versão mobile */
+    .navbar .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .navbar .btn-cta {
+        display: none;
+    }
+
+    .mobile-nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+        margin-left: auto;
+        /* Garante que ele fique à direita */
+    }
+
+    .mobile-nav-toggle .bar {
+        height: 3px;
+        width: 100%;
+        background-color: #333;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        z-index: 997;
+    }
+
+    .main-nav.active {
+        opacity: 1;
+        pointer-events: all;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .main-nav .nav-links {
+        position: absolute;
+        top: 90px;
+        right: -300px;
+        width: 150px;
+        height: auto;
+        background: linear-gradient(to right, #C58E95 0%, #F5E8E9 50%, #C58E95 100%);
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .main-nav.active .nav-links {
+        right: 20px;
+    }
+
+    .main-nav .nav-links li {
+        text-align: left;
+        width: 100%;
+    }
+
+    .main-nav .nav-links a {
+        display: block;
+        padding: 15px 25px;
+        font-size: 1.2em;
+        font-weight: 500;
+        color: #333;
+        transition: background-color 0.2s ease;
+    }
+
+    .main-nav .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Animação do botão "X" */
+    .mobile-nav-toggle.active .bar {
+        background-color: #fff;
+    }
+
+    .mobile-nav-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .mobile-nav-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-nav-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .featured-categories.container {
+        display: flex;
+        flex-direction: row;
+        /* Garante a direção horizontal */
+        overflow-x: auto;
+        /* ATIVA A ROLAGEM HORIZONTAL */
+        justify-content: flex-start;
+        /* Alinha os cards à esquerda para o scroll */
+        padding-top: 40px;
+        padding-bottom: 40px;
+        /* Espaço extra para a barra de rolagem não ficar colada */
+        -webkit-overflow-scrolling: touch;
+        /* Melhora a experiência de rolagem em iOS */
+    }
+
+    /* Estilo da barra de rolagem (opcional, mas deixa mais bonito) */
+    .featured-categories.container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .featured-categories.container::-webkit-scrollbar-thumb {
+        background-color: #ddd;
+        border-radius: 10px;
+    }
+
+    /* Define um tamanho fixo para os cards no mobile para que eles não espremam */
+    .featured-categories .category-card {
+        flex: 0 0 160px;
+        /* Não cresce, não encolhe, e tem 160px de largura */
+        width: 160px;
+    }
+
+}

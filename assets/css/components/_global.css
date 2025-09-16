@@ -1,0 +1,98 @@
+/* ======================================================= */
+/* 1. ESTILOS GERAIS E GLOBAIS                         */
+/* ======================================================= */
+
+/* Importando a fonte */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Estilos base do corpo da página */
+body {
+    background-color: #FDF8F8;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+/* Container principal para centralizar conteúdo */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Título padrão das seções */
+.section-title {
+    text-align: center;
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+/* --- Estilos de Botões Padrão --- */
+.btn-primary {
+    background-color: #C58E95;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #B5838D;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #333;
+    padding: 10px 20px;
+    border: 2px solid #C58E95;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #C58E95;
+    color: #fff;
+}
+
+/* ======================================================= */
+/* 2. TELA DE PRE-CARREGAMENTO (PRELOADER)             */
+/* ======================================================= */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    /* CAMINHO NOVO E CORRETO */
+    background-image: url('../../images/layout/wallpaper.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease;
+}
+
+.preloader-logo {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    max-width: 450px;
+    width: 80%;
+}
+
+.preloader-logo.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}

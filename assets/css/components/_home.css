@@ -1,0 +1,182 @@
+/* ======================================================= */
+/* 4. SEÇÕES DA PÁGINA INICIAL (HOME)                      */
+/* ======================================================= */
+
+/* --- Banner Principal com Carrossel --- */
+.hero-banner {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.slideshow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.slideshow-container .slide {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    left: 100%;
+    transition: left 1s ease-in-out;
+}
+
+.slideshow-container .slide.active {
+    left: 0;
+}
+
+.slideshow-container .slide.previous {
+    left: -100%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+}
+
+/* --- Seção de Categorias --- */
+.featured-categories.container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.category-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    flex: 1;
+    /* Ocupam espaço igual no desktop */
+    max-width: 350px;
+    /* Limita a largura máxima no desktop */
+}
+
+.category-card img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+/* --- Seção de Produtos em Destaque --- */
+.product-showcase.container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #fff;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.product-card {
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.product-card .price {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #B5838D;
+    margin-bottom: 15px;
+}
+
+/* --- Seção "Nossa Essência" --- */
+.brand-story {
+    background-color: #FDF8F8;
+    padding: 80px 0;
+}
+
+.brand-story-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.brand-story-image {
+    flex: 1;
+}
+
+.brand-story-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.brand-story-text {
+    flex: 1;
+}
+
+.brand-story-text h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.brand-story-text p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* ======================================================= */
+/* 5. RODAPÉ (FOOTER)                                      */
+/* ======================================================= */
+.main-footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+}
