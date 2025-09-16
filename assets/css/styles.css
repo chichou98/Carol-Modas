@@ -97,7 +97,7 @@ body {
 }
 
 /* ======================================================= */
-/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER)                   */
+/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER)                       */
 /* ======================================================= */
 .navbar {
     background: linear-gradient(to right, #C58E95 0%, #F5E8E9 50%, #C58E95 100%);
@@ -181,7 +181,7 @@ body {
 }
 
 /* ======================================================= */
-/* 4. SEÇÕES DA PÁGINA INICIAL (HOME)                  */
+/* 4. SEÇÕES DA PÁGINA INICIAL (HOME)                      */
 /* ======================================================= */
 
 /* --- Banner Principal com Carrossel --- */
@@ -254,6 +254,9 @@ body {
     overflow: hidden;
     border-radius: 10px;
     flex: 1;
+    /* Ocupam espaço igual no desktop */
+    max-width: 350px;
+    /* Limita a largura máxima no desktop */
 }
 
 .category-card img {
@@ -351,7 +354,7 @@ body {
 }
 
 /* ======================================================= */
-/* 5. RODAPÉ (FOOTER)                                  */
+/* 5. RODAPÉ (FOOTER)                                      */
 /* ======================================================= */
 .main-footer {
     background-color: #333;
@@ -361,7 +364,7 @@ body {
 }
 
 /* ======================================================= */
-/* 6. ESTILOS RESPONSIVOS (MOBILE)                     */
+/* 6. ESTILOS RESPONSIVOS (MOBILE)                         */
 /* ======================================================= */
 @media (max-width: 800px) {
 
@@ -491,4 +494,37 @@ body {
     .mobile-nav-toggle.active .bar:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
     }
+
+    .featured-categories.container {
+        display: flex;
+        flex-direction: row;
+        /* Garante a direção horizontal */
+        overflow-x: auto;
+        /* ATIVA A ROLAGEM HORIZONTAL */
+        justify-content: flex-start;
+        /* Alinha os cards à esquerda para o scroll */
+        padding-top: 40px;
+        padding-bottom: 40px;
+        /* Espaço extra para a barra de rolagem não ficar colada */
+        -webkit-overflow-scrolling: touch;
+        /* Melhora a experiência de rolagem em iOS */
+    }
+
+    /* Estilo da barra de rolagem (opcional, mas deixa mais bonito) */
+    .featured-categories.container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .featured-categories.container::-webkit-scrollbar-thumb {
+        background-color: #ddd;
+        border-radius: 10px;
+    }
+
+    /* Define um tamanho fixo para os cards no mobile para que eles não espremam */
+    .featured-categories .category-card {
+        flex: 0 0 160px;
+        /* Não cresce, não encolhe, e tem 160px de largura */
+        width: 160px;
+    }
+
 }
