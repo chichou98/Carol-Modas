@@ -43,3 +43,33 @@ if (carouselSlides.length > 0) {
     // Troca de imagem a cada 6 segundos
     setInterval(nextCarouselSlide, 6000);
 }
+
+/* ======================================================= */
+/* LÓGICA DO MENU RESPONSIVO      */
+/* ======================================================= */
+
+const navToggle = document.querySelector('.mobile-nav-toggle');
+const mainNav = document.querySelector('.main-nav');
+
+// Função para abrir/fechar o menu
+function toggleMenu() {
+    mainNav.classList.toggle('active');
+    navToggle.classList.toggle('active');
+
+    // Trava o scroll da página
+    if (mainNav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Abre/fecha ao clicar no botão hambúrguer
+navToggle.addEventListener('click', toggleMenu);
+
+// FECHA o menu se clicar no fundo escuro (fora do painel de links)
+mainNav.addEventListener('click', function (event) {
+    if (event.target === mainNav) { // Verifica se o clique foi no fundo e não nos filhos
+        toggleMenu();
+    }
+});
