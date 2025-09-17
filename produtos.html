@@ -46,6 +46,22 @@
     </header>
 
     <main>
+        <div class="cart-panel" id="cart-panel">
+            <div class="cart-header">
+                <h3>Meu Carrinho</h3>
+                <button class="close-cart-btn" id="close-cart-btn">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total:</strong>
+                    <span id="cart-total">R$ 0,00</span>
+                </div>
+                <button class="btn-primary btn-checkout" id="btn-checkout">Finalizar Pedido no WhatsApp</button>
+                <button class="btn-secondary btn-clear-cart" id="btn-clear-cart">Limpar Carrinho</button>
+            </div>
+        </div>
         <section class="page-header">
             <h1>Nossos Produtos</h1>
         </section>
@@ -93,7 +109,8 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js" defer></script>
+    <!-- <script src="./assets/js/main.js"> </script>-->
+    <script type="module" src="main.js" defer></script>
 </body>
 
 </html>

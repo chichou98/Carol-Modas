@@ -1,16 +1,9 @@
-/* _responsive.css */
+/* ======================================================= */
+/* 6. ESTILOS RESPONSIVOS (MOBILE)                     */
+/* ======================================================= */
 @media (max-width: 800px) {
 
-    /* --- Ajustes Gerais --- */
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .brand-story-content {
-        flex-direction: column;
-    }
-
+    /* --- Ajustes Gerais para Seções --- */
     .hero-content h1 {
         font-size: 2.5em;
     }
@@ -26,7 +19,29 @@
         flex: 0 0 160px;
     }
 
-    /* --- Cabeçalho Mobile --- */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .brand-story-content {
+        flex-direction: column;
+    }
+
+    /* --- Ajustes da Página de Produtos --- */
+    .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .product-card .btn-secondary {
+        white-space: nowrap;
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    /* --- Estilos do Cabeçalho e Menu para Mobile --- */
     .navbar .container {
         position: relative;
     }
@@ -37,14 +52,8 @@
         transform: translateX(-50%);
     }
 
-    .navbar .header-actions {
-        gap: 15px;
-        /* Diminui o espaço no desktop */
-    }
-
     .main-nav {
         display: none;
-        /* Esconde o menu de texto no mobile */
     }
 
     .mobile-nav-toggle {
@@ -82,15 +91,10 @@
         background: #fff;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out, opacity 0.3s ease;
-    }
-
-    .main-nav.active .nav-links {
         max-height: 500px;
         opacity: 1;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out, opacity 0.3s ease;
     }
 
     .main-nav.active .nav-links li {

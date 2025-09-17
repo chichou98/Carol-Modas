@@ -1,6 +1,6 @@
 const CarolModas = {
 
-    // "Banco de dados" de produtos com todos os detalhes necessários
+    // "Banco de dados" de produtos
     productsData: [
         {
             id: 1, name: "Calça Vege", price: 289.90, brand: "Carol Modas",
@@ -29,12 +29,11 @@ const CarolModas = {
         { id: 7, name: "Blusa Xadrez - Verde", price: 129.90, brand: "Carol Modas", images: ["assets/images/products/xadrez-verde.png"], options: { colors: [{ name: "Xadrez Verde", code: "#008000" }], sizes: ["M", "G"] }, details: ["Detalhe para Blusa Xadrez."] },
     ],
 
-    // Módulo para controlar o Preloader
     preloader: {
         init: function () {
             const preloaderElement = document.getElementById('preloader');
+            if (!preloaderElement) return;
             const logoElement = document.querySelector('.preloader-logo');
-            if (!preloaderElement || !logoElement) return;
             window.addEventListener('load', () => {
                 setTimeout(() => { logoElement.classList.add('visible'); }, 500);
                 setTimeout(() => { preloaderElement.classList.add('hidden'); }, 2000);
@@ -42,23 +41,21 @@ const CarolModas = {
         }
     },
 
-    // Módulo para controlar o Carrossel do Banner
     headerCarousel: {
         init: function () {
             const slides = document.querySelectorAll('.slideshow-container .slide');
             if (slides.length === 0) return;
             let currentSlide = 0;
-            slides[0].classList.add('active');
+            if (slides[currentSlide]) slides[currentSlide].classList.add('active');
             const nextSlide = () => {
-                slides[currentSlide].classList.remove('active');
+                if (slides[currentSlide]) slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
+                if (slides[currentSlide]) slides[currentSlide].classList.add('active');
             };
             setInterval(nextSlide, 6000);
         }
     },
 
-    // Módulo para controlar o Menu Responsivo
     responsiveMenu: {
         init: function () {
             const navToggle = document.querySelector('.mobile-nav-toggle');
@@ -67,21 +64,32 @@ const CarolModas = {
             const toggleMenu = () => {
                 mainNav.classList.toggle('active');
                 navToggle.classList.toggle('active');
-                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : 'auto';
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
             };
-            navToggle.addEventListener('click', toggleMenu);
-            mainNav.addEventListener('click', (event) => {
-                if (event.target === mainNav) { toggleMenu(); }
+            navToggle.addEventListener('click', (event) => {
+                event.stopPropagation();
+                toggleMenu();
             });
+            mainNav.addEventListener('click', (event) => event.stopPropagation());
         }
     },
 
-    // Módulo para controlar a Página de Listagem de Produtos
+    homePage: {
+        init: function () {
+            const homeGrid = document.getElementById('home-product-grid');
+            if (homeGrid) {
+                const featuredProducts = CarolModas.productsData.slice(0, 4);
+                CarolModas.productsPage.render(featuredProducts, homeGrid);
+            }
+        }
+    },
+
     productsPage: {
         init: function () {
             const productGrid = document.getElementById('product-list-grid');
-            if (!productGrid) return;
-            this.render(CarolModas.productsData, productGrid);
+            if (productGrid) {
+                this.render(CarolModas.productsData, productGrid);
+            }
         },
         render: function (productsToRender, gridElement) {
             gridElement.innerHTML = '';
@@ -94,16 +102,16 @@ const CarolModas = {
                             <img src="${product.images[0]}" alt="${product.name}">
                         </div>
                     </a>
-                    <h3>${product.name}</h3>
-                    <p class="price">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
-                    <a href="detalhe-produto.html?id=${product.id}" class="btn-secondary">Ver Detalhes</a>
-                `;
+                    <div class="product-card-info">
+                        <h3>${product.name}</h3>
+                        <p class="price">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+                    </div>
+                    <a href="detalhe-produto.html?id=${product.id}" class="btn-secondary">Ver Detalhes</a>`;
                 gridElement.appendChild(productCard);
             });
         }
     },
 
-    // Módulo para controlar a Página de Detalhes do Produto
     productDetailPage: {
         init: function () {
             const contentArea = document.getElementById('product-detail-content');
@@ -211,7 +219,6 @@ const CarolModas = {
         }
     },
 
-    // Módulo para controlar o Carrinho de Compras
     shoppingCart: {
         cart: [],
         init: function () {
@@ -220,49 +227,32 @@ const CarolModas = {
             this.updateDisplay();
         },
         attachEvents: function () {
-            document.getElementById('cart-icon')?.addEventListener('click', () => this.togglePanel(true));
+            const cartPanel = document.getElementById('cart-panel');
+            const cartIcon = document.getElementById('cart-icon');
+            cartIcon?.addEventListener('click', (event) => {
+                event.stopPropagation();
+                this.togglePanel(true);
+            });
             document.getElementById('close-cart-btn')?.addEventListener('click', () => this.togglePanel(false));
+            cartPanel?.addEventListener('click', (event) => event.stopPropagation());
             document.body.addEventListener('click', (event) => {
-                if (event.target.id === 'add-to-cart-btn') {
-                    // const productImage = document.getElementById('mainProductImage');
-                    // if (productImage) this.flyToCartAnimation(productImage);
-                    this.addItemFromDetailPage();
-                }
-                if (event.target.matches('.cart-quantity-increase')) { const { id, color, size } = event.target.dataset; this.updateQuantity(id, color, size, 1); }
-                if (event.target.matches('.cart-quantity-decrease')) { const { id, color, size } = event.target.dataset; this.updateQuantity(id, color, size, -1); }
-                if (event.target.matches('.remove-item-btn')) { const { id, color, size } = event.target.dataset; this.removeItem(id, color, size); }
+                if (event.target.id === 'add-to-cart-btn') { this.addItemFromDetailPage(); }
+                if (event.target.matches('.cart-quantity-increase')) { const d = event.target.dataset; this.updateQuantity(d.id, d.color, d.size, 1); }
+                if (event.target.matches('.cart-quantity-decrease')) { const d = event.target.dataset; this.updateQuantity(d.id, d.color, d.size, -1); }
+                if (event.target.matches('.remove-item-btn')) { const d = event.target.dataset; this.removeItem(d.id, d.color, d.size); }
             });
             document.getElementById('btn-clear-cart')?.addEventListener('click', () => this.clear());
             document.getElementById('btn-checkout')?.addEventListener('click', () => this.checkout());
         },
-        flyToCartAnimation: function (imageElement) {
-            const cartIcon = document.getElementById('cart-icon');
-            if (!imageElement || !cartIcon) return;
-            const imgClone = imageElement.cloneNode(true);
-            const startPos = imageElement.getBoundingClientRect();
-            imgClone.classList.add('flying-product-clone');
-            imgClone.style.top = `${startPos.top}px`;
-            imgClone.style.left = `${startPos.left}px`;
-            imgClone.style.width = `${startPos.width}px`;
-            imgClone.style.height = `${startPos.height}px`;
-            document.body.appendChild(imgClone);
-            const endPos = cartIcon.getBoundingClientRect();
-            const endX = endPos.left + (endPos.width / 2);
-            const endY = endPos.top + (endPos.height / 2);
-            requestAnimationFrame(() => {
-                imgClone.style.top = `${endY}px`;
-                imgClone.style.left = `${endX}px`;
-                imgClone.style.width = '30px';
-                imgClone.style.height = '30px';
-                imgClone.style.opacity = '0';
-            });
-            imgClone.addEventListener('transitionend', () => {
-                imgClone.remove();
-                cartIcon.classList.add('shake');
-                setTimeout(() => cartIcon.classList.remove('shake'), 400);
-            });
+        togglePanel: function (open) {
+            const cartPanel = document.getElementById('cart-panel');
+            const mainNav = document.querySelector('.main-nav');
+            if (open && mainNav?.classList.contains('active')) return;
+            if (cartPanel) {
+                cartPanel.classList.toggle('active', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
         },
-        togglePanel: (open = true) => document.getElementById('cart-panel')?.classList.toggle('active', open),
         addItemFromDetailPage: function () {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = parseInt(urlParams.get('id'));
@@ -271,9 +261,7 @@ const CarolModas = {
                 const quantity = parseInt(document.getElementById('product-quantity')?.textContent || '1');
                 const size = document.querySelector('.size-btn.active')?.textContent || product.options.sizes[0];
                 const color = document.querySelector('.swatch.active')?.getAttribute('aria-label') || product.options.colors[0].name;
-                setTimeout(() => {
-                    this.add(product, { size, color, quantity });
-                }, 100);
+                this.add(product, { size, color, quantity });
                 const btn = document.getElementById('add-to-cart-btn');
                 btn.textContent = 'Adicionado!';
                 btn.style.backgroundColor = '#B5838D';
@@ -310,11 +298,11 @@ const CarolModas = {
         },
         updateDisplay: function () {
             const badge = document.getElementById('cart-badge');
+            if (badge) {
+                badge.textContent = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
             const cartItemsContainer = document.getElementById('cart-items');
             const totalElement = document.getElementById('cart-total');
-            if (!badge) return; // Apenas o badge é essencial em todas as páginas
-            let totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-            badge.textContent = totalItems;
             if (cartItemsContainer && totalElement) {
                 let totalPrice = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                 if (this.cart.length === 0) {
@@ -353,18 +341,36 @@ const CarolModas = {
         loadCart: function () { this.cart = JSON.parse(localStorage.getItem('carolModasCart')) || []; }
     },
 
-    // Função principal que inicializa todas as funcionalidades do site
+    // Função principal que inicializa tudo
     init: function () {
         this.preloader.init();
         this.headerCarousel.init();
         this.responsiveMenu.init();
+        this.homePage.init();
         this.productsPage.init();
         this.productDetailPage.init();
         this.shoppingCart.init();
+
+        // Listener global para fechar painéis abertos ao clicar fora
+        window.addEventListener('click', (event) => {
+            const mainNav = document.querySelector('.main-nav');
+            if (mainNav?.classList.contains('active')) {
+                const navToggle = document.querySelector('.mobile-nav-toggle');
+                mainNav.classList.remove('active');
+                navToggle?.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            const cartPanel = document.getElementById('cart-panel');
+            if (cartPanel?.classList.contains('active')) {
+                cartPanel.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     }
 };
 
-// Dispara a inicialização do site assim que o HTML estiver pronto
+// Dispara a inicialização do site
 document.addEventListener('DOMContentLoaded', () => {
     CarolModas.init();
 });

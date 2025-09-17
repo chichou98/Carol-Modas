@@ -7,9 +7,16 @@
     padding: 15px 0;
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: relative;
-    /* Necessário para o menu mobile */
+
+    /* --- MUDANÇAS AQUI --- */
+    position: sticky;
+    /* Faz o elemento "colar" na tela */
+    top: 0;
+    /* Define que ele deve colar no topo (posição 0) */
+    /* --- FIM DAS MUDANÇAS --- */
+
     z-index: 1000;
+    /* Garante que o menu fique sobre outros conteúdos */
 }
 
 .navbar .container {
