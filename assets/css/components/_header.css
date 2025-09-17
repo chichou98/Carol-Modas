@@ -1,12 +1,14 @@
 /* ======================================================= */
-/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER)                   */
+/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER) - VERSÃO FINAL      */
 /* ======================================================= */
+
 .navbar {
     background: linear-gradient(to right, #F5E8E9 0%, #C58E95 50%, #F5E8E9 100%);
     padding: 15px 0;
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
+    /* Necessário para o menu mobile */
     z-index: 1000;
 }
 
@@ -22,12 +24,20 @@
     display: block;
 }
 
-/* Esconde o botão do menu mobile na versão de computador */
+/* Container para os elementos da direita (menu + carrinho) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    /* Espaço entre o menu de links e o carrinho */
+}
+
+/* O botão hambúrguer é escondido na versão de computador */
 .mobile-nav-toggle {
     display: none;
 }
 
-/* Estilos da navegação principal (horizontal) */
+/* Navegação principal (horizontal) para desktop */
 .nav-links {
     display: flex;
     align-items: center;
@@ -49,6 +59,7 @@
     display: inline-block;
 }
 
+/* Efeito de linha no hover */
 .nav-links a span::after {
     content: '';
     position: absolute;

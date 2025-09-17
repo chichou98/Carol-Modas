@@ -1,9 +1,7 @@
-/* ======================================================= */
-/* 6. ESTILOS RESPONSIVOS (MOBILE)                     */
-/* ======================================================= */
+/* _responsive.css */
 @media (max-width: 800px) {
 
-    /* --- Ajustes Gerais para Seções --- */
+    /* --- Ajustes Gerais --- */
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -28,26 +26,27 @@
         flex: 0 0 160px;
     }
 
-    /* --- Estilos do Cabeçalho para Mobile --- */
-
-    /* Prepara o container para o logo centralizado */
+    /* --- Cabeçalho Mobile --- */
     .navbar .container {
         position: relative;
     }
 
-    /* Centraliza o logo */
     .navbar .logo {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
     }
 
-    /* Esconde a navegação de desktop */
-    .navbar .main-nav {
-        display: none;
+    .navbar .header-actions {
+        gap: 15px;
+        /* Diminui o espaço no desktop */
     }
 
-    /* Mostra o botão hambúrguer e o posiciona à direita */
+    .main-nav {
+        display: none;
+        /* Esconde o menu de texto no mobile */
+    }
+
     .mobile-nav-toggle {
         display: flex;
         flex-direction: column;
@@ -59,8 +58,6 @@
         cursor: pointer;
         padding: 0;
         z-index: 1001;
-        margin-left: auto;
-        /* Empurra o botão para a direita */
     }
 
     .mobile-nav-toggle .bar {
@@ -71,46 +68,43 @@
         transition: all 0.3s ease-in-out;
     }
 
-    /* Quando o menu é ativado, a navegação aparece */
     .main-nav.active {
         display: block;
     }
 
-    /* Estilo do painel do menu dropdown */
-    .main-nav .nav-links {
+    .main-nav.active .nav-links {
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 100%;
+        top: calc(100% + 10px);
         left: 0;
         right: 0;
-        background: linear-gradient(to right, #F5E8E9 0%, #C58E95 50%, #F5E8E9 100%);
+        background: #fff;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
         max-height: 0;
         opacity: 0;
         overflow: hidden;
         transition: max-height 0.5s ease-in-out, opacity 0.3s ease;
     }
 
-    /* Estilo do painel quando está ativo (aberto) */
     .main-nav.active .nav-links {
         max-height: 500px;
         opacity: 1;
     }
 
-    .main-nav .nav-links li {
+    .main-nav.active .nav-links li {
         text-align: center;
         width: 100%;
     }
 
-    .main-nav .nav-links a {
+    .main-nav.active .nav-links a {
         display: block;
         padding: 18px;
         font-size: 1.3em;
         border-top: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    /* Animação do botão "X" */
     .mobile-nav-toggle.active .bar:nth-child(1) {
         transform: rotate(45deg) translate(6px, 6px);
     }

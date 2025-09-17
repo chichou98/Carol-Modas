@@ -27,7 +27,6 @@ const CarolModas = {
         { id: 5, name: "Calça Ciganinha", price: 159.90, brand: "Carol Modas", images: ["assets/images/products/ciganinha.png"], options: { colors: [{ name: "Estampado", code: "#000000" }], sizes: ["Único"] }, details: ["Detalhe para Calça Ciganinha."] },
         { id: 6, name: "Blusa Listrada - Vermelha", price: 119.90, brand: "Carol Modas", images: ["assets/images/products/listrado-cor-vermelha.png"], options: { colors: [{ name: "Listrado", code: "#ff4500" }], sizes: ["P", "M", "G"] }, details: ["Detalhe para Blusa Listrada."] },
         { id: 7, name: "Blusa Xadrez - Verde", price: 129.90, brand: "Carol Modas", images: ["assets/images/products/xadrez-verde.png"], options: { colors: [{ name: "Xadrez Verde", code: "#008000" }], sizes: ["M", "G"] }, details: ["Detalhe para Blusa Xadrez."] },
-
     ],
 
     // Módulo para controlar o Preloader
@@ -224,13 +223,44 @@ const CarolModas = {
             document.getElementById('cart-icon')?.addEventListener('click', () => this.togglePanel(true));
             document.getElementById('close-cart-btn')?.addEventListener('click', () => this.togglePanel(false));
             document.body.addEventListener('click', (event) => {
-                if (event.target.id === 'add-to-cart-btn') { this.addItemFromDetailPage(); }
+                if (event.target.id === 'add-to-cart-btn') {
+                    // const productImage = document.getElementById('mainProductImage');
+                    // if (productImage) this.flyToCartAnimation(productImage);
+                    this.addItemFromDetailPage();
+                }
                 if (event.target.matches('.cart-quantity-increase')) { const { id, color, size } = event.target.dataset; this.updateQuantity(id, color, size, 1); }
                 if (event.target.matches('.cart-quantity-decrease')) { const { id, color, size } = event.target.dataset; this.updateQuantity(id, color, size, -1); }
                 if (event.target.matches('.remove-item-btn')) { const { id, color, size } = event.target.dataset; this.removeItem(id, color, size); }
             });
             document.getElementById('btn-clear-cart')?.addEventListener('click', () => this.clear());
             document.getElementById('btn-checkout')?.addEventListener('click', () => this.checkout());
+        },
+        flyToCartAnimation: function (imageElement) {
+            const cartIcon = document.getElementById('cart-icon');
+            if (!imageElement || !cartIcon) return;
+            const imgClone = imageElement.cloneNode(true);
+            const startPos = imageElement.getBoundingClientRect();
+            imgClone.classList.add('flying-product-clone');
+            imgClone.style.top = `${startPos.top}px`;
+            imgClone.style.left = `${startPos.left}px`;
+            imgClone.style.width = `${startPos.width}px`;
+            imgClone.style.height = `${startPos.height}px`;
+            document.body.appendChild(imgClone);
+            const endPos = cartIcon.getBoundingClientRect();
+            const endX = endPos.left + (endPos.width / 2);
+            const endY = endPos.top + (endPos.height / 2);
+            requestAnimationFrame(() => {
+                imgClone.style.top = `${endY}px`;
+                imgClone.style.left = `${endX}px`;
+                imgClone.style.width = '30px';
+                imgClone.style.height = '30px';
+                imgClone.style.opacity = '0';
+            });
+            imgClone.addEventListener('transitionend', () => {
+                imgClone.remove();
+                cartIcon.classList.add('shake');
+                setTimeout(() => cartIcon.classList.remove('shake'), 400);
+            });
         },
         togglePanel: (open = true) => document.getElementById('cart-panel')?.classList.toggle('active', open),
         addItemFromDetailPage: function () {
@@ -241,7 +271,9 @@ const CarolModas = {
                 const quantity = parseInt(document.getElementById('product-quantity')?.textContent || '1');
                 const size = document.querySelector('.size-btn.active')?.textContent || product.options.sizes[0];
                 const color = document.querySelector('.swatch.active')?.getAttribute('aria-label') || product.options.colors[0].name;
-                this.add(product, { size, color, quantity });
+                setTimeout(() => {
+                    this.add(product, { size, color, quantity });
+                }, 100);
                 const btn = document.getElementById('add-to-cart-btn');
                 btn.textContent = 'Adicionado!';
                 btn.style.backgroundColor = '#B5838D';
@@ -280,56 +312,33 @@ const CarolModas = {
             const badge = document.getElementById('cart-badge');
             const cartItemsContainer = document.getElementById('cart-items');
             const totalElement = document.getElementById('cart-total');
-            if (!badge || !cartItemsContainer || !totalElement) return;
-            let totalItems = 0;
-            let totalPrice = 0;
-            if (this.cart.length === 0) {
-                cartItemsContainer.innerHTML = `<div class="empty-cart-view"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><h4>Op! Ainda nada por aqui...</h4><p>Adicione produtos para vê-los no carrinho.</p></div>`;
-            } else {
-                const cartItemsHTML = this.cart.map(item => {
-                    totalItems += item.quantity;
-                    totalPrice += item.price * item.quantity;
-                    const itemIdentifier = `data-id="${item.id}" data-color="${item.color}" data-size="${item.size}"`;
-                    return `
-                        <div class="cart-item">
-                            <div class="cart-item-info">
-                                <img src="${item.image}" alt="${item.name}">
-                                <div class="cart-item-details">
-                                    <h4>${item.name}</h4>
-                                    <p>Tamanho: ${item.size}, Cor: ${item.color}</p>
-                                    <p class="price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p>
-                                </div>
-                            </div>
-                            <div class="cart-item-actions">
-                                <div class="quantity-control">
-                                    <button class="cart-quantity-decrease" ${itemIdentifier}>-</button>
-                                    <span>${item.quantity}</span>
-                                    <button class="cart-quantity-increase" ${itemIdentifier}>+</button>
-                                </div>
-                                <button class="remove-item-btn" ${itemIdentifier}>Remover</button>
-                            </div>
-                        </div>`;
-                }).join('');
-                cartItemsContainer.innerHTML = cartItemsHTML;
-            }
+            if (!badge) return; // Apenas o badge é essencial em todas as páginas
+            let totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
             badge.textContent = totalItems;
-            totalElement.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+            if (cartItemsContainer && totalElement) {
+                let totalPrice = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                if (this.cart.length === 0) {
+                    cartItemsContainer.innerHTML = `<div class="empty-cart-view"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><h4>Op! Ainda nada por aqui...</h4><p>Adicione produtos para vê-los no carrinho.</p></div>`;
+                } else {
+                    const cartItemsHTML = this.cart.map(item => {
+                        const itemIdentifier = `data-id="${item.id}" data-color="${item.color}" data-size="${item.size}"`;
+                        return `<div class="cart-item"><div class="cart-item-info"><img src="${item.image}" alt="${item.name}"><div class="cart-item-details"><h4>${item.name}</h4><p>Tamanho: ${item.size}, Cor: ${item.color}</p><p class="price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p></div></div><div class="cart-item-actions"><div class="quantity-control"><button class="cart-quantity-decrease" ${itemIdentifier}>-</button><span>${item.quantity}</span><button class="cart-quantity-increase" ${itemIdentifier}>+</button></div><button class="remove-item-btn" ${itemIdentifier}>Remover</button></div></div>`;
+                    }).join('');
+                    cartItemsContainer.innerHTML = cartItemsHTML;
+                }
+                totalElement.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+            }
         },
         checkout: function () {
             if (this.cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
             let message = "Olá, Carol Modas! Gostaria de fazer o seguinte pedido:\n\n";
             this.cart.forEach(item => {
                 const subtotal = item.price * item.quantity;
-                message += `*Produto:* ${item.name}\n`;
-                message += `*Cor:* ${item.color}, *Tamanho:* ${item.size}\n`;
-                message += `*Preço Unidade:* R$ ${item.price.toFixed(2).replace('.', ',')}\n`;
-                message += `*Qtd:* ${item.quantity}\n`;
-                message += `*Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
-                message += `--------------------------------\n\n`;
+                message += `*Produto:* ${item.name}\n*Cor:* ${item.color}, *Tamanho:* ${item.size}\n*Preço Unidade:* R$ ${item.price.toFixed(2).replace('.', ',')}\n*Qtd:* ${item.quantity}\n*Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n--------------------------------\n\n`;
             });
             const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             message += `*TOTAL DO PEDIDO: R$ ${totalPrice.toFixed(2).replace('.', ',')}*`;
-            const phoneNumber = "5511988817216"; // <-- TROQUE PELO SEU NÚMERO
+            const phoneNumber = "5511999999999"; // <-- TROQUE PELO SEU NÚMERO
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         },

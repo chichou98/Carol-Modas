@@ -11,22 +11,44 @@
 .cart-icon {
     position: relative;
     cursor: pointer;
+    width: 42px;
+    /* Define um tamanho fixo */
+    height: 42px;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Fundo semi-transparente */
+    border-radius: 50%;
+    /* Deixa o fundo redondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.cart-icon:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.cart-icon svg {
+    width: 20px;
+    height: 20px;
+    color: #333;
 }
 
 .cart-badge {
     position: absolute;
-    top: -8px;
-    right: -10px;
+    top: -2px;
+    right: -2px;
     background-color: #B5838D;
     color: white;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.75em;
+    font-size: 0.7em;
     font-weight: 600;
+    border: 1px solid #fff;
 }
 
 /* 1. PAINEL MAIOR E COM FUNDO BRANCO */
@@ -87,6 +109,7 @@
     padding-bottom: 20px;
     margin-bottom: 20px;
     border-bottom: 1px solid #f0f0f0;
+    animation: slideInFromRight 0.5s ease-out forwards;
 }
 
 .cart-item-info {
@@ -160,17 +183,27 @@
 }
 
 .remove-item-btn {
-    background: none;
+    background-color: #f0f0f0;
+    /* Fundo cinza claro para destaque */
     border: none;
-    cursor: pointer;
-    color: #aaa;
+    border-radius: 20px;
+    /* Bordas arredondadas */
+    padding: 6px 12px;
+    /* Espaçamento interno para criar o botão */
+    color: #555;
+    /* Cor do texto mais escura para legibilidade */
     font-size: 0.9em;
-    text-decoration: underline;
+    font-weight: 500;
+    text-decoration: none;
+    /* Remove o sublinhado */
+    cursor: pointer;
+    transition: all 0.2s ease;
     margin-top: 10px;
 }
 
 .remove-item-btn:hover {
-    color: #B5838D;
+    background-color: #e0e0e0;
+    color: #333;
 }
 
 /* --- Rodapé do Carrinho --- */
@@ -223,4 +256,56 @@
 .empty-cart-view p {
     font-size: 1em;
     margin: 0;
+}
+
+@keyframes shakeCart {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    75% {
+        transform: translateX(3px);
+    }
+}
+
+.cart-icon.shake {
+    animation: shakeCart 0.4s ease;
+}
+
+/* Adicione no final de _cart.css */
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+        /* Começa um pouco à direita */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        /* Termina na posição normal */
+    }
+}
+
+.cart-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.cart-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.cart-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.cart-item:nth-child(4) {
+    animation-delay: 0.4s;
 }
