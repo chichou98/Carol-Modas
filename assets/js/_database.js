@@ -236,5 +236,42 @@ export const productsData = [
             ]
         },
         "active": true
+    },
+    {
+        "id": 1758252644407,
+        "slug": "blusa-canelada-manga-fina",
+        "name": "Blusa Canelada Manga Fina",
+        "price": 29.99,
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/1758252549240-canelado-manga-fina-preto.jpg",
+            "assets/images/products/1758252592211-canelado-manga-fina-vermelho.jpg"
+        ],
+        "description": "",
+        "details": [
+            "Tecido canelado com elasticidade",
+            "Gola redonda clássica",
+            "Ideal para compor looks diversos"
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Preto",
+                    "code": "#000000"
+                },
+                {
+                    "name": "Vermelho",
+                    "code": "#FF0000"
+                }
+            ],
+            "sizes": [
+                "P",
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
     }
 ];
