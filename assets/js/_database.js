@@ -65,7 +65,7 @@ export const productsData = [
                 "GG"
             ]
         },
-        "active": true
+        "active": false
     },
     {
         "id": 3,
@@ -100,7 +100,7 @@ export const productsData = [
                 "GG"
             ]
         },
-        "active": true
+        "active": false
     },
     {
         "id": 4,
@@ -128,7 +128,7 @@ export const productsData = [
                 "G"
             ]
         },
-        "active": true
+        "active": false
     },
     {
         "id": 5,
@@ -153,7 +153,7 @@ export const productsData = [
                 "Único"
             ]
         },
-        "active": true
+        "active": false
     },
     {
         "id": 6,
@@ -182,7 +182,7 @@ export const productsData = [
                 "G"
             ]
         },
-        "active": true
+        "active": false
     },
     {
         "id": 7,
@@ -208,32 +208,6 @@ export const productsData = [
                 "G"
             ]
         },
-        "active": true
-    },
-    {
-        "id": 1758246360369,
-        "name": "teste",
-        "price": 125,
-        "category": "Listrado",
-        "brand": "Carol Modas",
-        "images": [
-            "assets/images/products/calca-vege.png"
-        ],
-        "description": "",
-        "details": [
-            "afsfafas"
-        ],
-        "options": {
-            "colors": [
-                {
-                    "name": "verde",
-                    "code": "#008000"
-                }
-            ],
-            "sizes": [
-                "P"
-            ]
-        },
-        "active": true
+        "active": false
     }
 ];

@@ -18,9 +18,9 @@
     "url": "https://github.com/chichou98/Carol-Modas/issues"
   },
   "homepage": "https://github.com/chichou98/Carol-Modas#readme",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
   }
 }
