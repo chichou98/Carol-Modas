@@ -2,77 +2,6 @@
 
 export const productsData = [
     {
-        "id": 2,
-        "name": "Blusa Canelada Manga Fina - Preta",
-        "price": 89.9,
-        "category": "Canelado",
-        "brand": "Carol Modas",
-        "images": [
-            "assets/images/products/canelado-manga-fina-preto.jpg",
-            "assets/images/products/canelado-manga-fina-vermelho.jpg"
-        ],
-        "description": "",
-        "details": [
-            "Tecido canelado com elasticidade",
-            "Gola redonda clássica",
-            "Ideal para compor looks diversos"
-        ],
-        "options": {
-            "colors": [
-                {
-                    "name": "Preto",
-                    "code": "#212121"
-                },
-                {
-                    "name": "Vermelho",
-                    "code": "#B22222"
-                }
-            ],
-            "sizes": [
-                "P",
-                "M",
-                "G",
-                "GG"
-            ]
-        },
-        "active": false
-    },
-    {
-        "id": 3,
-        "name": "Blusa Canelada Manga Fina - Vermelha",
-        "price": 89.9,
-        "brand": "Carol Modas",
-        "category": "Canelado",
-        "images": [
-            "assets/images/products/canelado-manga-fina-vermelho.jpg",
-            "assets/images/products/canelado-manga-fina-preto.jpg"
-        ],
-        "details": [
-            "Tecido canelado com elasticidade",
-            "Gola redonda clássica",
-            "Ideal para compor looks diversos"
-        ],
-        "options": {
-            "colors": [
-                {
-                    "name": "Vermelho",
-                    "code": "#B22222"
-                },
-                {
-                    "name": "Preto",
-                    "code": "#212121"
-                }
-            ],
-            "sizes": [
-                "P",
-                "M",
-                "G",
-                "GG"
-            ]
-        },
-        "active": false
-    },
-    {
         "id": 4,
         "name": "Blusa Canelada",
         "price": 99.9,
@@ -224,7 +153,9 @@ export const productsData = [
         "category": "Canelado",
         "brand": "Carol Modas",
         "images": [
-            "assets/images/products/1758285636653-1758252592211-canelado-manga-fina-vermelho.jpg"
+            "assets/images/products/1758285636653-1758252592211-canelado-manga-fina-vermelho.jpg",
+            "assets/images/products/1758315091764-canelado-manga-fina-vermelho.jpg",
+            "assets/images/products/1758315107446-canelado-manga-fina-preto.jpg"
         ],
         "description": "",
         "details": [
@@ -296,28 +227,40 @@ export const productsData = [
         "active": true
     },
     {
-        "id": 1758309025331,
-        "slug": "test",
-        "name": "test",
-        "price": 89.9,
-        "category": "Ciganinha",
+        "id": 1758313769919,
+        "slug": "blusa-canelado-rosa",
+        "name": "Blusa Canelado - Rosa",
+        "price": 29.99,
+        "category": "Canelado",
         "brand": "Carol Modas",
         "images": [
-            "assets/images/products/1758309016494-Gemini_Generated_Image_rzj43nrzj43nrzj4.png"
+            "assets/images/products/1758315706739-2.png",
+            "assets/images/products/1758317028685-3.webp"
         ],
         "description": "",
         "details": [
-            "g5f4j"
+            "Blusa Canelada Manga Longa Rosa",
+            "Versátil e cheia de estilo, esta blusa canelada é perfeita para criar looks modernos e elegantes em qualquer ocasião. Confeccionada em tecido canelado com leve elasticidade, proporciona um ajuste confortável e prático, valorizando a silhueta de forma sutil e sofisticada.",
+            "Com modelagem clássica e atemporal, a peça conta com gola redonda discreta e mangas longas, garantindo um visual clean que facilita combinações que vão do casual ao elaborado. A textura canelada adiciona um toque de estilo diferenciado, tornando a blusa ainda mais interessante e elegante.",
+            "Na cor rosa, transmite delicadeza e feminilidade, sendo ideal para adicionar suavidade e charme às suas produções.",
+            "Detalhes do produto:",
+            "Tecido canelado com elasticidade",
+            "Gola redonda clássica",
+            "Manga longa",
+            "Modelagem confortável e ajustável",
+            "Cor: Rosa",
+            "Indicação de uso:",
+            "Perfeita para o dia a dia, trabalho, passeios e até ocasiões especiais, podendo ser combinada com jeans, saias, leggings ou calças de alfaiataria para um visual mais sofisticado."
         ],
         "options": {
             "colors": [
                 {
-                    "name": "preto",
-                    "code": "#fff"
+                    "name": "Rosa",
+                    "code": "#FFC0CB"
                 }
             ],
             "sizes": [
-                "P"
+                "GG"
             ]
         },
         "active": true

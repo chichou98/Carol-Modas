@@ -1,0 +1,71 @@
+/* Em assets/css/components/_product-grid.css (Versão Final com Grid aprimorado) */
+
+.product-grid {
+    display: grid;
+    /* Cria colunas responsivas: o grid tentará encaixar o máximo de colunas
+      possíveis que tenham no mínimo 260px. Em telas maiores, pode ter 4 ou 5 colunas,
+      em tablets pode ter 3, etc. É uma abordagem moderna e robusta.
+    */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 10px 0;
+}
+
+/*
+  Com o Grid, não precisamos de regras de tamanho complexas nos cards,
+  pois o próprio container (.product-grid) já cuida da distribuição.
+  Apenas garantimos que o conteúdo interno se organize bem.
+*/
+.product-grid .product-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-grid .product-card .product-card-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-grid .product-card .product-card-info>div {
+    padding-bottom: 15px;
+}
+
+/* Ajuste para a mensagem de "Nenhum produto encontrado" */
+.no-products-found {
+    /* Ocupa todas as colunas do grid */
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 1.2em;
+    color: #777;
+}
+
+
+/* ======================================================= */
+/* --- Layout Otimizado para Mobile (Celular) --- */
+/* ======================================================= */
+@media (max-width: 600px) {
+
+    /* Diminui o espaçamento entre os cards no celular */
+    .product-grid {
+        gap: 15px;
+        /* FORÇA o layout a ter exatamente 2 colunas iguais */
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Ajusta os tamanhos das fontes dentro do card para telas menores */
+    .product-grid .product-card .product-card-category {
+        font-size: 0.75em;
+    }
+
+    .product-grid .product-card h3 {
+        font-size: 0.95em;
+        line-height: 1.3;
+    }
+
+    .product-grid .product-card .price {
+        font-size: 1.1em;
+    }
+}

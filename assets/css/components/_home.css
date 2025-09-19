@@ -161,6 +161,7 @@
 
 .product-card:hover .product-image-container img {
     transform: scale(1.05);
+
 }
 
 .product-card-info {
