@@ -247,15 +247,13 @@
 
 
 /* ======================================================= */
-/* SEÇÃO "SOBRE ESTE ITEM" - AQUI ESTÁ A CORREÇÃO          */
+/* SEÇÃO "SOBRE ESTE ITEM" - ESTILOS FINAIS                */
 /* ======================================================= */
 
 .product-description-details {
     margin-top: 60px;
-    padding: 40px 0;
-    /* Adiciona um respiro vertical */
+    padding: 40px 20px;
     background-color: #fff;
-    /* Fundo branco para destacar a seção */
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
@@ -264,45 +262,59 @@
     font-size: 2em;
     color: #333;
     margin-bottom: 30px;
-    /* Aumenta o espaço abaixo do título */
     text-align: center;
 }
 
-.details-section ul {
-    list-style: none;
-    padding: 0;
+.details-content {
     max-width: 700px;
     margin: 0 auto;
-}
-
-/* NOVO ESTILO PARA CADA ITEM DA LISTA */
-.details-section li {
-    font-size: 1.05em;
     color: #555;
+    font-size: 1.05em;
     line-height: 1.7;
-    /* Melhora a legibilidade */
-    padding-left: 30px;
-    /* Cria um espaço à esquerda para o ícone */
-    position: relative;
-    /* Essencial para posicionar o ícone */
-    margin-bottom: 15px;
-    /* Espaço entre os itens da lista */
 }
 
-/* NOVO ESTILO PARA O ÍCONE */
-.icon-detail-item {
-    color: #B5838D;
-    font-size: 0.9em;
-    position: absolute;
-    /* Tira o ícone do fluxo normal */
-    left: 0;
-    /* Coloca o ícone no espaço criado pelo padding */
-    top: 7px;
-    /* Alinha o ícone verticalmente com a primeira linha de texto */
+.details-main-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5em;
 }
+
+.details-paragraph {
+    margin-bottom: 1em;
+}
+
+.details-heading {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #333;
+    margin-top: 1.8em;
+    margin-bottom: 0.2em;
+}
+
+.details-sublist {
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-bottom: 1em;
+}
+
+.details-sublist li {
+    margin-bottom: 0.3em;
+}
+
+/* --- AQUI ESTÁ A CORREÇÃO PARA O NEGRITO --- */
+.details-content strong,
+.details-content b {
+    font-weight: 700;
+    /* Garante que o texto seja realmente negrito */
+    color: #222;
+    /* Opcional: deixa o negrito um pouco mais escuro para dar contraste */
+}
+
+/* --- FIM DA CORREÇÃO --- */
 
 /* ======================================================= */
-/* FIM DA SEÇÃO CORRIGIDA                                  */
+/* FIM DA SEÇÃO                                            */
 /* ======================================================= */
 
 

@@ -184,6 +184,14 @@
     margin-bottom: 15px;
 }
 
+.product-card-category {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 .product-card .btn-secondary {
     margin-top: auto;
     align-self: center;

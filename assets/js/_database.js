@@ -2,36 +2,6 @@
 
 export const productsData = [
     {
-        "id": 1,
-        "name": "Calça Vege",
-        "price": 289.9,
-        "brand": "Carol Modas",
-        "category": "Short",
-        "images": [
-            "assets/images/products/calca-vege.png"
-        ],
-        "description": "Calça com tecido leve e caimento perfeito, ideal para um look casual e elegante.",
-        "details": [
-            "Tecido leve e confortável",
-            "Cintura com elástico e cordão",
-            "Bolsos laterais funcionais"
-        ],
-        "options": {
-            "colors": [
-                {
-                    "name": "Bege",
-                    "code": "#D2B48C"
-                }
-            ],
-            "sizes": [
-                "P",
-                "M",
-                "G"
-            ]
-        },
-        "active": true
-    },
-    {
         "id": 2,
         "name": "Blusa Canelada Manga Fina - Preta",
         "price": 89.9,
@@ -208,45 +178,17 @@ export const productsData = [
                 "G"
             ]
         },
-        "active": false
-    },
-    {
-        "id": 1758250309170,
-        "slug": "teste",
-        "name": "teste",
-        "price": 89.9,
-        "category": "Listrado",
-        "brand": "Carol Modas",
-        "images": [
-            "assets/images/products/1758250289171-Black-And-White-Anime-Profile-Photo-1.jpg"
-        ],
-        "description": "",
-        "details": [
-            "asd"
-        ],
-        "options": {
-            "colors": [
-                {
-                    "name": "asdad",
-                    "code": "#fff"
-                }
-            ],
-            "sizes": [
-                "´p"
-            ]
-        },
         "active": true
     },
     {
         "id": 1758252644407,
-        "slug": "blusa-canelada-manga-fina",
-        "name": "Blusa Canelada Manga Fina",
+        "slug": "blusa-canelada-manga-fina-cor-preto",
+        "name": "Blusa Canelada Manga Fina - Cor Preto",
         "price": 29.99,
         "category": "Canelado",
         "brand": "Carol Modas",
         "images": [
-            "assets/images/products/1758252549240-canelado-manga-fina-preto.jpg",
-            "assets/images/products/1758252592211-canelado-manga-fina-vermelho.jpg"
+            "assets/images/products/1758252549240-canelado-manga-fina-preto.jpg"
         ],
         "description": "",
         "details": [
@@ -263,10 +205,6 @@ export const productsData = [
                 {
                     "name": "Preto",
                     "code": "#000000"
-                },
-                {
-                    "name": "Vermelho",
-                    "code": "#FF0000"
                 }
             ],
             "sizes": [
@@ -274,6 +212,112 @@ export const productsData = [
                 "M",
                 "G",
                 "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758285674874,
+        "slug": "blusa-canelada-manga-fina-vermelha",
+        "name": "Blusa Canelada Manga Fina - Vermelha",
+        "price": 19.99,
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/1758285636653-1758252592211-canelado-manga-fina-vermelho.jpg"
+        ],
+        "description": "",
+        "details": [
+            "Blusa Canelada Manga Fina Vermelha",
+            "Versátil e cheia de charme, esta blusa canelada é perfeita para compor looks modernos e elegantes em qualquer ocasião. Confeccionada em **tecido canelado** com leve elasticidade, ela valoriza a silhueta com conforto e praticidade.",
+            "Com modelagem básica e atemporal, possui gola redonda clássica e mangas curtas, garantindo um visual clean que facilita combinações tanto casuais quanto sofisticadas. A textura canelada traz um toque de estilo diferenciado, tornando a peça mais interessante e elegante.",
+            "Na cor vermelha, transmite **energia e personalidade**, sendo ideal para destacar a produção com um toque vibrante e feminino.",
+            "Detalhes do produto:",
+            "- Tecido canelado com elasticidade",
+            "- Gola redonda clássica",
+            "- Manga curta fina",
+            "- Modelagem confortável e ajustável",
+            "- Cor: Vermelha",
+            "Indicação de uso:",
+            "- Perfeita para o **dia a dia, trabalho, passeios e até ocasiões especiais**, podendo ser combinada com jeans, saias, shorts ou peças de alfaiataria para um visual mais sofisticado."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Vermelho",
+                    "code": "#B22222"
+                }
+            ],
+            "sizes": [
+                "P",
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758285897159,
+        "slug": "short-cor-bege",
+        "name": "Short - Cor Bege",
+        "price": 19.99,
+        "category": "Short",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/1758285853526-calca-vege.png"
+        ],
+        "description": "",
+        "details": [
+            "Short Feminino Texturizado Bege",
+            "Este short é a escolha perfeita para quem busca unir conforto e estilo em uma peça só. Confeccionado em tecido texturizado, traz um visual moderno e delicado, ideal para compor produções elegantes e descontraídas.",
+            "O cós elástico com amarração em cordão oferece ajuste prático e confortável, enquanto os bolsos laterais funcionais adicionam praticidade ao dia a dia. Sua modelagem soltinha garante liberdade de movimento e frescor, tornando-o indispensável para os dias mais quentes.",
+            "Na cor bege neutra, é super versátil e combina facilmente com blusas básicas, camisas ou peças mais sofisticadas, permitindo criar looks que vão do casual ao chic sem esforço.",
+            "Detalhes do produto:",
+            "Tecido texturizado de toque macio",
+            "Cós elástico com cordão ajustável",
+            "Bolsos laterais funcionais",
+            "Modelagem confortável e leve",
+            "Cor: Bege",
+            "Indicação de uso:",
+            "Perfeito para o dia a dia, passeios, encontros casuais e até produções mais arrumadinhas quando combinado com peças elegantes."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Bege",
+                    "code": "#c49d8f"
+                }
+            ],
+            "sizes": [
+                "Único"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758309025331,
+        "slug": "test",
+        "name": "test",
+        "price": 89.9,
+        "category": "Ciganinha",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/1758309016494-Gemini_Generated_Image_rzj43nrzj43nrzj4.png"
+        ],
+        "description": "",
+        "details": [
+            "g5f4j"
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "preto",
+                    "code": "#fff"
+                }
+            ],
+            "sizes": [
+                "P"
             ]
         },
         "active": true
