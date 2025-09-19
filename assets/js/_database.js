@@ -250,9 +250,13 @@ export const productsData = [
         ],
         "description": "",
         "details": [
-            "Tecido canelado com elasticidade",
-            "Gola redonda clássica",
-            "Ideal para compor looks diversos"
+            "Blusa Feminina Canelada Manga Curta",
+            "Confeccionada em tecido canelado com elasticidade, que se ajusta confortavelmente ao corpo.",
+            "Modelagem versátil com caimento moderno e toque macio.",
+            "Gola redonda clássica, trazendo praticidade e elegância ao look.",
+            "Disponível nas cores preto e vermelho, ideais para combinar tanto com peças casuais quanto sociais.",
+            "Perfeita para compor produções do dia a dia, trabalho ou até ocasiões especiais, garantindo estilo e conforto.",
+            "✨ Aposte nessa peça curinga que nunca sai de moda e valoriza qualquer combinação."
         ],
         "options": {
             "colors": [
