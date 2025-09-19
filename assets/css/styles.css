@@ -13,6 +13,8 @@
 @import url('./components/_home.css');
 @import url('./components/_products-page.css');
 @import url('./components/_product-detail.css');
+@import url('./components/_footer.css');
+
 
 /* 4. Estilos Responsivos (SEMPRE POR ÚLTIMO) */
 @import url('./components/_responsive.css');

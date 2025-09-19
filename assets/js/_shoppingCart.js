@@ -2,6 +2,7 @@ import { productsData } from './_database.js';
 
 const shoppingCart = {
     cart: [],
+    updateTimeout: null, // Propriedade para controlar o delay da atualização
 
     init: function () {
         this.loadCart();
@@ -25,17 +26,37 @@ const shoppingCart = {
             this.togglePanel(false);
         });
 
-        // Ações dentro do painel
+        // Listener para cliques (remover, limpar, etc.)
         cartPanel?.addEventListener('click', (event) => {
             event.stopPropagation();
             const target = event.target;
             const d = target.dataset;
 
-            if (target.matches('.cart-quantity-increase')) this.updateQuantity(d.id, d.color, d.size, 1);
-            else if (target.matches('.cart-quantity-decrease')) this.updateQuantity(d.id, d.color, d.size, -1);
-            else if (target.matches('.remove-item-btn')) this.removeItem(d.id, d.color, d.size);
-            else if (target.matches('#btn-clear-cart')) this.clear();
-            else if (target.matches('#btn-checkout')) this.checkout();
+            if (target.matches('.cart-quantity-increase')) {
+                const newValue = parseInt(target.previousElementSibling.value) + 1;
+                this.updateItemQuantity(d.id, d.color, d.size, newValue);
+            } else if (target.matches('.cart-quantity-decrease')) {
+                const newValue = parseInt(target.nextElementSibling.value) - 1;
+                this.updateItemQuantity(d.id, d.color, d.size, newValue);
+            } else if (target.matches('.remove-item-btn')) {
+                this.removeItem(d.id, d.color, d.size);
+            } else if (target.matches('#btn-clear-cart')) {
+                this.clear();
+            } else if (target.matches('#btn-checkout')) {
+                this.checkout();
+            }
+        });
+
+        // Listener para quando o usuário DIGITA no input de quantidade
+        cartPanel?.addEventListener('input', (event) => {
+            const target = event.target;
+            if (target.matches('.cart-quantity-input')) {
+                // Usa um delay para não atualizar a cada tecla pressionada
+                clearTimeout(this.updateTimeout);
+                this.updateTimeout = setTimeout(() => {
+                    this.updateItemQuantity(target.dataset.id, target.dataset.color, target.dataset.size, target.value);
+                }, 350);
+            }
         });
 
         // Botão "Adicionar" na página de detalhes
@@ -48,22 +69,17 @@ const shoppingCart = {
 
     flyToCartAnimation: function (targetImage) {
         if (!targetImage) return;
-
         const cartIcon = document.getElementById('cart-icon');
         const imgRect = targetImage.getBoundingClientRect();
         const cartRect = cartIcon.getBoundingClientRect();
-
         const clone = targetImage.cloneNode(true);
         clone.classList.add('flying-product-clone');
-
         clone.style.position = 'fixed';
         clone.style.left = `${imgRect.left}px`;
         clone.style.top = `${imgRect.top}px`;
         clone.style.width = `${imgRect.width}px`;
         clone.style.height = `${imgRect.height}px`;
-
         document.body.appendChild(clone);
-
         requestAnimationFrame(() => {
             clone.style.left = `${cartRect.left + cartRect.width / 2}px`;
             clone.style.top = `${cartRect.top + cartRect.height / 2}px`;
@@ -71,7 +87,6 @@ const shoppingCart = {
             clone.style.height = '30px';
             clone.style.opacity = '0.5';
         });
-
         setTimeout(() => {
             clone.remove();
         }, 700);
@@ -91,12 +106,19 @@ const shoppingCart = {
         const urlParams = new URLSearchParams(window.location.search);
         const productId = parseInt(urlParams.get('id'));
         const product = productsData.find(p => p.id === productId);
-
         if (product) {
             const productImage = document.querySelector('.product-images .main-image img');
             this.flyToCartAnimation(productImage);
 
-            const quantity = parseInt(document.getElementById('product-quantity')?.textContent || '1');
+            // Lendo a quantidade do input
+            const quantityInput = document.getElementById('product-quantity-input');
+            const quantity = parseInt(quantityInput?.value || '1');
+
+            if (isNaN(quantity) || quantity < 1) {
+                alert('Por favor, insira uma quantidade válida.');
+                return;
+            }
+
             const size = document.querySelector('.size-btn.active')?.textContent || product.options.sizes[0];
             const color = document.querySelector('.swatch.active')?.getAttribute('aria-label') || product.options.colors[0].name;
             this.add(product, { size, color, quantity });
@@ -132,18 +154,22 @@ const shoppingCart = {
         this.togglePanel(true);
     },
 
-    updateQuantity: function (id, color, size, change) {
+    // Função que lida com a mudança de quantidade pelo input
+    updateItemQuantity: function (id, color, size, newQuantity) {
         const productId = parseInt(id);
+        let quantity = parseInt(newQuantity);
+
         const item = this.cart.find(i => i.id === productId && i.color === color && i.size === size);
-        if (item) {
-            item.quantity += change;
-            if (item.quantity <= 0) {
-                this.removeItem(id, color, size);
-            } else {
-                this.saveCart();
-                this.updateDisplay();
-            }
+        if (!item) return;
+
+        // Se a quantidade for inválida ou menor que 1, redefine para 1
+        if (isNaN(quantity) || quantity < 1) {
+            quantity = 1;
         }
+
+        item.quantity = quantity;
+        this.saveCart();
+        this.updateDisplay(); // Atualiza a tela para mostrar o valor '1' e o total correto
     },
 
     removeItem: function (id, color, size) {
@@ -165,11 +191,28 @@ const shoppingCart = {
             if (this.cart.length === 0) {
                 cartItemsContainer.innerHTML = `<div class="empty-cart-view"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><h4>Ops! Ainda nada por aqui...</h4><p>Adicione produtos para vê-los no carrinho.</p></div>`;
             } else {
-                const cartItemsHTML = this.cart.map(item => {
+                cartItemsContainer.innerHTML = this.cart.map(item => {
                     const itemIdentifier = `data-id="${item.id}" data-color="${item.color}" data-size="${item.size}"`;
-                    return `<div class="cart-item"><div class="cart-item-info"><img src="${item.image}" alt="${item.name}"><div class="cart-item-details"><h4>${item.name}</h4><p>Tamanho: ${item.size}, Cor: ${item.color}</p><p class="price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p></div></div><div class="cart-item-actions"><div class="quantity-control"><button class="cart-quantity-decrease" ${itemIdentifier}>-</button><span>${item.quantity}</span><button class="cart-quantity-increase" ${itemIdentifier}>+</button></div><button class="remove-item-btn" ${itemIdentifier}>Remover</button></div></div>`;
+                    return `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div class="cart-item-details">
+                                <h4>${item.name}</h4>
+                                <p>Tamanho: ${item.size}, Cor: ${item.color}</p>
+                                <p class="price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p>
+                            </div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="cart-quantity-decrease" ${itemIdentifier} aria-label="Diminuir">-</button>
+                                <input type="number" class="cart-quantity-input" value="${item.quantity}" min="1" ${itemIdentifier}>
+                                <button class="cart-quantity-increase" ${itemIdentifier} aria-label="Aumentar">+</button>
+                            </div>
+                            <button class="remove-item-btn" ${itemIdentifier}>Remover</button>
+                        </div>
+                    </div>`;
                 }).join('');
-                cartItemsContainer.innerHTML = cartItemsHTML;
             }
             totalElement.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
         }
@@ -184,7 +227,7 @@ const shoppingCart = {
         });
         const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
         message += `*TOTAL DO PEDIDO: R$ ${totalPrice.toFixed(2).replace('.', ',')}*`;
-        const phoneNumber = "5511999999999"; // <-- TROQUE PELO SEU NÚMERO
+        const phoneNumber = "5511999999999";
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     },

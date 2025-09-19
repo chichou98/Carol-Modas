@@ -1,0 +1,23 @@
+# Arquivo .gitignore
+
+# Dependências do Node.js
+# Esta pasta é gigante e as dependências são instaladas automaticamente pela Vercel
+/node_modules
+
+# Arquivos do Painel Administrativo
+# Esta pasta é apenas para desenvolvimento local e não deve ir para o site público
+/admin
+
+# Arquivos do servidor local
+# O servidor da Vercel é diferente, então não precisamos deste arquivo lá
+server.js
+
+# Arquivos de log e configuração do NPM
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de Sistema Operacional (opcional, mas boa prática)
+.DS_Store
+Thumbs.db

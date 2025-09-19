@@ -1,27 +1,239 @@
+// Em /assets/js/_database.js
+
 export const productsData = [
     {
-        id: 1, name: "Calça Vege", price: 289.90, brand: "Carol Modas",
-        images: ["assets/images/products/calca-vege.png"],
-        description: "Calça com tecido leve e caimento perfeito, ideal para um look casual e elegante.",
-        details: ["Tecido leve e confortável", "Cintura com elástico e cordão", "Bolsos laterais funcionais"],
-        options: {
-            colors: [{ name: "Bege", code: "#D2B48C" }],
-            sizes: ["P", "M", "G"]
-        }
+        "id": 1,
+        "name": "Calça Vege",
+        "price": 289.9,
+        "brand": "Carol Modas",
+        "category": "Short",
+        "images": [
+            "assets/images/products/calca-vege.png"
+        ],
+        "description": "Calça com tecido leve e caimento perfeito, ideal para um look casual e elegante.",
+        "details": [
+            "Tecido leve e confortável",
+            "Cintura com elástico e cordão",
+            "Bolsos laterais funcionais"
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Bege",
+                    "code": "#D2B48C"
+                }
+            ],
+            "sizes": [
+                "P",
+                "M",
+                "G"
+            ]
+        },
+        "active": true
     },
     {
-        id: 2, name: "Blusa Canelada Manga Fina - Preta", price: 89.90, brand: "Carol Modas",
-        images: ["assets/images/products/canelado-manga-fina-preto.jpg", "assets/images/products/canelado-manga-fina-vermelho.jpg"],
-        description: "Blusa canelada de manga curta, uma peça versátil e indispensável. Tecido com elasticidade que se ajusta ao corpo.",
-        details: ["Tecido canelado com elasticidade", "Gola redonda clássica", "Ideal para compor looks diversos"],
-        options: {
-            colors: [{ name: "Preto", code: "#212121" }, { name: "Vermelho", code: "#B22222" }],
-            sizes: ["P", "M", "G", "GG"]
-        }
+        "id": 2,
+        "name": "Blusa Canelada Manga Fina - Preta",
+        "price": 89.9,
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/canelado-manga-fina-preto.jpg",
+            "assets/images/products/canelado-manga-fina-vermelho.jpg"
+        ],
+        "description": "",
+        "details": [
+            "Tecido canelado com elasticidade",
+            "Gola redonda clássica",
+            "Ideal para compor looks diversos"
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Preto",
+                    "code": "#212121"
+                },
+                {
+                    "name": "Vermelho",
+                    "code": "#B22222"
+                }
+            ],
+            "sizes": [
+                "P",
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
     },
-    { id: 3, name: "Blusa Canelada Manga Fina - Vermelha", price: 89.90, brand: "Carol Modas", images: ["assets/images/products/canelado-manga-fina-vermelho.jpg", "assets/images/products/canelado-manga-fina-preto.jpg"], options: { colors: [{ name: "Vermelho", code: "#B22222" }, { name: "Preto", code: "#212121" }], sizes: ["P", "M", "G", "GG"] }, details: ["Detalhe para Blusa Vermelha."] },
-    { id: 4, name: "Blusa Canelada", price: 99.90, brand: "Carol Modas", images: ["assets/images/products/canelado.png"], options: { colors: [{ name: "Rosa", code: "#FFC0CB" }], sizes: ["P", "M", "G"] }, details: ["Detalhe para Blusa Canelada."] },
-    { id: 5, name: "Calça Ciganinha", price: 159.90, brand: "Carol Modas", images: ["assets/images/products/ciganinha.png"], options: { colors: [{ name: "Estampado", code: "#000000" }], sizes: ["Único"] }, details: ["Detalhe para Calça Ciganinha."] },
-    { id: 6, name: "Blusa Listrada - Vermelha", price: 119.90, brand: "Carol Modas", images: ["assets/images/products/listrado-cor-vermelha.png"], options: { colors: [{ name: "Listrado", code: "#ff4500" }], sizes: ["P", "M", "G"] }, details: ["Detalhe para Blusa Listrada."] },
-    { id: 7, name: "Blusa Xadrez - Verde", price: 129.90, brand: "Carol Modas", images: ["assets/images/products/xadrez-verde.png"], options: { colors: [{ name: "Xadrez Verde", code: "#008000" }], sizes: ["M", "G"] }, details: ["Detalhe para Blusa Xadrez."] },
+    {
+        "id": 3,
+        "name": "Blusa Canelada Manga Fina - Vermelha",
+        "price": 89.9,
+        "brand": "Carol Modas",
+        "category": "Canelado",
+        "images": [
+            "assets/images/products/canelado-manga-fina-vermelho.jpg",
+            "assets/images/products/canelado-manga-fina-preto.jpg"
+        ],
+        "details": [
+            "Tecido canelado com elasticidade",
+            "Gola redonda clássica",
+            "Ideal para compor looks diversos"
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Vermelho",
+                    "code": "#B22222"
+                },
+                {
+                    "name": "Preto",
+                    "code": "#212121"
+                }
+            ],
+            "sizes": [
+                "P",
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 4,
+        "name": "Blusa Canelada",
+        "price": 99.9,
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/canelado.png"
+        ],
+        "description": "",
+        "details": [
+            "Detalhe para Blusa Canelada."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Rosa",
+                    "code": "#FFC0CB"
+                }
+            ],
+            "sizes": [
+                "P",
+                "M",
+                "G"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 5,
+        "name": "Calça Ciganinha",
+        "price": 159.9,
+        "brand": "Carol Modas",
+        "category": "Ciganinha",
+        "images": [
+            "assets/images/products/ciganinha.png"
+        ],
+        "details": [
+            "Detalhe para Calça Ciganinha."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Estampado",
+                    "code": "#000000"
+                }
+            ],
+            "sizes": [
+                "Único"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 6,
+        "name": "Blusa Listrada - Vermelha",
+        "price": 119.9,
+        "brand": "Carol Modas",
+        "category": "Listrado",
+        "images": [
+            "assets/images/products/listrado-cor-vermelha.png"
+        ],
+        "details": [
+            "Peça versátil para o dia a dia",
+            "Combinação de cores moderna",
+            "Tecido confortável com elastano"
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Listrado (Vermelho/Cinza/Preto)",
+                    "code": "linear-gradient(to bottom, #D9242D 33.3%, #9A9A9A 33.3%, #9A9A9A 66.6%, #212121 66.6%)"
+                }
+            ],
+            "sizes": [
+                "P",
+                "M",
+                "G"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 7,
+        "name": "Blusa Xadrez - Verde",
+        "price": 129.9,
+        "brand": "Carol Modas",
+        "category": "Listrado",
+        "images": [
+            "assets/images/products/xadrez-verde.png"
+        ],
+        "details": [
+            "Detalhe para Blusa Xadrez."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Xadrez Verde",
+                    "code": "#008000"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758246360369,
+        "name": "teste",
+        "price": 125,
+        "category": "Listrado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/calca-vege.png"
+        ],
+        "description": "",
+        "details": [
+            "afsfafas"
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "verde",
+                    "code": "#008000"
+                }
+            ],
+            "sizes": [
+                "P"
+            ]
+        },
+        "active": true
+    }
 ];
