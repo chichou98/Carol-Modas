@@ -1,8 +1,10 @@
+// assets/js/_shoppingCart.js (Versão Final Corrigida)
+
 import { productsData } from './_database.js';
 
 const shoppingCart = {
     cart: [],
-    updateTimeout: null, // Propriedade para controlar o delay da atualização
+    updateTimeout: null,
 
     init: function () {
         this.loadCart();
@@ -14,52 +16,73 @@ const shoppingCart = {
         const cartPanel = document.getElementById('cart-panel');
         const cartIcon = document.getElementById('cart-icon');
 
-        // Abrir o painel
         cartIcon?.addEventListener('click', (event) => {
             event.stopPropagation();
             this.togglePanel(true);
         });
 
-        // Fechar o painel
         document.getElementById('close-cart-btn')?.addEventListener('click', (event) => {
             event.stopPropagation();
             this.togglePanel(false);
         });
 
-        // Listener para cliques (remover, limpar, etc.)
+        // =======================================================
+        // AQUI ESTÁ A CORREÇÃO
+        // =======================================================
         cartPanel?.addEventListener('click', (event) => {
             event.stopPropagation();
             const target = event.target;
-            const d = target.dataset;
 
-            if (target.matches('.cart-quantity-increase')) {
-                const newValue = parseInt(target.previousElementSibling.value) + 1;
-                this.updateItemQuantity(d.id, d.color, d.size, newValue);
-            } else if (target.matches('.cart-quantity-decrease')) {
-                const newValue = parseInt(target.nextElementSibling.value) - 1;
-                this.updateItemQuantity(d.id, d.color, d.size, newValue);
-            } else if (target.matches('.remove-item-btn')) {
-                this.removeItem(d.id, d.color, d.size);
-            } else if (target.matches('#btn-clear-cart')) {
-                this.clear();
-            } else if (target.matches('#btn-checkout')) {
+            // 1. Checa primeiro os botões gerais do carrinho (Limpar e Finalizar)
+            if (target.matches('#btn-checkout')) {
                 this.checkout();
+                return; // Para a execução aqui
+            }
+            if (target.matches('#btn-clear-cart')) {
+                this.clear();
+                return; // Para a execução aqui
+            }
+
+            // 2. Se não for um botão geral, procura por ações dentro de um item do carrinho
+            const itemElement = target.closest('.cart-item');
+            if (!itemElement) return; // Se o clique não foi em um item, não faz mais nada
+
+            const d = itemElement.dataset;
+            const button = target.closest('button');
+            if (!button) return; // Se o clique não foi em um botão dentro do item
+
+            // 3. Executa a ação do botão específico do item
+            if (button.matches('.cart-quantity-increase')) {
+                const input = itemElement.querySelector('.cart-quantity-input');
+                input.value = parseInt(input.value) + 1;
+                this.updateItemQuantity(d.id, d.color, d.size, input.value);
+            } else if (button.matches('.cart-quantity-decrease')) {
+                const input = itemElement.querySelector('.cart-quantity-input');
+                const newValue = parseInt(input.value) - 1;
+                if (newValue > 0) {
+                    input.value = newValue;
+                    this.updateItemQuantity(d.id, d.color, d.size, newValue);
+                }
+            } else if (button.matches('.remove-item-btn')) {
+                this.removeItem(d.id, d.color, d.size);
             }
         });
+        // =======================================================
+        // FIM DA CORREÇÃO
+        // =======================================================
 
-        // Listener para quando o usuário DIGITA no input de quantidade
         cartPanel?.addEventListener('input', (event) => {
             const target = event.target;
             if (target.matches('.cart-quantity-input')) {
-                // Usa um delay para não atualizar a cada tecla pressionada
                 clearTimeout(this.updateTimeout);
                 this.updateTimeout = setTimeout(() => {
-                    this.updateItemQuantity(target.dataset.id, target.dataset.color, target.dataset.size, target.value);
+                    const itemElement = target.closest('.cart-item');
+                    const d = itemElement.dataset;
+                    this.updateItemQuantity(d.id, d.color, d.size, target.value);
                 }, 350);
             }
         });
 
-        // Botão "Adicionar" na página de detalhes
         document.body.addEventListener('click', (event) => {
             if (event.target.id === 'add-to-cart-btn') {
                 this.addItemFromDetailPage();
@@ -103,14 +126,13 @@ const shoppingCart = {
     },
 
     addItemFromDetailPage: function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = parseInt(urlParams.get('id'));
-        const product = productsData.find(p => p.id === productId);
+        const slugFromUrl = window.location.pathname.split('/').pop();
+        const product = productsData.find(p => p.slug === slugFromUrl);
+
         if (product) {
             const productImage = document.querySelector('.product-images .main-image img');
             this.flyToCartAnimation(productImage);
 
-            // Lendo a quantidade do input
             const quantityInput = document.getElementById('product-quantity-input');
             const quantity = parseInt(quantityInput?.value || '1');
 
@@ -132,6 +154,9 @@ const shoppingCart = {
                     btn.style.backgroundColor = '';
                 }, 2000);
             }
+        } else {
+            console.error("Produto não encontrado na base de dados para o slug:", slugFromUrl);
+            alert("Ocorreu um erro ao adicionar o produto. Tente novamente.");
         }
     },
 
@@ -154,27 +179,25 @@ const shoppingCart = {
         this.togglePanel(true);
     },
 
-    // Função que lida com a mudança de quantidade pelo input
     updateItemQuantity: function (id, color, size, newQuantity) {
         const productId = parseInt(id);
         let quantity = parseInt(newQuantity);
 
-        const item = this.cart.find(i => i.id === productId && i.color === color && i.size === size);
+        const item = this.cart.find(i => i.id == productId && i.color === color && i.size === size);
         if (!item) return;
 
-        // Se a quantidade for inválida ou menor que 1, redefine para 1
         if (isNaN(quantity) || quantity < 1) {
             quantity = 1;
         }
 
         item.quantity = quantity;
         this.saveCart();
-        this.updateDisplay(); // Atualiza a tela para mostrar o valor '1' e o total correto
+        this.updateDisplay();
     },
 
     removeItem: function (id, color, size) {
         const productId = parseInt(id);
-        this.cart = this.cart.filter(i => !(i.id === productId && i.color === color && i.size === size));
+        this.cart = this.cart.filter(i => !(i.id == productId && i.color === color && i.size === size));
         this.saveCart();
         this.updateDisplay();
     },
@@ -193,10 +216,11 @@ const shoppingCart = {
             } else {
                 cartItemsContainer.innerHTML = this.cart.map(item => {
                     const itemIdentifier = `data-id="${item.id}" data-color="${item.color}" data-size="${item.size}"`;
+                    const imageUrl = `/${item.image}`;
                     return `
-                    <div class="cart-item">
+                    <div class="cart-item" ${itemIdentifier}>
                         <div class="cart-item-info">
-                            <img src="${item.image}" alt="${item.name}">
+                            <img src="${imageUrl}" alt="${item.name}">
                             <div class="cart-item-details">
                                 <h4>${item.name}</h4>
                                 <p>Tamanho: ${item.size}, Cor: ${item.color}</p>
@@ -205,11 +229,11 @@ const shoppingCart = {
                         </div>
                         <div class="cart-item-actions">
                             <div class="quantity-control">
-                                <button class="cart-quantity-decrease" ${itemIdentifier} aria-label="Diminuir">-</button>
-                                <input type="number" class="cart-quantity-input" value="${item.quantity}" min="1" ${itemIdentifier}>
-                                <button class="cart-quantity-increase" ${itemIdentifier} aria-label="Aumentar">+</button>
+                                <button class="cart-quantity-decrease" aria-label="Diminuir">-</button>
+                                <input type="number" class="cart-quantity-input" value="${item.quantity}" min="1">
+                                <button class="cart-quantity-increase" aria-label="Aumentar">+</button>
                             </div>
-                            <button class="remove-item-btn" ${itemIdentifier}>Remover</button>
+                            <button class="remove-item-btn">Remover</button>
                         </div>
                     </div>`;
                 }).join('');
@@ -227,7 +251,7 @@ const shoppingCart = {
         });
         const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
         message += `*TOTAL DO PEDIDO: R$ ${totalPrice.toFixed(2).replace('.', ',')}*`;
-        const phoneNumber = "5511999999999";
+        const phoneNumber = "5511969228664"; // Substitua pelo número real
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     },

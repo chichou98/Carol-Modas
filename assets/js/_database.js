@@ -209,5 +209,32 @@ export const productsData = [
             ]
         },
         "active": false
+    },
+    {
+        "id": 1758250309170,
+        "slug": "teste",
+        "name": "teste",
+        "price": 89.9,
+        "category": "Listrado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/1758250289171-Black-And-White-Anime-Profile-Photo-1.jpg"
+        ],
+        "description": "",
+        "details": [
+            "asd"
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "asdad",
+                    "code": "#fff"
+                }
+            ],
+            "sizes": [
+                "´p"
+            ]
+        },
+        "active": true
     }
 ];

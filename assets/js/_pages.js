@@ -8,7 +8,6 @@ function renderProductCards(productsToRender, gridElement) {
     productsToRender.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
-        // O link agora usa a URL amigável com o slug do produto
         const productLink = `/produto/${product.slug}`;
 
         productCard.innerHTML = `
@@ -31,22 +30,19 @@ function renderRelatedProducts(currentProductId) {
     const relatedGrid = document.getElementById('related-products-grid');
     if (!relatedGrid) return;
 
-    // Filtra apenas produtos ativos
     const activeProducts = productsData.filter(p => p.active !== false);
 
     const related = activeProducts
-        .filter(p => p.id !== currentProductId) // Exclui o produto atual
-        .slice(0, 4); // Pega os 4 primeiros
+        .filter(p => p.id !== currentProductId)
+        .slice(0, 4);
 
     renderProductCards(related, relatedGrid);
 }
-
 
 // Inicializa a Home Page
 export function initHomePage() {
     const homeGrid = document.getElementById('home-product-grid');
     if (homeGrid) {
-        // Mostra apenas produtos ativos na home
         const activeProducts = productsData.filter(product => product.active !== false);
         const featuredProducts = activeProducts.slice(0, 4);
         renderProductCards(featuredProducts, homeGrid);
@@ -57,7 +53,6 @@ export function initHomePage() {
 export function initProductsPage() {
     const productGrid = document.getElementById('product-list-grid');
     if (productGrid) {
-        // Mostra apenas produtos ativos na listagem principal
         const activeProducts = productsData.filter(product => product.active !== false);
         renderProductCards(activeProducts, productGrid);
     }
@@ -65,21 +60,20 @@ export function initProductsPage() {
 
 // Objeto que controla a lógica da Página de Detalhes do Produto
 const productDetailPage = {
+    currentProduct: null,
+
     init: function () {
         const contentArea = document.getElementById('product-detail-content');
         if (!contentArea) return;
 
-        // Lê o slug da URL do navegador (ex: /produto/calca-vege -> "calca-vege")
         const slugFromUrl = window.location.pathname.split('/').pop();
-
-        // Procura o produto pelo slug na nossa base de dados
         const product = productsData.find(p => p.slug === slugFromUrl);
 
-        if (product) {
+        if (product && product.active !== false) {
+            this.currentProduct = product;
             this.render(product, contentArea);
-            renderRelatedProducts(product.id); // Mostra produtos relacionados
         } else {
-            contentArea.innerHTML = `<p style="text-align: center; padding: 40px;">Produto não encontrado.</p>`;
+            contentArea.innerHTML = `<p style="text-align: center; padding: 40px;">Produto não encontrado ou indisponível.</p>`;
         }
     },
 
@@ -93,11 +87,11 @@ const productDetailPage = {
 
         const colorsHTML = product.options.colors.map((color, index) =>
             `<button class="swatch ${index === 0 ? 'active' : ''}"
-                   style="background: ${color.code};"
-                   aria-label="${color.name}"
-                   data-color-name="${color.name}"
-                   data-main-image="${colorImageMap[color.name]}">
-            </button>`).join('');
+                     style="background: ${color.code};"
+                     aria-label="${color.name}"
+                     data-color-name="${color.name}"
+                     data-main-image="/${colorImageMap[color.name]}">
+             </button>`).join('');
 
         const sizesHTML = product.options.sizes.map((size, index) => `<button class="size-btn ${index === 0 ? 'active' : ''}">${size}</button>`).join('');
         const thumbnailsHTML = product.images.map((img) => `<img src="/${img}" alt="${product.name}" class="thumbnail">`).join('');
@@ -148,14 +142,17 @@ const productDetailPage = {
         this.activateThumbnailGallery();
         this.activateOptionSelectors();
         this.activateQuantitySelector();
+        renderRelatedProducts(product.id);
     },
 
     activateThumbnailGallery: function () {
         const mainImage = document.getElementById('mainProductImage');
         const thumbnails = document.querySelectorAll('.thumbnail');
         if (!mainImage || thumbnails.length === 0) return;
+
         thumbnails.forEach((thumb, index) => {
-            if (index === 0) thumb.classList.add('active'); // Ativa a primeira thumbnail
+            if (index === 0) thumb.classList.add('active');
+
             thumb.addEventListener('click', function () {
                 thumbnails.forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
@@ -170,6 +167,7 @@ const productDetailPage = {
         const sizeBtns = document.querySelectorAll('.size-options .size-btn');
         const selectedColorName = document.getElementById('selected-color-name');
         const mainProductImage = document.getElementById('mainProductImage');
+
         colorSwatches.forEach(swatch => {
             swatch.addEventListener('click', function () {
                 colorSwatches.forEach(s => s.classList.remove('active'));
@@ -178,11 +176,12 @@ const productDetailPage = {
                     selectedColorName.textContent = this.getAttribute('data-color-name');
                 }
                 if (mainProductImage && this.dataset.mainImage) {
-                    mainProductImage.src = `/${this.dataset.mainImage}`;
+                    mainProductImage.src = this.dataset.mainImage;
                 }
                 document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
             });
         });
+
         sizeBtns.forEach(btn => {
             btn.addEventListener('click', function () {
                 sizeBtns.forEach(b => b.classList.remove('active'));
@@ -196,9 +195,11 @@ const productDetailPage = {
         const increaseBtn = document.getElementById('increase-qty');
         const quantityInput = document.getElementById('product-quantity-input');
         if (!decreaseBtn || !increaseBtn || !quantityInput) return;
+
         increaseBtn.addEventListener('click', () => {
             quantityInput.value = parseInt(quantityInput.value) + 1;
         });
+
         decreaseBtn.addEventListener('click', () => {
             let currentQty = parseInt(quantityInput.value);
             if (currentQty > 1) {

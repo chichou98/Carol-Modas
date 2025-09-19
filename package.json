@@ -20,7 +20,7 @@
   "homepage": "https://github.com/chichou98/Carol-Modas#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "multer": "^2.0.2"
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1"
   }
 }
