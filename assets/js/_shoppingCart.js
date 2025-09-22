@@ -1,7 +1,6 @@
-// assets/js/_shoppingCart.js (Versão Final com Alertas e Confirmações Customizadas)
+// assets/js/_shoppingCart.js (Versão Final Simplificada)
 
 import { productsData } from './_database.js';
-// 1. IMPORTAMOS AS DUAS FUNÇÕES DE MODAL
 import { customConfirm, customAlert } from './utils/modals.js';
 
 const shoppingCart = {
@@ -52,6 +51,8 @@ const shoppingCart = {
                 if (newValue > 0) {
                     input.value = newValue;
                     this.updateItemQuantity(d.id, d.color, d.size, newValue);
+                } else {
+                    this.removeItem(d.id, d.color, d.size);
                 }
             } else if (button.matches('.remove-item-btn')) {
                 this.removeItem(d.id, d.color, d.size);
@@ -102,8 +103,7 @@ const shoppingCart = {
         }
     },
 
-    // 2. FUNÇÃO ATUALIZADA
-    addItemFromDetailPage: async function () { // Função agora é async
+    addItemFromDetailPage: async function () {
         const slugFromUrl = window.location.pathname.split('/').pop();
         const product = productsData.find(p => p.slug === slugFromUrl);
         if (product) {
@@ -118,7 +118,9 @@ const shoppingCart = {
 
             const size = document.querySelector('.size-btn.active')?.textContent || product.options.sizes[0];
             const color = document.querySelector('.swatch.active')?.getAttribute('aria-label') || product.options.colors[0].name;
+
             this.add(product, { size, color, quantity });
+
             const btn = document.getElementById('add-to-cart-btn');
             if (btn) {
                 btn.textContent = 'Adicionado!';
@@ -136,7 +138,7 @@ const shoppingCart = {
         if (existingItem) {
             existingItem.quantity += options.quantity;
         } else {
-            this.cart.push({ id: product.id, name: product.name, price: product.price, image: product.images[0], size: options.size, color: options.color, quantity: options.quantity });
+            this.cart.push({ id: product.id, name: product.name, price: product.price.retail, image: product.images[0], size: options.size, color: options.color, quantity: options.quantity });
         }
         const cartIcon = document.getElementById('cart-icon');
         if (cartIcon) {
@@ -153,7 +155,10 @@ const shoppingCart = {
         let quantity = parseInt(newQuantity);
         const item = this.cart.find(i => i.id == productId && i.color === color && i.size === size);
         if (!item) return;
-        if (isNaN(quantity) || quantity < 1) quantity = 1;
+        if (isNaN(quantity) || quantity < 1) {
+            this.removeItem(id, color, size);
+            return;
+        }
         item.quantity = quantity;
         this.saveCart();
         this.updateDisplay();
@@ -182,20 +187,19 @@ const shoppingCart = {
         }
     },
 
-    // 3. FUNÇÃO ATUALIZADA
-    checkout: async function () { // Função agora é async
+    checkout: async function () {
         if (this.cart.length === 0) {
             await customAlert("Seu carrinho está vazio!");
             return;
         }
-        let message = "Olá, Carol Modas! Gostaria de fazer o seguinte pedido:\n\n";
+        let message = `Olá, Carol Modas! Gostaria de fazer um pedido (Varejo):\n\n`;
         this.cart.forEach(item => {
             const subtotal = item.price * item.quantity;
             message += `*Produto:* ${item.name}\n*Cor:* ${item.color}, *Tamanho:* ${item.size}\n*Preço Unidade:* R$ ${item.price.toFixed(2).replace('.', ',')}\n*Qtd:* ${item.quantity}\n*Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n--------------------------------\n\n`;
         });
         const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
         message += `*TOTAL DO PEDIDO: R$ ${totalPrice.toFixed(2).replace('.', ',')}*`;
-        const phoneNumber = "5511969228664";
+        const phoneNumber = "5511969228664"; // Substitua pelo seu número
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     },

@@ -3,8 +3,12 @@
 export const productsData = [
     {
         "id": 4,
+        "slug": "blusa-canelada",
         "name": "Blusa Canelada",
-        "price": 99.9,
+        "price": {
+            "retail": 99.9,
+            "wholesale": 99.99
+        },
         "category": "Canelado",
         "brand": "Carol Modas",
         "images": [
@@ -27,7 +31,7 @@ export const productsData = [
                 "G"
             ]
         },
-        "active": false
+        "active": true
     },
     {
         "id": 5,
@@ -85,13 +89,18 @@ export const productsData = [
     },
     {
         "id": 7,
+        "slug": "blusa-xadrez-verde",
         "name": "Blusa Xadrez - Verde",
-        "price": 129.9,
-        "brand": "Carol Modas",
+        "price": {
+            "retail": 129.9,
+            "wholesale": 99.99
+        },
         "category": "Listrado",
+        "brand": "Carol Modas",
         "images": [
             "assets/images/products/xadrez-verde.png"
         ],
+        "description": "",
         "details": [
             "Detalhe para Blusa Xadrez."
         ],
@@ -261,6 +270,35 @@ export const productsData = [
             ],
             "sizes": [
                 "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758547999722,
+        "slug": "test",
+        "name": "test",
+        "price": {
+            "retail": 56.9,
+            "wholesale": 56
+        },
+        "category": "Listrado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758547990666-62018342.png",
+            "assets/images/products/productImage-1758550788783-59175403.jpg"
+        ],
+        "description": "",
+        "details": [],
+        "options": {
+            "colors": [
+                {
+                    "name": "preto",
+                    "code": "#fff"
+                }
+            ],
+            "sizes": [
+                "P"
             ]
         },
         "active": true

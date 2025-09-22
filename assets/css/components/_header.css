@@ -81,3 +81,218 @@
 .nav-links a:hover span::after {
     width: 100%;
 }
+
+.price-toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.price-toggle {
+    position: relative;
+    display: inline-block;
+    width: 110px;
+    height: 34px;
+}
+
+.price-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.price-toggle .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e0e0e0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.price-toggle .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.price-toggle input:checked+.slider {
+    background-color: #B5838D;
+}
+
+.price-toggle input:checked+.slider:before {
+    transform: translateX(52px);
+}
+
+.price-toggle .label-text::before {
+    content: attr(data-retail);
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    color: #555;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.price-toggle .label-text::after {
+    content: attr(data-wholesale);
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/* Adicionar no final de assets/css/components/_header.css */
+
+.price-toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.price-toggle {
+    position: relative;
+    display: inline-block;
+    width: 110px;
+    height: 34px;
+}
+
+.price-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.price-toggle .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e0e0e0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.price-toggle .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.price-toggle input:checked+.slider {
+    background-color: #B5838D;
+}
+
+.price-toggle input:checked+.slider:before {
+    transform: translateX(52px);
+}
+
+.price-toggle .label-text::before {
+    content: attr(data-retail);
+    position: absolute;
+    left: 15px;
+    top: 9px;
+    color: #333;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.price-toggle .label-text::after {
+    content: attr(data-wholesale);
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/***************/
+/* Adicionar no final de assets/css/components/_header.css */
+
+.price-toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.price-toggle {
+    position: relative;
+    display: inline-block;
+    width: 110px;
+    height: 34px;
+}
+
+.price-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.price-toggle .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e0e0e0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.price-toggle .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.price-toggle input:checked+.slider {
+    background-color: #B5838D;
+}
+
+.price-toggle input:checked+.slider:before {
+    transform: translateX(52px);
+}
+
+.price-toggle .label-text::before {
+    content: attr(data-retail);
+    position: absolute;
+    left: 15px;
+    top: 9px;
+    color: #333;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.price-toggle .label-text::after {
+    content: attr(data-wholesale);
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: 600;
+}

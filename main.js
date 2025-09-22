@@ -4,11 +4,13 @@
 import { initPreloader } from './assets/js/_preloader.js';
 import { initCarousel } from './assets/js/_carousel.js';
 import { initShoppingCart } from './assets/js/_shoppingCart.js';
+import { productsData } from "./assets/js/_database.js"
 
 // Importa os inicializadores de cada página dos novos arquivos organizados
 import { initHomePage } from './assets/js/pages/home.js';
 import { initProductsPage } from './assets/js/pages/products.js';
 import { initProductDetailPage } from './assets/js/pages/productDetail.js';
+;
 
 /**
  * Inicializa todas as funções globais que rodam em qualquer página.

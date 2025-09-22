@@ -66,6 +66,11 @@ export function renderProductCards(productsToRender, gridElement) {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         const productLink = `/produto/${product.slug}`;
+
+        // Lógica para lidar com preços
+        const priceRetail = (product.price.retail || 0).toFixed(2).replace('.', ',');
+        const priceWholesale = (product.price.wholesale || 0).toFixed(2).replace('.', ',');
+
         productCard.innerHTML = `
             <a href="${productLink}" class="product-image-link">
                 <div class="product-image-container">
@@ -73,11 +78,16 @@ export function renderProductCards(productsToRender, gridElement) {
                 </div>
             </a>
             <div class="product-card-info">
-                <p class="product-card-category">${product.category}</p>
-                <h3>${product.name}</h3>
-                <p class="price">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
-            </div>
-            <a href="${productLink}" class="btn-secondary">Ver Detalhes</a>`;
+                <div>
+                    <p class="product-card-category">${product.category}</p>
+                    <h3><a href="${productLink}">${product.name}</a></h3>
+                    <div class="price-container">
+                        <p class="price wholesale-price">Atacado: R$ ${priceWholesale}</p>
+                        <p class="price retail-price">Varejo: R$ ${priceRetail}</p>
+                    </div>
+                </div>
+                <a href="${productLink}" class="btn-secondary">Ver Detalhes</a>
+            </div>`;
         gridElement.appendChild(productCard);
     });
 }

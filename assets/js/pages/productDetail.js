@@ -58,6 +58,7 @@ function renderProductDetailPage(product, contentArea) {
     document.title = `${product.name} - Carol Modas`;
     const detailsHTML = parseProductDetails(product.details);
 
+    // CORREÇÃO AQUI: Atualiza o bloco de HTML para mostrar os dois preços
     contentArea.innerHTML = `
         <div class="product-layout">
             <div class="product-images">
@@ -68,7 +69,10 @@ function renderProductDetailPage(product, contentArea) {
                 <span class="brand">${product.brand}</span>
                 <p class="product-category">Categoria: <a href="/produtos.html?category=${product.category}">${product.category}</a></p>
                 <h1>${product.name}</h1>
-                <p class="price">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+                <div class="price-container">
+                    <p class="price wholesale-price">Atacado: R$ ${product.price.wholesale.toFixed(2).replace('.', ',')}</p>
+                    <p class="price retail-price">Varejo: R$ ${product.price.retail.toFixed(2).replace('.', ',')}</p>
+                </div>
                 <div class="selector">
                     <label>Cor: <strong id="selected-color-name">${product.options.colors[0]?.name || ''}</strong></label>
                     <div class="color-swatches">${product.options.colors.map((color, index) => `<button class="swatch ${index === 0 ? 'active' : ''}" style="background: ${color.code};" aria-label="${color.name}" data-color-name="${color.name}" data-main-image="/${product.images[index] || product.images[0]}"></button>`).join('')}</div>

@@ -78,6 +78,8 @@
     padding-top: 10px;
 }
 
+
+
 .product-info .brand {
     font-size: 0.9em;
     color: #888;
@@ -330,4 +332,39 @@
     color: #333;
     text-align: center;
     margin-bottom: 40px;
+}
+
+
+/* Adicionar no final de _product-grid.css */
+
+.price-container {
+    margin: 8px 0 15px;
+}
+
+.price.retail-price {
+    font-size: 1.2em;
+    color: #B5838D;
+    font-weight: 700;
+}
+
+.price.wholesale-price {
+    font-size: 0.95em;
+    color: #555;
+    font-weight: 500;
+}
+
+.product-info .price-container {
+    margin-bottom: 25px;
+}
+
+.product-info .price.retail-price {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: #B5838D;
+}
+
+.product-info .price.wholesale-price {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #555;
 }
