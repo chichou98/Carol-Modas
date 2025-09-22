@@ -1,6 +1,4 @@
-/* ======================================================= */
-/* 4. SEÇÕES DA PÁGINA INICIAL (HOME)                      */
-/* ======================================================= */
+/* assets/css/components/_home.css (Versão Limpa) */
 
 /* --- Banner Principal com Carrossel --- */
 .hero-banner {
@@ -69,13 +67,11 @@
 .category-carousel-wrapper {
     display: flex;
     width: 200%;
-    /* O dobro da largura para o loop */
     animation: scroll 20s linear infinite;
 }
 
 .category-carousel-wrapper:hover {
     animation-play-state: paused;
-    /* Pausa a animação com o mouse em cima */
 }
 
 .category-card {
@@ -107,7 +103,7 @@
     text-align: center;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.6);
-    padding: 10px 10px;
+    padding: 10px;
     border-radius: 0 0 10px 10px;
     font-size: 1.4em;
     font-weight: 600;
@@ -120,7 +116,6 @@
 
     100% {
         transform: translateX(-50%);
-        /* Move para a esquerda metade da largura total */
     }
 }
 
@@ -131,72 +126,7 @@
     background-color: #fff;
 }
 
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-}
-
-.product-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.product-image-container {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    background-color: #f0f0f0;
-}
-
-.product-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.product-card:hover .product-image-container img {
-    transform: scale(1.05);
-
-}
-
-.product-card-info {
-    flex-grow: 1;
-    padding: 0 5px;
-    text-align: center;
-}
-
-.product-card h3 {
-    font-size: 1.1em;
-    color: #333;
-    margin: 0 0 8px;
-    font-weight: 500;
-    line-height: 1.4;
-}
-
-.product-card .price {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #B5838D;
-    margin-bottom: 15px;
-}
-
-.product-card-category {
-    font-size: 0.8em;
-    color: #888;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.product-card .btn-secondary {
-    margin-top: auto;
-    align-self: center;
-}
+/* Os estilos específicos de .product-grid e .product-card foram movidos para _product-grid.css */
 
 /* --- Seção "Nossa Essência" --- */
 .brand-story {

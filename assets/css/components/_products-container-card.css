@@ -1,75 +1,16 @@
-/* assets/css/components/_products-container-card.css */
+/* assets/css/components/_products-container-card.css (Versão Simplificada) */
 
 .products-container-card {
     background-color: #fff;
-    /* Fundo branco para o card */
     border-radius: 15px;
-    /* Bordas arredondadas */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    /* Sombra suave para profundidade */
-    padding: 30px;
-    /* Espaçamento interno */
+    padding: 20px;
+    /* Reduzido para melhor encaixe em mobile */
     margin-top: 30px;
-    /* Margem superior para separar da toolbar */
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-    /* Transição suave para o hover */
 }
 
-/* Efeito Hover Atraente para Mulheres */
-.products-container-card:hover {
-    transform: translateY(-5px);
-    /* Levanta um pouco o card */
-    box-shadow: 0 12px 35px rgba(255, 105, 180, 0.2);
-    /* Sombra mais intensa com toque rosado */
-}
-
-/* Ajustes no grid de produtos dentro do container */
-.products-container-card .product-grid {
-    padding-bottom: 20px;
-    /* Espaço entre o grid e a paginação, se necessário */
-}
-
-/* Melhora a transição do HOVER para os próprios cards individuais (opcional, mas recomendado) */
-.product-card {
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-}
-
-.product-card:hover {
-    transform: translateY(-3px);
-    /* Levanta o card individual */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 5%;
-    /* Sombra mais sutil no card individual */
-}
-
-/* Ajuste para o botão "Ver Detalhes" para se destacar no hover */
-.product-card .btn-secondary {
-    opacity: 0;
-    /* Começa invisível */
-    transform: translateY(10px);
-    /* Começa um pouco abaixo */
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-}
-
-.product-card:hover .btn-secondary {
-    opacity: 1;
-    /* Fica visível no hover */
-    transform: translateY(0);
-    /* Volta para a posição original */
-}
-
-/* Centraliza o botão quando ele aparecer no hover */
-.product-card a.btn-secondary {
-    display: block;
-    /* Garante que ocupe a largura total disponível */
-    margin-left: auto;
-    /* Centraliza */
-    margin-right: auto;
-    /* Centraliza */
-    text-align: center;
-    /* Centraliza o texto */
-    max-width: 80%;
-    /* Limita a largura para não ficar muito grande */
-    margin-top: 15px;
-    /* Espaço superior */
+@media (max-width: 600px) {
+    .products-container-card {
+        padding: 15px;
+    }
 }
