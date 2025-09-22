@@ -1,7 +1,3 @@
-Claro\! Aqui está um `README.md` completo e bem estruturado para o seu projeto, explicando sua arquitetura, funcionalidades e como executá-lo.
-
------
-
 # Carol Modas - E-commerce & Painel Administrativo
 
 Este é o repositório completo do site **Carol Modas**, um e-commerce de moda feminina com um painel administrativo integrado para gerenciamento de produtos. O projeto foi construído com HTML, CSS e JavaScript puro (ES6 Modules), utilizando um backend leve em Node.js/Express para as funcionalidades do painel.
