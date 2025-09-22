@@ -2,38 +2,6 @@
 
 export const productsData = [
     {
-        "id": 4,
-        "slug": "blusa-canelada",
-        "name": "Blusa Canelada",
-        "price": {
-            "retail": 99.9,
-            "wholesale": 99.99
-        },
-        "category": "Canelado",
-        "brand": "Carol Modas",
-        "images": [
-            "assets/images/products/canelado.png"
-        ],
-        "description": "",
-        "details": [
-            "Detalhe para Blusa Canelada."
-        ],
-        "options": {
-            "colors": [
-                {
-                    "name": "Rosa",
-                    "code": "#FFC0CB"
-                }
-            ],
-            "sizes": [
-                "P",
-                "M",
-                "G"
-            ]
-        },
-        "active": true
-    },
-    {
         "id": 5,
         "name": "Calça Ciganinha",
         "price": 159.9,
@@ -289,7 +257,20 @@ export const productsData = [
             "assets/images/products/productImage-1758550788783-59175403.jpg"
         ],
         "description": "",
-        "details": [],
+        "details": [
+            "Blusa Canelada Manga Longa Rosa",
+            "Versátil e cheia de estilo, esta blusa canelada é perfeita para criar looks modernos e elegantes em qualquer ocasião. Confeccionada em tecido canelado com leve elasticidade, proporciona um ajuste confortável e prático, valorizando a silhueta de forma sutil e sofisticada.",
+            "Com modelagem clássica e atemporal, a peça conta com gola redonda discreta e mangas longas, garantindo um visual clean que facilita combinações que vão do casual ao elaborado. A textura canelada adiciona um toque de estilo diferenciado, tornando a blusa ainda mais interessante e elegante.",
+            "Na cor rosa, transmite delicadeza e feminilidade, sendo ideal para adicionar suavidade e charme às suas produções.",
+            "Detalhes do produto:",
+            "Tecido canelado com elasticidade",
+            "Gola redonda clássica",
+            "Manga longa",
+            "Modelagem confortável e ajustável",
+            "Cor: Rosa",
+            "Indicação de uso:",
+            "Perfeita para o dia a dia, trabalho, passeios e até ocasiões especiais, podendo ser combinada com jeans, saias, leggings ou calças de alfaiataria para um visual mais sofisticado."
+        ],
         "options": {
             "colors": [
                 {
@@ -301,6 +282,6 @@ export const productsData = [
                 "P"
             ]
         },
-        "active": false
+        "active": true
     }
 ];

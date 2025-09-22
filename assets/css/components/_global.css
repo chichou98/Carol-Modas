@@ -7,8 +7,8 @@
 
 /* Estilos base do corpo da página */
 body {
-    background-color: #FDF8F8;
-    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    font-family: var(--font-main);
     margin: 0;
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #B5838D;
+    background-color: var(--primary-color);
 }
 
 .btn-secondary {

@@ -3,7 +3,9 @@
 /* ======================================================= */
 
 /* 1. Estilos Globais */
+@import url('./components/_theme.css');
 @import url('./components/_global.css');
+
 
 /* 2. Estilos de Componentes */
 @import url('./components/_header.css');

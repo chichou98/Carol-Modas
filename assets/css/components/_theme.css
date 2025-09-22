@@ -1,0 +1,8 @@
+/* assets/css/components/_theme.css */
+:root {
+    --primary-color: #B5838D;
+    --primary-hover-color: #C58E95;
+    --background-color: #FDF8F8;
+    --text-color: #333;
+    --font-main: 'Poppins', sans-serif;
+}

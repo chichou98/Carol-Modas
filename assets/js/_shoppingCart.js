@@ -2,6 +2,7 @@
 
 import { productsData } from './_database.js';
 import { customConfirm, customAlert } from './utils/modals.js';
+import { WHATSAPP_NUMBER } from '../../config.js';
 
 const shoppingCart = {
     cart: [],
@@ -199,7 +200,7 @@ const shoppingCart = {
         });
         const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
         message += `*TOTAL DO PEDIDO: R$ ${totalPrice.toFixed(2).replace('.', ',')}*`;
-        const phoneNumber = "5511969228664"; // Substitua pelo seu número
+        const phoneNumber = WHATSAPP_NUMBER; // Use a variável importada
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     },
