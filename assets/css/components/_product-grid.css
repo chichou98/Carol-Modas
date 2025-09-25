@@ -1,11 +1,11 @@
-/* assets/css/components/_product-grid.css (Versão Final Unificada) */
+/* assets/css/components/_product-grid.css (Estilos atualizados para mostrar os dois preços) */
 
 /* ======================================================= */
-/* ESTILO PADRÃO (DESKTOP) */
+/* ESTILO PADRÃO (DESKTOP)                                   */
 /* ======================================================= */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
     padding: 10px 0;
     align-items: stretch;
@@ -75,7 +75,6 @@
     font-weight: 500;
     line-height: 1.4;
     height: 2.8em;
-    /* Altura fixa para 2 linhas */
     margin: 0 0 10px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -86,33 +85,44 @@
 
 .product-card .btn-secondary {
     margin-top: auto;
-    /* Força o botão para a base do card */
     align-self: center;
 }
 
+/* NOVO: Estilos para o container de preços */
 .price-container {
-    margin: 8px 0 0;
+    margin: 8px 0 5px;
 }
 
 .price.retail-price {
     font-size: 1.2em;
-    color: #B5838D;
+    color: #333;
+    /* Cor padrão para varejo */
     font-weight: 700;
+    margin: 0;
 }
 
 .price.wholesale-price {
-    font-size: 0.95em;
-    color: #555;
-    font-weight: 500;
-    margin-bottom: 4px;
+    font-size: 1.1em;
+    color: #B5838D;
+    /* Cor de destaque para atacado */
+    font-weight: 600;
+    margin: 2px 0 0;
 }
 
-body.retail-mode-active .wholesale-price {
-    display: none;
+.price.wholesale-price span {
+    font-weight: 400;
+    font-size: 0.85em;
+    color: #666;
 }
 
-body.wholesale-mode-active .retail-price {
-    display: none;
+.wholesale-info {
+    font-size: 0.8em;
+    color: #777;
+    background-color: #f9f9f9;
+    padding: 3px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
 .no-products-found {
@@ -124,7 +134,7 @@ body.wholesale-mode-active .retail-price {
 }
 
 /* ======================================================= */
-/* RESPONSIVO */
+/* RESPONSIVO                                              */
 /* ======================================================= */
 @media (max-width: 992px) {
     .product-grid {
@@ -153,7 +163,7 @@ body.wholesale-mode-active .retail-price {
     }
 
     .price.wholesale-price {
-        font-size: 0.85em;
+        font-size: 1.0em;
     }
 
     .product-card .btn-secondary {
@@ -180,12 +190,9 @@ body.wholesale-mode-active .retail-price {
         margin-top: 5px;
     }
 
-    .price.retail-price {
-        font-size: 0.95em;
-    }
-
+    .price.retail-price,
     .price.wholesale-price {
-        font-size: 0.75em;
+        font-size: 0.95em;
     }
 
     .product-card .btn-secondary {

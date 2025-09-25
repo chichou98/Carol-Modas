@@ -31,8 +31,6 @@
                         <li><a href="contato.html"><span>Contato</span></a></li>
                     </ul>
                 </nav>
-
-
                 <div class="cart-icon" id="cart-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                         viewBox="0 0 16 16">
@@ -45,27 +43,29 @@
         </div>
     </header>
 
-    <main>
-        <div class="cart-panel" id="cart-panel">
-            <div class="cart-header">
+    <div class="cart-panel" id="cart-panel">
+        <div class="cart-header">
+            <div class="cart-header-main">
                 <h3>Meu Carrinho</h3>
                 <button class="close-cart-btn" id="close-cart-btn">&times;</button>
             </div>
-            <div class="cart-items" id="cart-items"></div>
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <strong>Total:</strong>
-                    <span id="cart-total">R$ 0,00</span>
-                </div>
-                <button class="btn-primary btn-checkout" id="btn-checkout">Finalizar Pedido no WhatsApp</button>
-                <button class="btn-secondary btn-clear-cart" id="btn-clear-cart">Limpar Carrinho</button>
-            </div>
         </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button class="btn-primary btn-checkout" id="btn-checkout">Finalizar Pedido no WhatsApp</button>
+            <button class="btn-secondary btn-clear-cart" id="btn-clear-cart">Limpar Carrinho</button>
+        </div>
+    </div>
 
+    <main>
         <div class="filter-overlay" id="filter-overlay"></div>
         <div class="filter-modal" id="filter-modal">
             <div class="filter-header">
-                <h3>Filtrar Produtos</h3>
+                <h3>Filtrar por Categoria</h3>
                 <button class="close-filter-btn" id="close-filter-btn">&times;</button>
             </div>
             <div class="filter-body">
@@ -74,10 +74,11 @@
                 </div>
             </div>
             <div class="filter-footer">
-                <button class="btn-secondary" id="clear-filters-btn">Limpar Filtros</button>
+                <button class="btn-secondary" id="clear-filters-btn">Limpar</button>
                 <button class="btn-primary" id="apply-filters-btn">Aplicar</button>
             </div>
         </div>
+
         <section class="page-header">
             <h1>Nossos Produtos</h1>
         </section>
@@ -94,16 +95,18 @@
                         Filtrar
                     </button>
                     <div class="sort-by">
-                        <select name="orderby" id="orderby">
+                        <select name="orderby" id="orderby" aria-label="Ordenar por">
                             <option value="default" selected="selected">Padrão</option>
                             <option value="popularity">Popularidade</option>
-                            <option value="date">Mais recentes</option>
                             <option value="price-asc">Preço: menor para maior</option>
                             <option value="price-desc">Preço: maior para menor</option>
                         </select>
                     </div>
                 </div>
             </section>
+
+            <p class="wholesale-banner">✨ <strong>Aproveite!</strong> A partir de 4 peças no carrinho, todos os produtos
+                saem pelo preço de atacado!</p>
 
             <section class="product-listing">
                 <div class="products-container-card">
@@ -120,16 +123,16 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column">
-                    <img src="assets/images/layout/logo.png" alt="Logo Carol Modas" class="logo-footer">
+                    <img src="/assets/images/layout/logo.png" alt="Logo Carol Modas" class="logo-footer">
                     <p>Moda Feminina de Fabricação Própria. Qualidade e estilo que você sente na pele.</p>
                 </div>
                 <div class="footer-column">
                     <h4>Navegação</h4>
                     <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="produtos.html">Produtos</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="/index.html">Início</a></li>
+                        <li><a href="/produtos.html">Produtos</a></li>
+                        <li><a href="/sobre.html">Sobre</a></li>
+                        <li><a href="/contato.html">Contato</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -154,7 +157,6 @@
             </div>
         </div>
     </footer>
-
 
     <script type="module" src="main.js" defer></script>
 </body>

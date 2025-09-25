@@ -1,5 +1,5 @@
 /* ======================================================= */
-/* ESTILOS DO CARRINHO - VERSÃO COM FOCO EM LEITURA     */
+/* ESTILOS DO CARRINHO - VERSÃO COM FOCO EM LEITURA      */
 /* ======================================================= */
 
 .header-actions {
@@ -12,12 +12,9 @@
     position: relative;
     cursor: pointer;
     width: 42px;
-    /* Define um tamanho fixo */
     height: 42px;
     background-color: rgba(255, 255, 255, 0.2);
-    /* Fundo semi-transparente */
     border-radius: 50%;
-    /* Deixa o fundo redondo */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,18 +48,14 @@
     border: 1px solid #fff;
 }
 
-/* 1. PAINEL MAIOR E COM FUNDO BRANCO */
 .cart-panel {
     position: fixed;
     top: 0;
     right: -100%;
     width: 90%;
-    /* Ocupa 90% da tela, mais espaçoso */
     max-width: 420px;
-    /* Limite para telas maiores como tablets */
     height: 100%;
     background-color: #fff;
-    /* Fundo branco para máximo contraste */
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
     z-index: 1002;
     transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -76,10 +69,20 @@
 
 .cart-header {
     display: flex;
+    flex-direction: column;
+    /* Para o aviso ficar abaixo do título */
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid #eee;
+}
+
+.cart-header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .cart-header h3 {
@@ -101,7 +104,6 @@
     padding: 20px;
 }
 
-/* 2. MAIS ESPAÇO E MELHOR ALINHAMENTO PARA OS ITENS */
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -131,7 +133,6 @@
     justify-content: center;
 }
 
-/* 3. FONTES MAIORES E COM MAIS CONTRASTE */
 .cart-item-details h4 {
     margin: 0 0 8px;
     font-size: 1.1em;
@@ -143,14 +144,12 @@
     margin: 0 0 10px;
     font-size: 1em;
     color: #555;
-    /* Cor mais escura para melhor leitura */
 }
 
 .cart-item-details .price {
     font-weight: 600;
 }
 
-/* 4. BOTÕES MAIORES E MAIS FÁCEIS DE TOCAR */
 .cart-item-actions {
     display: flex;
     flex-direction: column;
@@ -158,7 +157,6 @@
     justify-content: space-between;
 }
 
-/* Estilos para o seletor de quantidade HÍBRIDO no carrinho */
 .quantity-control {
     display: flex;
     align-items: center;
@@ -196,18 +194,13 @@
 
 .remove-item-btn {
     background-color: #f0f0f0;
-    /* Fundo cinza claro para destaque */
     border: none;
     border-radius: 20px;
-    /* Bordas arredondadas */
     padding: 6px 12px;
-    /* Espaçamento interno para criar o botão */
     color: #555;
-    /* Cor do texto mais escura para legibilidade */
     font-size: 0.9em;
     font-weight: 500;
     text-decoration: none;
-    /* Remove o sublinhado */
     cursor: pointer;
     transition: all 0.2s ease;
     margin-top: 10px;
@@ -218,7 +211,6 @@
     color: #333;
 }
 
-/* --- Rodapé do Carrinho --- */
 .cart-footer {
     padding: 20px;
     border-top: 1px solid #eee;
@@ -244,7 +236,6 @@
     text-align: center;
 }
 
-/* --- Mensagem de Carrinho Vazio --- */
 .empty-cart-view {
     text-align: center;
     padding: 60px 20px;
@@ -290,19 +281,15 @@
     animation: shakeCart 0.4s ease;
 }
 
-/* Adicione no final de _cart.css */
-
 @keyframes slideInFromRight {
     from {
         opacity: 0;
         transform: translateX(50px);
-        /* Começa um pouco à direita */
     }
 
     to {
         opacity: 1;
         transform: translateX(0);
-        /* Termina na posição normal */
     }
 }
 
@@ -320,4 +307,69 @@
 
 .cart-item:nth-child(4) {
     animation-delay: 0.4s;
+}
+
+.cart-header .price-mode-notice {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #B5838D;
+    background-color: #fdf8f8;
+    padding: 8px 12px;
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #f2e6e6;
+}
+
+/* Estilos para o preço cortado no carrinho */
+.cart-item-details .price del {
+    color: #999;
+    font-weight: normal;
+    font-size: 0.9em;
+    margin-right: 8px;
+}
+
+.cart-item-details .price strong {
+    color: #B5838D;
+    font-size: 1.1em;
+}
+
+
+/* ======================================================= */
+/* AJUSTES RESPONSIVOS PARA O CARRINHO EM TELAS PEQUENAS    */
+/* ======================================================= */
+
+@media (max-width: 500px) {
+    .cart-item {
+        /* Empilha a seção de info (imagem/texto) e a de ações (botões) */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        /* Adiciona um espaço entre as seções */
+    }
+
+    .cart-item-info {
+        /* Garante que a seção de info ocupe toda a largura disponível */
+        width: 100%;
+    }
+
+    .cart-item-actions {
+        /* Coloca o seletor de quantidade e o botão "Remover" lado a lado */
+        flex-direction: row;
+        justify-content: space-between;
+        /* Joga um para cada lado */
+        align-items: center;
+        width: 100%;
+        /* Faz a seção de ações ocupar toda a largura */
+    }
+
+    .cart-item-actions .remove-item-btn {
+        /* Remove a margem que não é mais necessária */
+        margin-top: 0;
+    }
+
+    .cart-item-details h4 {
+        /* Diminui um pouco o nome do produto para caber melhor */
+        font-size: 1em;
+    }
 }

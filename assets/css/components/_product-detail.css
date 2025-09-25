@@ -282,8 +282,14 @@
     margin-bottom: 0.5em;
 }
 
+
 .details-paragraph {
     margin-bottom: 1em;
+}
+
+.detalhes-produto p {
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .details-heading {
@@ -302,6 +308,11 @@
 
 .details-sublist li {
     margin-bottom: 0.3em;
+}
+
+.details-content p {
+    margin: 0.1em 0;
+    /* Diminui a margem vertical entre os parágrafos */
 }
 
 /* --- AQUI ESTÁ A CORREÇÃO PARA O NEGRITO --- */
@@ -357,14 +368,90 @@
     margin-bottom: 25px;
 }
 
-.product-info .price.retail-price {
+
+.product-info .price.retail-price,
+.product-info .price.wholesale-price {
     font-size: 2.8em;
     font-weight: 700;
-    color: #B5838D;
+    color: var(--primary-color);
+    /* Usa a cor primária do tema */
+    margin-bottom: 25px;
+    line-height: 1.1;
+    /* Controla a altura da linha para evitar saltos */
 }
 
-.product-info .price.wholesale-price {
-    font-size: 1.5em;
-    font-weight: 500;
-    color: #555;
+
+
+
+.price-details-container {
+    display: flex;
+    gap: 30px;
+    /* Espaço entre os preços de varejo e atacado */
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.price-item .price-label {
+    font-size: 0.9em;
+    color: #777;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.price-item .retail-price-detail {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #333;
+    /* Cor do preço padrão */
+    line-height: 1;
+}
+
+.price-item .wholesale-price-detail {
+    font-size: 2.5em;
+    font-weight: 700;
+    /* Mais destacado */
+    color: var(--primary-color);
+    /* Cor de destaque do tema */
+    line-height: 1;
+}
+
+.wholesale-info-detail {
+    font-size: 0.9em;
+    background-color: #fdf8f8;
+    border: 1px solid #f2e6e6;
+    color: var(--primary-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+
+/* ======================================================= */
+/* AJUSTES RESPONSIVOS PARA A PÁGINa de detalhes         */
+/* ======================================================= */
+
+@media (max-width: 767px) {
+    .product-info .price-details-container {
+        /* Centraliza os dois blocos de preço no meio da tela */
+        justify-content: center;
+        gap: 20px;
+        /* Diminui o espaço entre eles no mobile */
+    }
+
+    .product-info .price-item {
+        /* Faz o texto e o valor ficarem um sobre o outro, centralizados */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-info .retail-price-detail,
+    .product-info .wholesale-price-detail {
+        /* Ajusta o tamanho da fonte para telas menores */
+        font-size: 2em;
+    }
 }

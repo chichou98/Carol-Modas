@@ -172,3 +172,17 @@
         transform: rotate(-45deg) translate(7px, -6px);
     }
 }
+
+
+@media (max-width: 420px) {
+    .header-actions {
+        gap: 10px;
+        /* Reduz o espaço entre o seletor e o carrinho */
+    }
+
+    .price-toggle-container {
+        transform: scale(0.85);
+        /* Diminui um pouco o tamanho do seletor */
+        margin-right: 0;
+    }
+}

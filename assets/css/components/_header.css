@@ -1,5 +1,5 @@
 /* ======================================================= */
-/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER) - VERSÃO FINAL      */
+/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER) - CÓDIGO LIMPO        */
 /* ======================================================= */
 
 .navbar {
@@ -7,16 +7,9 @@
     padding: 15px 0;
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-    /* --- MUDANÇAS AQUI --- */
     position: sticky;
-    /* Faz o elemento "colar" na tela */
     top: 0;
-    /* Define que ele deve colar no topo (posição 0) */
-    /* --- FIM DAS MUDANÇAS --- */
-
     z-index: 1000;
-    /* Garante que o menu fique sobre outros conteúdos */
 }
 
 .navbar .container {
@@ -31,20 +24,16 @@
     display: block;
 }
 
-/* Container para os elementos da direita (menu + carrinho) */
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 30px;
-    /* Espaço entre o menu de links e o carrinho */
+    gap: 20px;
 }
 
-/* O botão hambúrguer é escondido na versão de computador */
 .mobile-nav-toggle {
     display: none;
 }
 
-/* Navegação principal (horizontal) para desktop */
 .nav-links {
     display: flex;
     align-items: center;
@@ -66,7 +55,6 @@
     display: inline-block;
 }
 
-/* Efeito de linha no hover */
 .nav-links a span::after {
     content: '';
     position: absolute;
@@ -80,219 +68,4 @@
 
 .nav-links a:hover span::after {
     width: 100%;
-}
-
-.price-toggle-container {
-    display: flex;
-    align-items: center;
-}
-
-.price-toggle {
-    position: relative;
-    display: inline-block;
-    width: 110px;
-    height: 34px;
-}
-
-.price-toggle input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.price-toggle .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #e0e0e0;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.price-toggle .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 50px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 20px;
-}
-
-.price-toggle input:checked+.slider {
-    background-color: #B5838D;
-}
-
-.price-toggle input:checked+.slider:before {
-    transform: translateX(52px);
-}
-
-.price-toggle .label-text::before {
-    content: attr(data-retail);
-    position: absolute;
-    left: 15px;
-    top: 8px;
-    color: #555;
-    font-size: 0.8em;
-    font-weight: 600;
-}
-
-.price-toggle .label-text::after {
-    content: attr(data-wholesale);
-    position: absolute;
-    right: 10px;
-    top: 8px;
-    color: #fff;
-    font-size: 0.8em;
-    font-weight: 600;
-}
-
-/* Adicionar no final de assets/css/components/_header.css */
-
-.price-toggle-container {
-    display: flex;
-    align-items: center;
-}
-
-.price-toggle {
-    position: relative;
-    display: inline-block;
-    width: 110px;
-    height: 34px;
-}
-
-.price-toggle input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.price-toggle .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #e0e0e0;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.price-toggle .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 50px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 20px;
-}
-
-.price-toggle input:checked+.slider {
-    background-color: #B5838D;
-}
-
-.price-toggle input:checked+.slider:before {
-    transform: translateX(52px);
-}
-
-.price-toggle .label-text::before {
-    content: attr(data-retail);
-    position: absolute;
-    left: 15px;
-    top: 9px;
-    color: #333;
-    font-size: 0.8em;
-    font-weight: 600;
-}
-
-.price-toggle .label-text::after {
-    content: attr(data-wholesale);
-    position: absolute;
-    right: 10px;
-    top: 9px;
-    color: #fff;
-    font-size: 0.8em;
-    font-weight: 600;
-}
-
-/***************/
-/* Adicionar no final de assets/css/components/_header.css */
-
-.price-toggle-container {
-    display: flex;
-    align-items: center;
-}
-
-.price-toggle {
-    position: relative;
-    display: inline-block;
-    width: 110px;
-    height: 34px;
-}
-
-.price-toggle input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.price-toggle .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #e0e0e0;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.price-toggle .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 50px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 20px;
-}
-
-.price-toggle input:checked+.slider {
-    background-color: #B5838D;
-}
-
-.price-toggle input:checked+.slider:before {
-    transform: translateX(52px);
-}
-
-.price-toggle .label-text::before {
-    content: attr(data-retail);
-    position: absolute;
-    left: 15px;
-    top: 9px;
-    color: #333;
-    font-size: 0.8em;
-    font-weight: 600;
-}
-
-.price-toggle .label-text::after {
-    content: attr(data-wholesale);
-    position: absolute;
-    right: 10px;
-    top: 9px;
-    color: #fff;
-    font-size: 0.8em;
-    font-weight: 600;
 }

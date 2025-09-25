@@ -1,5 +1,3 @@
-// assets/js/pages/productDetail.js
-
 import { productsData } from '../_database.js';
 import { renderProductCards, parseProductDetails } from '../utils.js';
 
@@ -26,6 +24,7 @@ function attachDetailEventListeners() {
             thumbnails.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             mainImage.src = this.src;
+            // Desmarcar a cor ativa se uma thumbnail genérica for clicada
             colorSwatches.forEach(s => s.classList.remove('active'));
         });
     });
@@ -37,7 +36,15 @@ function attachDetailEventListeners() {
             this.classList.add('active');
             if (selectedColorName) selectedColorName.textContent = this.getAttribute('data-color-name');
             if (mainImage && this.dataset.mainImage) mainImage.src = this.dataset.mainImage;
-            thumbnails.forEach(t => t.classList.remove('active'));
+
+            // Sincroniza a thumbnail com a cor selecionada
+            thumbnails.forEach(t => {
+                if (t.src === mainImage.src) {
+                    t.classList.add('active');
+                } else {
+                    t.classList.remove('active');
+                }
+            });
         });
     });
 
@@ -58,7 +65,10 @@ function renderProductDetailPage(product, contentArea) {
     document.title = `${product.name} - Carol Modas`;
     const detailsHTML = parseProductDetails(product.details);
 
-    // CORREÇÃO AQUI: Atualiza o bloco de HTML para mostrar os dois preços
+    // NOVO: Formata os preços para exibição
+    const priceRetailFormatted = `R$ ${product.price.retail.toFixed(2).replace('.', ',')}`;
+    const priceWholesaleFormatted = `R$ ${product.price.wholesale.toFixed(2).replace('.', ',')}`;
+
     contentArea.innerHTML = `
         <div class="product-layout">
             <div class="product-images">
@@ -69,10 +79,18 @@ function renderProductDetailPage(product, contentArea) {
                 <span class="brand">${product.brand}</span>
                 <p class="product-category">Categoria: <a href="/produtos.html?category=${product.category}">${product.category}</a></p>
                 <h1>${product.name}</h1>
-                <div class="price-container">
-                    <p class="price wholesale-price">Atacado: R$ ${product.price.wholesale.toFixed(2).replace('.', ',')}</p>
-                    <p class="price retail-price">Varejo: R$ ${product.price.retail.toFixed(2).replace('.', ',')}</p>
+
+                <div class="price-details-container">
+                    <div class="price-item">
+                        <span class="price-label">Varejo</span>
+                        <p class="price retail-price-detail">${priceRetailFormatted}</p>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-label">Atacado</span>
+                        <p class="price wholesale-price-detail">${priceWholesaleFormatted}</p>
+                    </div>
                 </div>
+                <p class="wholesale-info-detail">Preço de atacado válido para compras a partir de 4 peças.</p>
                 <div class="selector">
                     <label>Cor: <strong id="selected-color-name">${product.options.colors[0]?.name || ''}</strong></label>
                     <div class="color-swatches">${product.options.colors.map((color, index) => `<button class="swatch ${index === 0 ? 'active' : ''}" style="background: ${color.code};" aria-label="${color.name}" data-color-name="${color.name}" data-main-image="/${product.images[index] || product.images[0]}"></button>`).join('')}</div>

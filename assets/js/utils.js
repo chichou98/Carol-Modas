@@ -1,32 +1,50 @@
 // assets/js/utils.js
 
 /**
- * Aplica formatação inline como negrito.
- * Procura por **texto** e substitui por <strong>texto</strong>.
+ * Formata um valor numérico como moeda brasileira (BRL).
+ * @param {number} value - O valor a ser formatado.
+ * @returns {string} O valor formatado como string (ex: "R$ 123,45").
+ */
+export const formatCurrency = (value = 0) => {
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(value);
+};
+
+/**
+ * Aplica formatação inline simples (Markdown-like) em um texto.
+ * @param {string} text - O texto a ser formatado.
+ * @returns {string} O texto com as tags HTML <strong> e <em> aplicadas.
  */
 export function applyInlineFormatting(text) {
-    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    if (typeof text !== 'string') return '';
+    return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/(\*|_)(.*?)\1/g, '<em>$2</em>');
 }
 
 /**
- * Interpreta a formatação dos detalhes do produto.
+ * Converte um array de linhas de texto em HTML.
+ * @param {string[]} details - Um array de strings representando as linhas do detalhe.
+ * @returns {string} Uma string contendo o HTML gerado.
  */
 export function parseProductDetails(details) {
+    if (!Array.isArray(details)) return '';
     let html = '';
     let isInsideList = false;
-    let isFirstParagraph = true;
-
-    details.forEach(line => {
+    let hasMainTitle = false;
+    for (const line of details) {
         const trimmedLine = line.trim();
-        if (!trimmedLine) return;
-
-        if (trimmedLine.startsWith('-') || trimmedLine.startsWith('*')) {
+        if (!trimmedLine) continue;
+        const isListItem = trimmedLine.startsWith('-') || trimmedLine.startsWith('*');
+        if (isListItem) {
             if (!isInsideList) {
                 html += '<ul class="details-sublist">';
                 isInsideList = true;
             }
-            const formattedLine = applyInlineFormatting(trimmedLine.substring(1).trim());
-            html += `<li>${formattedLine}</li>`;
+            const itemContent = applyInlineFormatting(trimmedLine.substring(1).trim());
+            html += `<li>${itemContent}</li>`;
         } else {
             if (isInsideList) {
                 html += '</ul>';
@@ -35,18 +53,16 @@ export function parseProductDetails(details) {
             const formattedLine = applyInlineFormatting(trimmedLine);
             if (trimmedLine.endsWith(':')) {
                 html += `<h4 class="details-heading">${formattedLine}</h4>`;
-                isFirstParagraph = false;
             } else {
-                if (isFirstParagraph) {
+                if (!hasMainTitle) {
                     html += `<h3 class="details-main-title">${formattedLine}</h3>`;
-                    isFirstParagraph = false;
+                    hasMainTitle = true;
                 } else {
                     html += `<p class="details-paragraph">${formattedLine}</p>`;
                 }
             }
         }
-    });
-
+    }
     if (isInsideList) {
         html += '</ul>';
     }
@@ -54,40 +70,59 @@ export function parseProductDetails(details) {
 }
 
 /**
- * Desenha os cards de produto na tela.
+ * Cria o elemento HTML para um único card de produto.
+ * @param {object} product - O objeto do produto.
+ * @returns {HTMLElement} O elemento <div> do card de produto.
+ */
+function createProductCard(product) {
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+
+    const productLink = `/produto/${product.slug || ''}`;
+    const productImage = product.images && product.images.length > 0 ? `/${product.images[0]}` : '/assets/images/placeholder.png';
+
+    const priceRetailFormatted = `R$ ${product.price?.retail.toFixed(2).replace('.', ',')}`;
+    const priceWholesaleFormatted = `R$ ${product.price?.wholesale.toFixed(2).replace('.', ',')}`;
+
+    productCard.innerHTML = `
+        <a href="${productLink}" class="product-image-link">
+            <div class="product-image-container">
+                <img src="${productImage}" alt="${product.name || 'Imagem do produto'}">
+            </div>
+        </a>
+        <div class="product-card-info">
+            <div>
+                <p class="product-card-category">${product.category || 'Sem categoria'}</p>
+                <h3><a href="${productLink}">${product.name || 'Produto sem nome'}</a></h3>
+                <div class="price-container">
+                    <p class="price retail-price">${priceRetailFormatted}</p>
+                    <p class="price wholesale-price">${priceWholesaleFormatted} <span>(Atacado)</span></p>
+                </div>
+            </div>
+            <a href="${productLink}" class="btn-secondary">Ver Detalhes</a>
+        </div>`;
+    return productCard;
+}
+
+/**
+ * Renderiza os cards de produto em um elemento da grade na tela.
+ * @param {object[]} productsToRender - Array de produtos a serem renderizados.
+ * @param {HTMLElement} gridElement - O elemento do DOM onde os cards serão inseridos.
  */
 export function renderProductCards(productsToRender, gridElement) {
+    if (!gridElement || !Array.isArray(productsToRender)) {
+        console.error('Parâmetros inválidos para renderProductCards.');
+        return;
+    }
     gridElement.innerHTML = '';
     if (productsToRender.length === 0) {
         gridElement.innerHTML = `<p class="no-products-found">Nenhum produto encontrado com os filtros selecionados.</p>`;
         return;
     }
+    const fragment = document.createDocumentFragment();
     productsToRender.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        const productLink = `/produto/${product.slug}`;
-
-        // Lógica para lidar com preços
-        const priceRetail = (product.price.retail || 0).toFixed(2).replace('.', ',');
-        const priceWholesale = (product.price.wholesale || 0).toFixed(2).replace('.', ',');
-
-        productCard.innerHTML = `
-            <a href="${productLink}" class="product-image-link">
-                <div class="product-image-container">
-                    <img src="/${product.images[0]}" alt="${product.name}">
-                </div>
-            </a>
-            <div class="product-card-info">
-                <div>
-                    <p class="product-card-category">${product.category}</p>
-                    <h3><a href="${productLink}">${product.name}</a></h3>
-                    <div class="price-container">
-                        <p class="price wholesale-price">Atacado: R$ ${priceWholesale}</p>
-                        <p class="price retail-price">Varejo: R$ ${priceRetail}</p>
-                    </div>
-                </div>
-                <a href="${productLink}" class="btn-secondary">Ver Detalhes</a>
-            </div>`;
-        gridElement.appendChild(productCard);
+        const productCardElement = createProductCard(product);
+        fragment.appendChild(productCardElement);
     });
+    gridElement.appendChild(fragment);
 }

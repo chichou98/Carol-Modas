@@ -1,4 +1,4 @@
-// assets/js/_shoppingCart.js (Versão Final Simplificada)
+// assets/js/_shoppingCart.js
 
 import { productsData } from './_database.js';
 import { customConfirm, customAlert } from './utils/modals.js';
@@ -139,7 +139,16 @@ const shoppingCart = {
         if (existingItem) {
             existingItem.quantity += options.quantity;
         } else {
-            this.cart.push({ id: product.id, name: product.name, price: product.price.retail, image: product.images[0], size: options.size, color: options.color, quantity: options.quantity });
+            this.cart.push({
+                id: product.id,
+                name: product.name,
+                priceRetail: product.price.retail,
+                priceWholesale: product.price.wholesale,
+                image: product.images[0],
+                size: options.size,
+                color: options.color,
+                quantity: options.quantity
+            });
         }
         const cartIcon = document.getElementById('cart-icon');
         if (cartIcon) {
@@ -174,15 +183,79 @@ const shoppingCart = {
 
     updateDisplay: function () {
         const badge = document.getElementById('cart-badge');
-        if (badge) badge.textContent = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartHeader = document.querySelector('.cart-header');
         const cartItemsContainer = document.getElementById('cart-items');
         const totalElement = document.getElementById('cart-total');
+
+        const totalQuantity = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        const isWholesale = totalQuantity >= 4;
+
+        if (badge) badge.textContent = totalQuantity;
+
+        if (cartHeader) {
+            let notice = cartHeader.querySelector('.price-mode-notice');
+            if (!notice) {
+                notice = document.createElement('p');
+                notice.className = 'price-mode-notice';
+                cartHeader.appendChild(notice);
+            }
+            if (this.cart.length > 0) {
+                if (isWholesale) {
+                    notice.innerHTML = `✅ Preços de atacado aplicados!`;
+                    notice.style.display = 'block';
+                } else {
+                    const itemsNeeded = 4 - totalQuantity;
+                    const itemText = itemsNeeded === 1 ? 'item' : 'itens';
+                    notice.innerHTML = `Adicione mais ${itemsNeeded} ${itemText} para ter preço de atacado!`;
+                    notice.style.display = 'block';
+                }
+            } else {
+                notice.style.display = 'none';
+            }
+        }
+
         if (cartItemsContainer && totalElement) {
-            let totalPrice = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let totalPrice = 0;
             if (this.cart.length === 0) {
                 cartItemsContainer.innerHTML = `<div class="empty-cart-view"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><h4>Ops! Ainda nada por aqui...</h4><p>Adicione produtos para vê-los no carrinho.</p></div>`;
             } else {
-                cartItemsContainer.innerHTML = this.cart.map(item => `<div class="cart-item" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}"><div class="cart-item-info"><img src="/${item.image}" alt="${item.name}"><div class="cart-item-details"><h4>${item.name}</h4><p>Tamanho: ${item.size}, Cor: ${item.color}</p><p class="price">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</p></div></div><div class="cart-item-actions"><div class="quantity-control"><button class="cart-quantity-decrease" aria-label="Diminuir">-</button><input type="number" class="cart-quantity-input" value="${item.quantity}" min="1"><button class="cart-quantity-increase" aria-label="Aumentar">+</button></div><button class="remove-item-btn">Remover</button></div></div>`).join('');
+                cartItemsContainer.innerHTML = this.cart.map(item => {
+                    const unitPrice = isWholesale ? item.priceWholesale : item.priceRetail;
+                    const subtotal = unitPrice * item.quantity;
+                    totalPrice += subtotal;
+
+                    let subtotalDisplayHTML = '';
+                    if (isWholesale) {
+                        const oldSubtotal = item.priceRetail * item.quantity;
+                        subtotalDisplayHTML = `
+                            <p class="price">
+                                <del>R$ ${oldSubtotal.toFixed(2).replace('.', ',')}</del>
+                                <strong>R$ ${subtotal.toFixed(2).replace('.', ',')}</strong>
+                            </p>`;
+                    } else {
+                        subtotalDisplayHTML = `<p class="price">R$ ${subtotal.toFixed(2).replace('.', ',')}</p>`;
+                    }
+
+                    return `
+                    <div class="cart-item" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                        <div class="cart-item-info">
+                            <img src="/${item.image}" alt="${item.name}">
+                            <div class="cart-item-details">
+                                <h4>${item.name}</h4>
+                                <p>Tamanho: ${item.size}, Cor: ${item.color}</p>
+                                ${subtotalDisplayHTML}
+                            </div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="cart-quantity-decrease" aria-label="Diminuir">-</button>
+                                <input type="number" class="cart-quantity-input" value="${item.quantity}" min="1">
+                                <button class="cart-quantity-increase" aria-label="Aumentar">+</button>
+                            </div>
+                            <button class="remove-item-btn">Remover</button>
+                        </div>
+                    </div>`;
+                }).join('');
             }
             totalElement.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
         }
@@ -193,14 +266,37 @@ const shoppingCart = {
             await customAlert("Seu carrinho está vazio!");
             return;
         }
-        let message = `Olá, Carol Modas! Gostaria de fazer um pedido (Varejo):\n\n`;
+
+        const totalQuantity = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        const isWholesale = totalQuantity >= 4;
+        const orderType = isWholesale ? 'Atacado' : 'Varejo';
+
+        let message = `Olá, Carol Modas! Gostaria de fazer um pedido (${orderType}):\n\n`;
+        let totalPrice = 0;
+
         this.cart.forEach(item => {
-            const subtotal = item.price * item.quantity;
-            message += `*Produto:* ${item.name}\n*Cor:* ${item.color}, *Tamanho:* ${item.size}\n*Preço Unidade:* R$ ${item.price.toFixed(2).replace('.', ',')}\n*Qtd:* ${item.quantity}\n*Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n--------------------------------\n\n`;
+            const unitPrice = isWholesale ? item.priceWholesale : item.priceRetail;
+            const subtotal = unitPrice * item.quantity;
+            totalPrice += subtotal;
+
+            let priceText = '';
+            if (isWholesale) {
+                priceText = `*De:* ~R$ ${item.priceRetail.toFixed(2).replace('.', ',')}~\n*Por:* R$ ${unitPrice.toFixed(2).replace('.', ',')} (unidade)`;
+            } else {
+                priceText = `*Preço Unidade:* R$ ${unitPrice.toFixed(2).replace('.', ',')}`;
+            }
+
+            message += `*Produto:* ${item.name}\n`;
+            message += `*Cor:* ${item.color}, *Tamanho:* ${item.size}\n`;
+            message += `${priceText}\n`;
+            message += `*Qtd:* ${item.quantity}\n`;
+            message += `*Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+            message += `--------------------------------\n\n`;
         });
-        const totalPrice = this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+
         message += `*TOTAL DO PEDIDO: R$ ${totalPrice.toFixed(2).replace('.', ',')}*`;
-        const phoneNumber = WHATSAPP_NUMBER; // Use a variável importada
+
+        const phoneNumber = WHATSAPP_NUMBER;
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     },
