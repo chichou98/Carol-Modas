@@ -84,8 +84,14 @@
     border-radius: 5px;
 }
 
-.pagination a:hover,
-.pagination span.current {
+
+.pagination a:hover {
+    background-color: #C58E95;
+    color: #fff;
+    border-color: #C58E95;
+}
+
+.pagination a.current {
     background-color: #C58E95;
     color: #fff;
     border-color: #C58E95;

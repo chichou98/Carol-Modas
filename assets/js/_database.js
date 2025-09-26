@@ -566,7 +566,7 @@ export const productsData = [
             "- Tecido: Canelado, confortável e elástico",
             "- Decote: Arredondado",
             "- Manga: Curta",
-            "- Cor: Branco suave (RGB: 240, 248, 255)",
+            "- Cor: Branco suave",
             "Indicação de Uso:",
             "Ideal para diversas ocasiões informais e casuais, como passeios, encontros ou até para um look de trabalho descontraído. A blusa pode ser combinada com peças como saias, calças jeans ou até bermudas, oferecendo um visual clean e moderno."
         ],
@@ -608,7 +608,7 @@ export const productsData = [
             "Tecido: Canelado, confortável e elástico",
             "Decote: Arredondado",
             "Manga: Curta",
-            "Cor: Laranja vibrante (RGB: 255, 100, 0)",
+            "Cor: Laranja vibrante ",
             "Indicação de Uso:",
             "Ideal para diversas ocasiões casuais, como passeios ao ar livre, encontros informais ou até mesmo para um look ousado no dia a dia. A blusa pode ser combinada com jeans, saias ou até shorts, oferecendo um visual alegre e moderno."
         ],
@@ -619,6 +619,87 @@ export const productsData = [
                     "code": "#ff6400"
                 }
             ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758921481089,
+        "slug": "blusa-de-manga-curta-preto",
+        "name": "Blusa de Manga Curta - Preto",
+        "price": {
+            "retail": 15,
+            "wholesale": 13
+        },
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758921474350-511344157.png",
+            "assets/images/products/productImage-1758921476441-483549683.png",
+            "assets/images/products/productImage-1758921478179-157332279.png",
+            "assets/images/products/productImage-1758921479592-579332087.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta Canelada - Preto",
+            "Esta blusa de manga curta canelada é perfeita para quem busca um visual clássico e sofisticado. O tecido canelado proporciona um ajuste confortável e flexível, enquanto a cor preta traz um toque de elegância e versatilidade. O decote arredondado e as mangas curtas completam o visual, tornando-a ideal para diferentes ocasiões.",
+            "Detalhes do Produto:",
+            "- Tecido: Canelado, confortável e elástico",
+            "- Decote: Arredondado",
+            "- Manga: Curta",
+            "- Cor: Preto",
+            "Indicação de Uso:",
+            "Ideal para várias ocasiões, desde eventos casuais até momentos mais sofisticados. A blusa pode ser combinada com jeans, saias ou calças, criando um look atemporal e fácil de usar."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Preto",
+                    "code": "#000000"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758921710919,
+        "slug": "blusa-de-manga-curta-vermelho",
+        "name": "Blusa de Manga Curta - Vermelho",
+        "price": {
+            "retail": 15,
+            "wholesale": 13
+        },
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758921701942-353015292.png",
+            "assets/images/products/productImage-1758921704053-134431115.png",
+            "assets/images/products/productImage-1758921705618-179510037.png",
+            "assets/images/products/productImage-1758921707168-309271962.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta Canelada - Vermelho",
+            "Esta blusa de manga curta canelada é uma excelente escolha para quem deseja um look vibrante e elegante. O tecido canelado oferece conforto e elasticidade, garantindo um ajuste perfeito ao corpo. A cor vermelha intensa traz um toque de sofisticação e energia, ideal para destacar-se em diversas ocasiões. O decote arredondado e as mangas curtas proporcionam um estilo moderno e versátil.",
+            "Detalhes do Produto:",
+            "- Tecido: Canelado, confortável e elástico",
+            "- Decote: Arredondado",
+            "- Manga: Curta",
+            "- Cor: Vermelho",
+            "Indicação de Uso:",
+            "Perfeita para eventos casuais ou ocasiões mais descontraídas, como encontros com amigos, passeios ou até mesmo para um look elegante no trabalho. Pode ser combinada com calças, saias ou shorts, criando um visual ousado e moderno."
+        ],
+        "options": {
+            "colors": [],
             "sizes": [
                 "M",
                 "G",

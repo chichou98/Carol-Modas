@@ -3,34 +3,15 @@
 import { productsData } from '../_database.js';
 import { renderProductCards } from '../utils.js';
 
+// Estado sem as variáveis de paginação
 let state = {
     allProducts: [],
     filteredProducts: [],
     sortBy: 'default',
     activeCategoryFilters: [],
-    currentPage: 1,
-    productsPerPage: 8,
 };
 
-function renderPagination() {
-    const paginationContainer = document.getElementById('pagination');
-    if (!paginationContainer) return;
-    const totalPages = Math.ceil(state.filteredProducts.length / state.productsPerPage);
-    paginationContainer.innerHTML = '';
-    if (totalPages <= 1) return;
-    for (let i = 1; i <= totalPages; i++) {
-        const pageLink = document.createElement('a');
-        pageLink.href = '#';
-        pageLink.textContent = i;
-        if (i === state.currentPage) pageLink.classList.add('current');
-        pageLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            state.currentPage = i;
-            updateProductView();
-        });
-        paginationContainer.appendChild(pageLink);
-    }
-}
+// A função renderPagination() foi removida daqui.
 
 function renderFilterOptions() {
     const filterContainer = document.getElementById('filter-options');
@@ -54,30 +35,29 @@ function updateProductView() {
 
     const productsToSort = [...state.filteredProducts];
     switch (state.sortBy) {
-        case 'price-asc': productsToSort.sort((a, b) => a.price - b.price); break;
-        case 'price-desc': productsToSort.sort((a, b) => b.price - a.price); break;
+        case 'price-asc': productsToSort.sort((a, b) => a.price.retail - b.price.retail); break;
+        case 'price-desc': productsToSort.sort((a, b) => b.price.retail - a.price.retail); break;
         case 'popularity': productsToSort.sort((a, b) => a.name.localeCompare(b.name)); break;
     }
     state.filteredProducts = productsToSort;
 
-    const startIndex = (state.currentPage - 1) * state.productsPerPage;
-    const endIndex = startIndex + state.productsPerPage;
-    const productsToShow = state.filteredProducts.slice(startIndex, endIndex);
+    // Agora, 'productsToShow' conterá TODOS os produtos filtrados.
+    const productsToShow = state.filteredProducts;
 
     renderProductCards(productsToShow, productGrid);
-    renderPagination();
+
+    // A chamada para renderPagination() foi removida.
 
     const countElement = document.getElementById('product-count');
     if (countElement) {
-        const start = state.filteredProducts.length > 0 ? startIndex + 1 : 0;
-        const end = Math.min(endIndex, state.filteredProducts.length);
-        countElement.textContent = `Mostrando ${start}–${end} de ${state.filteredProducts.length} resultados`;
+        // A mensagem agora mostra o total de resultados.
+        countElement.textContent = `Mostrando ${state.filteredProducts.length} resultados`;
     }
 }
 
 export function initProductsPage() {
     state.allProducts = productsData.filter(product => product.active !== false);
-    state.currentPage = 1;
+
     renderFilterOptions();
     updateProductView();
 
@@ -101,7 +81,6 @@ export function initProductsPage() {
     applyFiltersBtn?.addEventListener('click', () => {
         const checkedBoxes = document.querySelectorAll('#filter-options input:checked');
         state.activeCategoryFilters = Array.from(checkedBoxes).map(box => box.value);
-        state.currentPage = 1;
         updateProductView();
         toggleModal(false);
     });
@@ -109,14 +88,12 @@ export function initProductsPage() {
     clearFiltersBtn?.addEventListener('click', () => {
         document.querySelectorAll('#filter-options input:checked').forEach(box => box.checked = false);
         state.activeCategoryFilters = [];
-        state.currentPage = 1;
         updateProductView();
         toggleModal(false);
     });
 
     sortSelect?.addEventListener('change', (e) => {
         state.sortBy = e.target.value;
-        state.currentPage = 1;
         updateProductView();
     });
 }

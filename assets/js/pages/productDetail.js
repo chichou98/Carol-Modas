@@ -1,3 +1,5 @@
+// assets/js/pages/productDetail.js
+
 import { productsData } from '../_database.js';
 import { renderProductCards, parseProductDetails } from '../utils.js';
 
@@ -6,7 +8,7 @@ function renderRelatedProducts(currentProductId) {
     if (!relatedGrid) return;
     const activeProducts = productsData.filter(p => p.active !== false);
     const related = activeProducts.filter(p => p.id !== currentProductId).slice(0, 4);
-    renderProductCards(related, relatedGrid);
+    renderProductCards(related, relatedGrid, 1); // Relacionados sempre levam para a página 1
 }
 
 function attachDetailEventListeners() {
@@ -24,7 +26,6 @@ function attachDetailEventListeners() {
             thumbnails.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             mainImage.src = this.src;
-            // Desmarcar a cor ativa se uma thumbnail genérica for clicada
             colorSwatches.forEach(s => s.classList.remove('active'));
         });
     });
@@ -37,7 +38,6 @@ function attachDetailEventListeners() {
             if (selectedColorName) selectedColorName.textContent = this.getAttribute('data-color-name');
             if (mainImage && this.dataset.mainImage) mainImage.src = this.dataset.mainImage;
 
-            // Sincroniza a thumbnail com a cor selecionada
             thumbnails.forEach(t => {
                 if (t.src === mainImage.src) {
                     t.classList.add('active');
@@ -64,8 +64,6 @@ function attachDetailEventListeners() {
 function renderProductDetailPage(product, contentArea) {
     document.title = `${product.name} - Carol Modas`;
     const detailsHTML = parseProductDetails(product.details);
-
-    // NOVO: Formata os preços para exibição
     const priceRetailFormatted = `R$ ${product.price.retail.toFixed(2).replace('.', ',')}`;
     const priceWholesaleFormatted = `R$ ${product.price.wholesale.toFixed(2).replace('.', ',')}`;
 
@@ -79,7 +77,6 @@ function renderProductDetailPage(product, contentArea) {
                 <span class="brand">${product.brand}</span>
                 <p class="product-category">Categoria: <a href="/produtos.html?category=${product.category}">${product.category}</a></p>
                 <h1>${product.name}</h1>
-
                 <div class="price-details-container">
                     <div class="price-item">
                         <span class="price-label">Varejo</span>
@@ -126,7 +123,24 @@ function renderProductDetailPage(product, contentArea) {
     renderRelatedProducts(product.id);
 }
 
+/**
+ * Atualiza o link "Voltar" para apontar para a página correta da listagem.
+ */
+function updateBackButton() {
+    const backLink = document.querySelector('.back-to-products-link');
+    if (!backLink) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageFromUrl = urlParams.get('page');
+
+    if (pageFromUrl) {
+        backLink.href = `/produtos.html?page=${pageFromUrl}`;
+    }
+}
+
 export function initProductDetailPage() {
+    updateBackButton();
+
     const contentArea = document.getElementById('product-detail-content');
     if (!contentArea) return;
     const slugFromUrl = window.location.pathname.split('/').pop();

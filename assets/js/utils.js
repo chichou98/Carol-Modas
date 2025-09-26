@@ -72,13 +72,14 @@ export function parseProductDetails(details) {
 /**
  * Cria o elemento HTML para um único card de produto.
  * @param {object} product - O objeto do produto.
+ * @param {number} currentPage - A página atual para o link de retorno.
  * @returns {HTMLElement} O elemento <div> do card de produto.
  */
-function createProductCard(product) {
+function createProductCard(product, currentPage = 1) {
     const productCard = document.createElement('div');
     productCard.className = 'product-card';
 
-    const productLink = `/produto/${product.slug || ''}`;
+    const productLink = `/produto/${product.slug || ''}?page=${currentPage}`;
     const productImage = product.images && product.images.length > 0 ? `/${product.images[0]}` : '/assets/images/placeholder.png';
 
     const priceRetailFormatted = `R$ ${product.price?.retail.toFixed(2).replace('.', ',')}`;
@@ -108,8 +109,9 @@ function createProductCard(product) {
  * Renderiza os cards de produto em um elemento da grade na tela.
  * @param {object[]} productsToRender - Array de produtos a serem renderizados.
  * @param {HTMLElement} gridElement - O elemento do DOM onde os cards serão inseridos.
+ * @param {number} currentPage - A página atual para os links de retorno.
  */
-export function renderProductCards(productsToRender, gridElement) {
+export function renderProductCards(productsToRender, gridElement, currentPage = 1) {
     if (!gridElement || !Array.isArray(productsToRender)) {
         console.error('Parâmetros inválidos para renderProductCards.');
         return;
@@ -121,7 +123,7 @@ export function renderProductCards(productsToRender, gridElement) {
     }
     const fragment = document.createDocumentFragment();
     productsToRender.forEach(product => {
-        const productCardElement = createProductCard(product);
+        const productCardElement = createProductCard(product, currentPage);
         fragment.appendChild(productCardElement);
     });
     gridElement.appendChild(fragment);
