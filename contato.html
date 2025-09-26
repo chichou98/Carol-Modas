@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Carol Modas</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container">
+            <button class="mobile-nav-toggle" aria-label="Abrir menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <a href="index.html" class="logo">
+                <img src="assets/images/layout/logo.png" alt="Logo Carol Modas">
+            </a>
+            <div class="header-actions">
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html"><span>Início</span></a></li>
+                        <li><a href="produtos.html"><span>Produtos</span></a></li>
+                        <li><a href="sobre.html"><span>Sobre</span></a></li>
+                        <li><a href="contato.html"><span>Contato</span></a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="cart-panel" id="cart-panel">
+        <div class="cart-header">
+            <div class="cart-header-main">
+                <h3>Meu Carrinho</h3>
+                <button class="close-cart-btn" id="close-cart-btn">×</button>
+            </div>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button class="btn-primary btn-checkout" id="btn-checkout">Finalizar Pedido no WhatsApp</button>
+            <button class="btn-secondary btn-clear-cart" id="btn-clear-cart">Limpar Carrinho</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header">
+            <h1>Fale Conosco</h1>
+            <p>Adoraríamos ouvir você! Entre em contato para dúvidas, sugestões ou pedidos.</p>
+        </section>
+
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-details">
+                    <h3>Informações de Contato</h3>
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong>Endereço</strong>
+                            <p>R. Barão de Ladário, 111 - Banca 39, Brás, São Paulo - SP</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=R.+Bar%C3%A3o+de+Lad%C3%A1rio%2C+111+-+Br%C3%A1s%2C+S%C3%A3o+Paulo+-+SP%2C+03010-000"
+                                class="map-link" target="_blank">
+                                <i class="fa-solid fa-map-location-dot"></i> Ver no Google Maps
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <strong>E-mail</strong>
+                            <p>carolmodas1998@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <div>
+                            <strong>Pedidos via WhatsApp</strong>
+                            <p>+55 11 98881-7216</p>
+                        </div>
+                    </div>
+
+                    <h3 class="section-divider">Horário de Funcionamento</h3>
+                    <div class="info-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <strong>Segunda a Sexta</strong>
+                            <p>Das 04:30 às 12:00</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <strong>Sábados</strong>
+                            <p>Das 04:30 às 10:00</p>
+                        </div>
+                    </div>
+
+                    <h3 class="section-divider">Siga-nos</h3>
+                    <div class="contact-social-links">
+                        <a href="https://wa.me/5511988817216" target="_blank" class="social-icon whatsapp"
+                            aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/carolmodas1998/" target="_blank"
+                            class="social-icon instagram" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.770335198858!2d-46.61980838848419!3d-23.54098257872517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce58fe95d2173b%3A0x8a9644e995e5a74e!2sR.%20Bar%C3%A3o%20de%20Lad%C3%A1rio%2C%20111%20-%20Br%C3%A1s%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003010-000!5e0!3m2!1spt-BR!2sbr!4v1716328328221!5m2!1spt-BR!2sbr"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column about-column">
+                    <img src="/assets/images/layout/logo.png" alt="Logo Carol Modas" class="logo-footer">
+                    <p>Moda Feminina de Fabricação Própria. Qualidade e estilo que você sente na pele.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Navegação</h4>
+                    <ul class="footer-links">
+                        <li><a href="/index.html">Início</a></li>
+                        <li><a href="/produtos.html">Produtos</a></li>
+                        <li><a href="/sobre.html">Sobre</a></li>
+                        <li><a href="/contato.html">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>R. Barão de Ladário, 111 - Brás</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:carolmodas1998@gmail.com">carolmodas1998@gmail.com</a>
+                        </li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="https://wa.me/5511988817216" target="_blank" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/carolmodas1998/" target="_blank" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2025 Carol Modas. Desenvolvido com ♡. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/main.js" defer></script>
+</body>
+
+</html>

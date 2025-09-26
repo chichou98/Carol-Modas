@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Carol Modas</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container">
+            <button class="mobile-nav-toggle" aria-label="Abrir menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <a href="index.html" class="logo">
+                <img src="assets/images/layout/logo.png" alt="Logo Carol Modas">
+            </a>
+            <div class="header-actions">
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html"><span>Início</span></a></li>
+                        <li><a href="produtos.html"><span>Produtos</span></a></li>
+                        <li><a href="sobre.html"><span>Sobre</span></a></li>
+                        <li><a href="contato.html"><span>Contato</span></a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="cart-panel" id="cart-panel">
+        <div class="cart-header">
+            <div class="cart-header-main">
+                <h3>Meu Carrinho</h3>
+                <button class="close-cart-btn" id="close-cart-btn">×</button>
+            </div>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button class="btn-primary btn-checkout" id="btn-checkout">Finalizar Pedido no WhatsApp</button>
+            <button class="btn-secondary btn-clear-cart" id="btn-clear-cart">Limpar Carrinho</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header">
+            <h1>Nossa Essência</h1>
+        </section>
+
+        <div class="container">
+            <section class="about-section">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Feito com Alma, Pensado para Você.</h2>
+                        <p>A Carol Modas nasceu de um sonho: criar uma moda feminina que une qualidade, conforto e
+                            estilo, com a autenticidade da fabricação própria. Em um mercado saturado de revendas,
+                            decidimos trilhar um caminho diferente. Nós não apenas vendemos roupas; nós as criamos,
+                            desde a primeira inspiração até o último acabamento.</p>
+                        <p>Cada peça que você encontra aqui é fruto de um processo cuidadoso. Escolhemos os melhores
+                            tecidos, desenvolvemos modelagens que valorizam o corpo da mulher real e nos dedicamos a
+                            cada detalhe para garantir que você receba um produto que não só vista bem, mas que você
+                            sinta orgulho de usar.</p>
+                        <a href="produtos.html" class="btn-primary">Ver Nossos Produtos</a>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://placehold.co/600x700/C58E95/FFFFFF?text=Carol+Modas"
+                            alt="Equipe Carol Modas trabalhando em novas peças">
+                    </div>
+                </div>
+            </section>
+
+            <section class="pillars-section">
+                <h2 class="section-title">Nossos Pilares</h2>
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <i class="fa-solid fa-scissors"></i>
+                        <h3>Fabricação Própria</h3>
+                        <p>Do design à costura, controlamos cada etapa para garantir peças únicas e com um acabamento
+                            impecável que você só encontra aqui.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <i class="fa-solid fa-gem"></i>
+                        <h3>Qualidade Superior</h3>
+                        <p>Utilizamos tecidos de alta qualidade que proporcionam conforto, durabilidade e um caimento
+                            perfeito, feitos para durar.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                        <h3>Atendimento Próximo</h3>
+                        <p>Valorizamos cada cliente. Estamos sempre disponíveis para tirar dúvidas e ajudar você a
+                            encontrar o look perfeito.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <img src="/assets/images/layout/logo.png" alt="Logo Carol Modas" class="logo-footer">
+                    <p>Moda Feminina de Fabricação Própria. Qualidade e estilo que você sente na pele.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="/index.html">Início</a></li>
+                        <li><a href="/produtos.html">Produtos</a></li>
+                        <li><a href="/sobre.html">Sobre</a></li>
+                        <li><a href="/contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-location-dot"></i> R. Barão de Ladário, 111 - Banca 39, Brás</li>
+                        <li><i class="fa-solid fa-envelope"></i> carolmodas1998@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Siga-nos</h4>
+                    <p>Fique por dentro das novidades!</p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/carolmodas1998/" target="_blank" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Carol Modas. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/main.js" defer></script>
+</body>
+
+</html>

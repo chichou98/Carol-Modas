@@ -20,7 +20,6 @@
 @import url('components/_product-grid.css');
 @import url('components/_products-container-card.css');
 @import url('components/_filter.css');
-
-
-/* 4. Estilos Responsivos (SEMPRE POR ÚLTIMO) */
+@import url('./components/_contato.css');
 @import url('./components/_responsive.css');
+@import url('./components/_sobre.css');

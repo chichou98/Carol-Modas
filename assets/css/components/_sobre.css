@@ -1,0 +1,87 @@
+/* assets/css/components/_sobre.css */
+
+.about-section {
+    padding: 60px 0;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-text h2 {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.about-text .btn-primary {
+    margin-top: 20px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.pillars-section {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-bottom: 60px;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.pillar-card {
+    padding: 20px;
+}
+
+.pillar-card i {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.pillar-card h3 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.pillar-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 900px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about-image {
+        order: -1; /* Mover a imagem para cima em telas menores */
+    }
+    .about-text {
+        text-align: center;
+    }
+}
