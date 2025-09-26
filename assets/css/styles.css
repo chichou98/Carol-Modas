@@ -1,25 +1,53 @@
-/* ======================================================= */
-/* ARQUIVO PRINCIPAL DE ESTILOS                        */
-/* ======================================================= */
+/* ==========================================================================
+   ARQUIVO DE IMPORTAÇÃO PRINCIPAL - STYLES.CSS
+   ========================================================================== */
+/*
+ * Este arquivo centraliza a importação de todas as folhas de estilo parciais.
+ * A ordem de importação é fundamental para o funcionamento correto da cascata (CSS Cascade).
+ * As regras são carregadas na seguinte ordem:
+ *
+ * 1. Definições Base: Variáveis e estilos globais.
+ * 2. Componentes: Elementos reutilizáveis (header, footer, etc.).
+ * 3. Páginas: Layouts e estilos específicos de cada página.
+ * 4. Responsivo: Media queries que sobrescrevem os estilos anteriores.
+ */
 
-/* 1. Estilos Globais */
+
+/* --- 1. BASE E FUNDAÇÃO --- */
+
+/* Define as variáveis CSS (custom properties) para cores, fontes, etc. */
 @import url('./components/_theme.css');
+
+/* Aplica estilos globais a elementos base como `body` e classes utilitárias como `.container`. */
 @import url('./components/_global.css');
 
 
-/* 2. Estilos de Componentes */
-@import url('./components/_header.css');
-@import url('./components/_cart.css');
+/* --- 2. COMPONENTES REUTILIZÁVEIS --- */
+/* Importa os estilos de elementos que são utilizados em múltiplas páginas. */
 
-/* 3. Estilos de Páginas Específicas */
+@import url('./components/_header.css');
+@import url('./components/_footer.css');
+@import url('./components/_cart.css');
+@import url('./components/_product-grid.css');
+@import url('./components/_modals.css');
+@import url('./components/_filter.css');
+
+
+/* --- 3. ESTILOS DE PÁGINAS ESPECÍFICAS --- */
+/* Importa os estilos que se aplicam a layouts de páginas individuais. */
+
 @import url('./components/_home.css');
 @import url('./components/_products-page.css');
+@import url('./components/_products-container-card.css');
 @import url('./components/_product-detail.css');
-@import url('./components/_footer.css');
-@import url('components/_modals.css');
-@import url('components/_product-grid.css');
-@import url('components/_products-container-card.css');
-@import url('components/_filter.css');
-@import url('./components/_contato.css');
-@import url('./components/_responsive.css');
 @import url('./components/_sobre.css');
+@import url('./components/_contato.css');
+
+
+/* --- 4. AJUSTES RESPONSIVOS (IMPORTAÇÃO FINAL) --- */
+/*
+ * Este arquivo deve ser o último a ser importado.
+ * Suas regras de media query sobrescrevem os estilos anteriores para
+ * adaptar o layout a diferentes tamanhos de tela.
+ */
+@import url('./components/_responsive.css');

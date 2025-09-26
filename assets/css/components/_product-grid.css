@@ -1,15 +1,30 @@
-/* assets/css/components/_product-grid.css (Estilos atualizados para mostrar os dois preços) */
+/* ==========================================================================
+   1. CONTAINER DA GRADE DE PRODUTOS
+   ========================================================================== */
+/*
+ * Define o layout da grade que exibe os cards de produto.
+ * É responsivo por padrão, ajustando o número de colunas conforme o
+ * espaço disponível na tela.
+ */
 
-/* ======================================================= */
-/* ESTILO PADRÃO (DESKTOP)                                   */
-/* ======================================================= */
 .product-grid {
     display: grid;
+    /* Cria colunas flexíveis com um tamanho mínimo de 260px */
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
     padding: 10px 0;
     align-items: stretch;
+    /* Garante que todos os cards tenham a mesma altura */
 }
+
+
+/* ==========================================================================
+   2. CARD DE PRODUTO (ESTRUTURA BASE E IMAGEM)
+   ========================================================================== */
+/*
+ * Estilos para o card individual de cada produto, incluindo a estrutura,
+ * sombra, efeito de hover e a imagem.
+ */
 
 .product-card {
     display: flex;
@@ -20,10 +35,12 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
+    /* Essencial para o 'align-items: stretch' funcionar */
 }
 
 .product-card:hover {
     transform: translateY(-5px);
+    /* Efeito de "flutuar" */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -32,9 +49,11 @@
     color: inherit;
 }
 
+/* Container da imagem para manter a proporção */
 .product-image-container {
     width: 100%;
     aspect-ratio: 1 / 1;
+    /* Garante que a imagem seja sempre um quadrado */
     overflow: hidden;
     background-color: #f0f0f0;
 }
@@ -43,21 +62,34 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Evita distorção da imagem */
     transition: transform 0.4s ease;
 }
 
 .product-card:hover .product-image-container img {
     transform: scale(1.05);
+    /* Efeito de zoom na imagem */
 }
+
+
+/* ==========================================================================
+   3. ÁREA DE INFORMAÇÕES DO CARD
+   ========================================================================== */
+/*
+ * Estilos para a seção de texto abaixo da imagem, incluindo categoria,
+ * título e os preços de varejo e atacado.
+ */
 
 .product-card-info {
     flex-grow: 1;
+    /* Faz esta área crescer para preencher o espaço do card */
     display: flex;
     flex-direction: column;
     padding: 15px;
     text-align: center;
 }
 
+/* Div interna que agrupa o conteúdo para alinhamento vertical */
 .product-card-info>div {
     flex-grow: 1;
 }
@@ -75,7 +107,9 @@
     font-weight: 500;
     line-height: 1.4;
     height: 2.8em;
+    /* Garante espaço para até 2 linhas de texto */
     margin: 0 0 10px;
+    /* Técnica para truncar texto com "..." após 2 linhas */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -83,12 +117,7 @@
     text-overflow: ellipsis;
 }
 
-.product-card .btn-secondary {
-    margin-top: auto;
-    align-self: center;
-}
-
-/* NOVO: Estilos para o container de preços */
+/* Container dos preços */
 .price-container {
     margin: 8px 0 5px;
 }
@@ -125,17 +154,36 @@
     margin-bottom: 15px;
 }
 
+
+/* ==========================================================================
+   4. BOTÃO DE AÇÃO DO CARD
+   ========================================================================== */
+
+.product-card .btn-secondary {
+    margin-top: auto;
+    /* Empurra o botão para o final do card */
+    align-self: center;
+}
+
+
+/* ==========================================================================
+   5. MENSAGEM DE FEEDBACK (SEM PRODUTOS)
+   ========================================================================== */
+
 .no-products-found {
     grid-column: 1 / -1;
+    /* Ocupa todas as colunas da grade */
     text-align: center;
     padding: 50px 20px;
     font-size: 1.2em;
     color: #777;
 }
 
-/* ======================================================= */
-/* RESPONSIVO                                              */
-/* ======================================================= */
+
+/* ==========================================================================
+   6. AJUSTES RESPONSIVOS
+   ========================================================================== */
+
 @media (max-width: 992px) {
     .product-grid {
         gap: 20px;

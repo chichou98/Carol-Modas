@@ -1,16 +1,28 @@
-/* assets/css/components/_products-container-card.css (Versão Simplificada) */
+/* ==========================================================================
+   1. CARD CONTAINER DA PÁGINA DE PRODUTOS
+   ========================================================================== */
+/*
+ * Este é um container estilizado que envolve a grade de produtos na página
+ * de listagem. Ele cria um efeito de "cartão" com fundo branco, sombra e
+ * bordas arredondadas, destacando os produtos do fundo da página.
+ */
 
 .products-container-card {
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     padding: 20px;
-    /* Reduzido para melhor encaixe em mobile */
     margin-top: 30px;
 }
 
+
+/* ==========================================================================
+   2. AJUSTES RESPONSIVOS
+   ========================================================================== */
+
 @media (max-width: 600px) {
     .products-container-card {
+        /* Reduz o espaçamento interno em telas menores para economizar espaço */
         padding: 15px;
     }
 }

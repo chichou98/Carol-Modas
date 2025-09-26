@@ -1,22 +1,28 @@
 // assets/js/pages/products.js
+// Controla a lógica da página de listagem de produtos (produtos.html).
 
 import { productsData } from '../_database.js';
 import { renderProductCards } from '../utils.js';
 
-// Estado sem as variáveis de paginação
+// Guarda o "estado" atual da página, como filtros e ordenação aplicados.
 let state = {
-    allProducts: [],
-    filteredProducts: [],
-    sortBy: 'default',
-    activeCategoryFilters: [],
+    allProducts: [],            // Guarda todos os produtos ativos.
+    filteredProducts: [],       // Guarda os produtos após aplicar um filtro.
+    sortBy: 'default',          // Guarda a opção de ordenação atual.
+    activeCategoryFilters: [],  // Lista de categorias selecionadas no filtro.
 };
 
-// A função renderPagination() foi removida daqui.
-
+/**
+ * Cria dinamicamente os checkboxes de categoria dentro do modal de filtro.
+ */
 function renderFilterOptions() {
     const filterContainer = document.getElementById('filter-options');
     if (!filterContainer) return;
+
+    // Pega todas as categorias únicas da lista de produtos e as ordena.
     const categories = [...new Set(state.allProducts.map(p => p.category))].sort();
+
+    // Cria o HTML para cada checkbox de categoria.
     filterContainer.innerHTML = categories.map(category => `
         <div class="filter-option">
             <input type="checkbox" id="cat-${category.toLowerCase().replace(/\s+/g, '-')}" name="category" value="${category}">
@@ -25,14 +31,19 @@ function renderFilterOptions() {
     `).join('');
 }
 
+/**
+ * Atualiza a lista de produtos na tela com base nos filtros e ordenação.
+ */
 function updateProductView() {
     const productGrid = document.getElementById('product-list-grid');
     if (!productGrid) return;
 
+    // 1. Filtra os produtos: se houver categorias selecionadas, usa-as. Senão, mostra todos.
     state.filteredProducts = state.activeCategoryFilters.length > 0
         ? state.allProducts.filter(p => state.activeCategoryFilters.includes(p.category))
         : [...state.allProducts];
 
+    // 2. Ordena a lista filtrada com base na opção selecionada.
     const productsToSort = [...state.filteredProducts];
     switch (state.sortBy) {
         case 'price-asc': productsToSort.sort((a, b) => a.price.retail - b.price.retail); break;
@@ -41,26 +52,28 @@ function updateProductView() {
     }
     state.filteredProducts = productsToSort;
 
-    // Agora, 'productsToShow' conterá TODOS os produtos filtrados.
-    const productsToShow = state.filteredProducts;
+    // 3. Renderiza TODOS os produtos filtrados e ordenados (sem paginação).
+    renderProductCards(state.filteredProducts, productGrid);
 
-    renderProductCards(productsToShow, productGrid);
-
-    // A chamada para renderPagination() foi removida.
-
+    // 4. Atualiza o texto que informa o número de resultados encontrados.
     const countElement = document.getElementById('product-count');
     if (countElement) {
-        // A mensagem agora mostra o total de resultados.
         countElement.textContent = `Mostrando ${state.filteredProducts.length} resultados`;
     }
 }
 
+/**
+ * Função principal que inicializa a página e configura os eventos de clique.
+ */
 export function initProductsPage() {
+    // Carrega a lista inicial de produtos ativos.
     state.allProducts = productsData.filter(product => product.active !== false);
 
+    // Renderiza as opções de filtro e a visualização inicial dos produtos.
     renderFilterOptions();
     updateProductView();
 
+    // --- Configuração dos Eventos (Cliques e Interações) ---
     const filterBtn = document.getElementById('filter-btn');
     const modal = document.getElementById('filter-modal');
     const overlay = document.getElementById('filter-overlay');
@@ -69,11 +82,13 @@ export function initProductsPage() {
     const clearFiltersBtn = document.getElementById('clear-filters-btn');
     const sortSelect = document.getElementById('orderby');
 
+    // Função para abrir/fechar o modal de filtro.
     const toggleModal = (show) => {
         modal.classList.toggle('active', show);
         overlay.classList.toggle('active', show);
     };
 
+    // Adiciona os eventos de clique para cada botão.
     filterBtn?.addEventListener('click', () => toggleModal(true));
     closeModalBtn?.addEventListener('click', () => toggleModal(false));
     overlay?.addEventListener('click', () => toggleModal(false));

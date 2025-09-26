@@ -1,6 +1,10 @@
-/* ======================================================= */
-/* ESTILOS DA PÁGINA DE LISTAGEM DE PRODUTOS           */
-/* ======================================================= */
+/* ==========================================================================
+   1. CABEÇALHO DA PÁGINA
+   ========================================================================== */
+/*
+ * Estiliza o título principal que aparece no topo da página, como
+ * "Nossos Produtos".
+ */
 
 .page-header {
     background-color: #fff;
@@ -15,6 +19,15 @@
     color: #333;
     margin: 0;
 }
+
+
+/* ==========================================================================
+   2. BARRA DE FERRAMENTAS (FILTRO E ORDENAÇÃO)
+   ========================================================================== */
+/*
+ * Estilos para a barra que fica abaixo do título, contendo o contador
+ * de produtos e os botões de ação como "Filtrar" e o seletor "Ordenar".
+ */
 
 .toolbar {
     display: flex;
@@ -34,6 +47,7 @@
     gap: 20px;
 }
 
+/* Estilo base para o botão de filtro e o seletor de ordenação */
 .filter-btn,
 .sort-by select {
     display: flex;
@@ -48,6 +62,7 @@
     cursor: pointer;
 }
 
+/* Estilos para remover a aparência padrão do seletor e adicionar uma seta customizada */
 .sort-by select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -56,6 +71,7 @@
     background-repeat: no-repeat;
     background-position: right 15px center;
     padding-right: 40px;
+    /* Espaço para a seta não sobrepor o texto */
 }
 
 .toolbar-actions svg {
@@ -63,9 +79,27 @@
     height: 16px;
 }
 
+
+/* ==========================================================================
+   3. ÁREA DE LISTAGEM DE PRODUTOS
+   ========================================================================== */
+/*
+ * Container que envolve a grade de produtos, usado principalmente para
+ * definir o espaçamento inferior da seção.
+ */
+
 .product-listing {
     padding-bottom: 60px;
 }
+
+
+/* ==========================================================================
+   4. PAGINAÇÃO
+   ========================================================================== */
+/*
+ * Estilos para os números de página que aparecem abaixo da grade de produtos,
+ * permitindo a navegação entre as diferentes páginas.
+ */
 
 .pagination {
     display: flex;
@@ -75,6 +109,7 @@
     margin-top: 40px;
 }
 
+/* Estilo base para cada item da paginação (seja link 'a' ou 'span') */
 .pagination a,
 .pagination span {
     padding: 10px 15px;
@@ -82,17 +117,15 @@
     text-decoration: none;
     color: #333;
     border-radius: 5px;
+    transition: all 0.2s ease;
 }
 
-
-.pagination a:hover {
+/* Estilo para a página atual e para o hover nos links */
+.pagination a:hover,
+.pagination .current {
+    /* A classe .current é aplicada via JS na página ativa */
     background-color: #C58E95;
     color: #fff;
     border-color: #C58E95;
-}
-
-.pagination a.current {
-    background-color: #C58E95;
-    color: #fff;
-    border-color: #C58E95;
+    cursor: pointer;
 }

@@ -1,8 +1,24 @@
-/* assets/css/components/_theme.css */
+/* ==========================================================================
+   1. TEMA GLOBAL E VARIÁVEIS DE ESTILO
+   ========================================================================== */
+/*
+ * Este arquivo centraliza as principais variáveis de design do site,
+ * como a paleta de cores e a fonte principal. Usar variáveis (custom properties)
+ * permite alterar o visual do site inteiro modificando apenas este local.
+ */
+
 :root {
+    /* -- Cores Principais -- */
     --primary-color: #B5838D;
+    /* Cor principal, usada em botões, links e detalhes. */
     --primary-hover-color: #C58E95;
+    /* Variação mais clara para o efeito :hover. */
     --background-color: #FDF8F8;
+    /* Cor de fundo suave para a maior parte do site. */
     --text-color: #333;
+    /* Cor padrão para textos. */
+
+    /* -- Tipografia -- */
     --font-main: 'Poppins', sans-serif;
+    /* Fonte principal usada em todo o site. */
 }
