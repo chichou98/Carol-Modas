@@ -1,6 +1,9 @@
-/* ======================================================= */
-/* ESTILOS DO CARRINHO - VERSÃO COM FOCO EM LEITURA      */
-/* ======================================================= */
+/* ==========================================================================
+   1. ÍCONE E BADGE DO CARRINHO
+   ========================================================================== */
+/*
+ * Estilos para o ícone do carrinho no cabeçalho e o contador de itens (badge).
+ */
 
 .header-actions {
     display: flex;
@@ -48,10 +51,20 @@
     border: 1px solid #fff;
 }
 
+
+/* ==========================================================================
+   2. PAINEL LATERAL DO CARRINHO (LAYOUT PRINCIPAL)
+   ========================================================================== */
+/*
+ * Define a estrutura do painel que desliza da direita para a esquerda,
+ * incluindo o cabeçalho, a área dos itens e o rodapé.
+ */
+
 .cart-panel {
     position: fixed;
     top: 0;
     right: -100%;
+    /* Inicia escondido fora da tela */
     width: 90%;
     max-width: 420px;
     height: 100%;
@@ -63,6 +76,7 @@
     flex-direction: column;
 }
 
+/* Estado ativo quando o carrinho está visível */
 .cart-panel.active {
     right: 0;
 }
@@ -70,7 +84,7 @@
 .cart-header {
     display: flex;
     flex-direction: column;
-    /* Para o aviso ficar abaixo do título */
+    /* Para o aviso de atacado ficar abaixo do título */
     justify-content: space-between;
     align-items: center;
     padding: 20px;
@@ -98,11 +112,28 @@
     color: #888;
 }
 
+/* Container principal para a lista de itens */
 .cart-items {
     flex-grow: 1;
+    /* Ocupa todo o espaço vertical disponível */
     overflow-y: auto;
     padding: 20px;
 }
+
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background-color: #f9f9f9;
+}
+
+
+/* ==========================================================================
+   3. ITENS INDIVIDUAIS DENTRO DO CARRINHO
+   ========================================================================== */
+/*
+ * Estilização de cada produto listado no carrinho, incluindo imagem,
+ * nome, preço e detalhes de cor/tamanho.
+ */
 
 .cart-item {
     display: flex;
@@ -111,7 +142,6 @@
     padding-bottom: 20px;
     margin-bottom: 20px;
     border-bottom: 1px solid #f0f0f0;
-    animation: slideInFromRight 0.5s ease-out forwards;
 }
 
 .cart-item-info {
@@ -150,6 +180,25 @@
     font-weight: 600;
 }
 
+/* Estilo para preço de varejo riscado quando o de atacado é aplicado */
+.cart-item-details .price del {
+    color: #999;
+    font-weight: normal;
+    font-size: 0.9em;
+    margin-right: 8px;
+}
+
+/* Estilo para preço de atacado em destaque */
+.cart-item-details .price strong {
+    color: #B5838D;
+    font-size: 1.1em;
+}
+
+
+/* ==========================================================================
+   4. CONTROLES E AÇÕES DOS ITENS (QUANTIDADE, REMOVER)
+   ========================================================================== */
+
 .cart-item-actions {
     display: flex;
     flex-direction: column;
@@ -165,6 +214,16 @@
     overflow: hidden;
 }
 
+.quantity-control button {
+    width: 30px;
+    height: 35px;
+    border: none;
+    background: none;
+    font-size: 1.4em;
+    cursor: pointer;
+    color: #555;
+}
+
 .quantity-control .cart-quantity-input {
     width: 35px;
     height: 35px;
@@ -174,22 +233,14 @@
     font-size: 1.1em;
     font-weight: 500;
     -moz-appearance: textfield;
+    /* Remove setas em Firefox */
 }
 
+/* Remove setas de incremento/decremento em navegadores Webkit (Chrome, Safari) */
 .quantity-control .cart-quantity-input::-webkit-outer-spin-button,
 .quantity-control .cart-quantity-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-.quantity-control button {
-    width: 30px;
-    height: 35px;
-    border: none;
-    background: none;
-    font-size: 1.4em;
-    cursor: pointer;
-    color: #555;
 }
 
 .remove-item-btn {
@@ -211,30 +262,10 @@
     color: #333;
 }
 
-.cart-footer {
-    padding: 20px;
-    border-top: 1px solid #eee;
-    background-color: #f9f9f9;
-}
 
-.cart-total {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.3em;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.btn-checkout {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.btn-clear-cart {
-    width: 100%;
-    text-align: center;
-}
+/* ==========================================================================
+   5. ESTADO DE CARRINHO VAZIO
+   ========================================================================== */
 
 .empty-cart-view {
     text-align: center;
@@ -261,6 +292,48 @@
     margin: 0;
 }
 
+
+/* ==========================================================================
+   6. RODAPÉ DO CARRINHO (TOTAL, BOTÕES)
+   ========================================================================== */
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.btn-checkout,
+.btn-clear-cart {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-checkout {
+    margin-bottom: 10px;
+}
+
+/* Aviso sobre o modo de preço (varejo/atacado) */
+.cart-header .price-mode-notice {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #B5838D;
+    background-color: #fdf8f8;
+    padding: 8px 12px;
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #f2e6e6;
+}
+
+
+/* ==========================================================================
+   7. ANIMAÇÕES
+   ========================================================================== */
+
+/* Animação de "tremor" no ícone do carrinho ao adicionar item */
 @keyframes shakeCart {
 
     0%,
@@ -281,6 +354,7 @@
     animation: shakeCart 0.4s ease;
 }
 
+/* Animação de entrada dos itens no carrinho */
 @keyframes slideInFromRight {
     from {
         opacity: 0;
@@ -293,6 +367,11 @@
     }
 }
 
+.cart-item {
+    animation: slideInFromRight 0.5s ease-out forwards;
+}
+
+/* Atraso escalonado na animação para cada item */
 .cart-item:nth-child(1) {
     animation-delay: 0.1s;
 }
@@ -309,35 +388,10 @@
     animation-delay: 0.4s;
 }
 
-.cart-header .price-mode-notice {
-    font-size: 0.9em;
-    font-weight: 600;
-    color: #B5838D;
-    background-color: #fdf8f8;
-    padding: 8px 12px;
-    border-radius: 20px;
-    width: 100%;
-    text-align: center;
-    border: 1px solid #f2e6e6;
-}
 
-/* Estilos para o preço cortado no carrinho */
-.cart-item-details .price del {
-    color: #999;
-    font-weight: normal;
-    font-size: 0.9em;
-    margin-right: 8px;
-}
-
-.cart-item-details .price strong {
-    color: #B5838D;
-    font-size: 1.1em;
-}
-
-
-/* ======================================================= */
-/* AJUSTES RESPONSIVOS PARA O CARRINHO EM TELAS PEQUENAS    */
-/* ======================================================= */
+/* ==========================================================================
+   8. AJUSTES RESPONSIVOS (TELAS PEQUENAS)
+   ========================================================================== */
 
 @media (max-width: 500px) {
     .cart-item {

@@ -1,5 +1,12 @@
-/* Em assets/css/components/_filter.css */
+/* ==========================================================================
+   1. ESTRUTURA DO MODAL E SOBREPOSIÇÃO (OVERLAY)
+   ========================================================================== */
+/*
+ * Define a aparência da sobreposição escura de fundo e do container principal
+ * do modal, incluindo suas animações de entrada.
+ */
 
+/* Sobreposição que escurece o fundo da página */
 .filter-overlay {
     position: fixed;
     top: 0;
@@ -18,11 +25,13 @@
     visibility: visible;
 }
 
+/* O container do modal em si */
 .filter-modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.95);
+    /* Começa um pouco menor */
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -36,11 +45,22 @@
     flex-direction: column;
 }
 
+/* Estado ativo quando o modal está visível */
 .filter-modal.active {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, -50%) scale(1);
+    /* Cresce para o tamanho normal */
 }
+
+
+/* ==========================================================================
+   2. LAYOUT INTERNO DO MODAL (CABEÇALHO, CORPO, RODAPÉ)
+   ========================================================================== */
+/*
+ * Estilos que dividem o modal em três seções principais para uma
+ * organização clara do conteúdo.
+ */
 
 .filter-header {
     display: flex;
@@ -49,6 +69,32 @@
     padding: 15px 20px;
     border-bottom: 1px solid #eee;
 }
+
+.filter-body {
+    padding: 20px;
+    overflow-y: auto;
+    /* Adiciona rolagem se as opções não couberem */
+    flex-grow: 1;
+    /* Faz o corpo crescer para preencher o espaço */
+}
+
+.filter-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    background-color: #f9f9f9;
+    border-radius: 0 0 12px 12px;
+}
+
+
+/* ==========================================================================
+   3. CONTEÚDO DO MODAL (TÍTULOS, OPÇÕES E BOTÕES)
+   ========================================================================== */
+/*
+ * Estilização dos elementos internos, como textos, checkboxes
+ * e o botão de fechar.
+ */
 
 .filter-header h3 {
     margin: 0;
@@ -65,12 +111,6 @@
     line-height: 1;
 }
 
-.filter-body {
-    padding: 20px;
-    overflow-y: auto;
-    flex-grow: 1;
-}
-
 .filter-body h4 {
     font-size: 1.1em;
     font-weight: 600;
@@ -78,12 +118,14 @@
     margin-bottom: 15px;
 }
 
+/* Container para a lista de checkboxes */
 .filter-options {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
+/* Cada linha contendo um checkbox e seu label */
 .filter-option {
     display: flex;
     align-items: center;
@@ -101,14 +143,14 @@
     cursor: pointer;
 }
 
-.filter-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 20px;
-    border-top: 1px solid #eee;
-    background-color: #f9f9f9;
-    border-radius: 0 0 12px 12px;
-}
+
+/* ==========================================================================
+   4. MENSAGEM DE FEEDBACK
+   ========================================================================== */
+/*
+ * Estilo para a mensagem exibida na página de produtos quando
+ * nenhum item corresponde aos filtros aplicados.
+ */
 
 .no-products-found {
     text-align: center;
@@ -116,5 +158,5 @@
     font-size: 1.2em;
     color: #777;
     grid-column: 1 / -1;
-    /* Ocupa todas as colunas do grid */
+    /* Garante que ocupe toda a largura da grade de produtos */
 }

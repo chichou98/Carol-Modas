@@ -1,4 +1,10 @@
-/* assets/css/components/_contato.css */
+/* ==========================================================================
+   1. LAYOUT PRINCIPAL DA PÁGINA DE CONTATO
+   ========================================================================== */
+/*
+ * Define o layout principal, incluindo o subtítulo do cabeçalho e o card
+ * que agrupa todas as informações de contato e o mapa.
+ */
 
 .page-header p {
     margin-top: 10px;
@@ -9,9 +15,11 @@
     margin-right: auto;
 }
 
+/* Card principal que contém as duas colunas: detalhes e mapa */
 .contact-card {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
+    /* Coluna de detalhes | Coluna do mapa */
     gap: 40px;
     background-color: #fff;
     padding: 40px;
@@ -20,6 +28,15 @@
     margin: 40px 0 60px;
 }
 
+
+/* ==========================================================================
+   2. SEÇÃO DE DETALHES DE CONTATO
+   ========================================================================== */
+/*
+ * Estilos para a coluna da esquerda, contendo endereço, e-mail,
+ * telefone, horários e links sociais.
+ */
+
 .contact-details h3 {
     font-size: 1.5em;
     font-weight: 600;
@@ -27,6 +44,7 @@
     color: var(--text-color);
 }
 
+/* Container para cada item de informação (ícone + texto) */
 .contact-details .info-item {
     display: flex;
     align-items: flex-start;
@@ -39,6 +57,7 @@
     color: var(--primary-color);
     margin-top: 5px;
     width: 25px;
+    /* Garante alinhamento vertical dos ícones */
     text-align: center;
 }
 
@@ -55,74 +74,7 @@
     color: #666;
 }
 
-.section-divider {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.contact-social-links {
-    display: flex;
-    gap: 20px;
-    margin-top: 10px;
-}
-
-.contact-social-links .social-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 1.5em;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.social-icon.whatsapp {
-    background-color: #25D366;
-}
-
-.social-icon.instagram {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-
-.contact-social-links .social-icon:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.contact-map iframe {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    min-height: 400px;
-}
-
-/* --- Responsividade --- */
-@media (max-width: 900px) {
-    .contact-card {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 600px) {
-    .contact-card {
-        padding: 20px;
-    }
-
-    .contact-details h3 {
-        font-size: 1.3em;
-    }
-
-    .info-item {
-        gap: 12px;
-    }
-}
-
-/* Adicionar ao final de assets/css/components/_contato.css */
-
+/* Link estilizado para abrir o mapa */
 .map-link {
     display: inline-flex;
     align-items: center;
@@ -143,4 +95,90 @@
 .map-link i {
     font-size: 1em;
     color: inherit;
+    /* O ícone herda a cor do link */
+}
+
+/* Linha divisória entre seções de informações */
+.section-divider {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+
+/* ==========================================================================
+   3. ÍCONES DE REDES SOCIAIS
+   ========================================================================== */
+
+.contact-social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.contact-social-links .social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-social-links .social-icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Cores específicas para cada rede social */
+.social-icon.whatsapp {
+    background-color: #25D366;
+}
+
+.social-icon.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+
+/* ==========================================================================
+   4. MAPA DE LOCALIZAÇÃO
+   ========================================================================== */
+
+.contact-map iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    min-height: 400px;
+}
+
+
+/* ==========================================================================
+   5. AJUSTES RESPONSIVOS
+   ========================================================================== */
+
+/* Para tablets e telas menores, as colunas viram linhas */
+@media (max-width: 900px) {
+    .contact-card {
+        grid-template-columns: 1fr;
+        /* Coluna única */
+    }
+}
+
+/* Para celulares, reduzimos espaçamentos e fontes */
+@media (max-width: 600px) {
+    .contact-card {
+        padding: 20px;
+    }
+
+    .contact-details h3 {
+        font-size: 1.3em;
+    }
+
+    .info-item {
+        gap: 12px;
+    }
 }

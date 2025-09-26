@@ -1,6 +1,10 @@
-/* ======================================================= */
-/* 3. CABEÇALHO E NAVEGAÇÃO (HEADER) - CÓDIGO LIMPO        */
-/* ======================================================= */
+/* ==========================================================================
+   1. BARRA DE NAVEGAÇÃO PRINCIPAL (NAVBAR)
+   ========================================================================== */
+/*
+ * Define a aparência e o comportamento da barra de navegação superior,
+ * incluindo o fundo em gradiente e a posição fixa no topo da tela.
+ */
 
 .navbar {
     background: linear-gradient(to right, #F5E8E9 0%, #C58E95 50%, #F5E8E9 100%);
@@ -8,15 +12,26 @@
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
+    /* Mantém o header fixo no topo ao rolar a página */
     top: 0;
     z-index: 1000;
 }
 
+/* Container interno para alinhar os elementos do cabeçalho */
 .navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+
+/* ==========================================================================
+   2. LOGO E AÇÕES DO CABEÇALHO
+   ========================================================================== */
+/*
+ * Estilos para a logo e para o container que agrupa os elementos
+ * à direita da barra de navegação (menu e carrinho).
+ */
 
 .logo img {
     height: 50px;
@@ -24,15 +39,21 @@
     display: block;
 }
 
+/* Container para os itens à direita (navegação e ícones) */
 .header-actions {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.mobile-nav-toggle {
-    display: none;
-}
+
+/* ==========================================================================
+   3. MENU DE NAVEGAÇÃO (DESKTOP)
+   ========================================================================== */
+/*
+ * Estilos para a lista de links do menu principal, incluindo o efeito
+ * de sublinhado animado ao passar o mouse.
+ */
 
 .nav-links {
     display: flex;
@@ -50,22 +71,39 @@
     padding: 5px 0;
 }
 
+/* Wrapper para o texto do link, necessário para o efeito de sublinhado */
 .nav-links a span {
     position: relative;
     display: inline-block;
 }
 
+/* O sublinhado animado (inicia com largura 0) */
 .nav-links a span::after {
     content: '';
     position: absolute;
     bottom: -2px;
     left: 0;
     width: 0;
+    /* Inicia invisível */
     height: 2px;
     background-color: #000000;
     transition: width 0.3s ease;
 }
 
+/* Expande o sublinhado ao passar o mouse sobre o link */
 .nav-links a:hover span::after {
     width: 100%;
+}
+
+
+/* ==========================================================================
+   4. CONTROLE DE NAVEGAÇÃO MOBILE
+   ========================================================================== */
+/*
+ * Estilo inicial para o botão "hambúrguer" do menu mobile.
+ * Ele fica escondido em telas maiores e é ativado via media queries.
+ */
+
+.mobile-nav-toggle {
+    display: none;
 }

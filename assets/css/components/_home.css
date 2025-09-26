@@ -1,17 +1,24 @@
-/* assets/css/components/_home.css (Versão Limpa) */
+/* ==========================================================================
+   1. BANNER PRINCIPAL (HERO SECTION)
+   ========================================================================== */
+/*
+ * Estilos para a seção de destaque no topo da página, que contém um
+ * carrossel de imagens de fundo e um texto de chamada centralizado.
+ */
 
-/* --- Banner Principal com Carrossel --- */
 .hero-banner {
+    position: relative;
+    overflow: hidden;
+    /* Garante que os slides não "vazem" para fora */
     height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
-    position: relative;
-    overflow: hidden;
 }
 
+/* Container para as imagens do carrossel */
 .slideshow-container {
     position: absolute;
     top: 0;
@@ -19,30 +26,37 @@
     width: 100%;
     height: 100%;
     z-index: 1;
+    /* Fica atrás do conteúdo de texto */
 }
 
 .slideshow-container .slide {
     position: absolute;
     top: 0;
+    left: 100%;
+    /* Inicia fora da tela, à direita */
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
-    left: 100%;
     transition: left 1s ease-in-out;
 }
 
+/* Classes de controle de visibilidade dos slides */
 .slideshow-container .slide.active {
     left: 0;
+    /* Move para a área visível */
 }
 
 .slideshow-container .slide.previous {
     left: -100%;
+    /* Move para fora da tela, à esquerda */
 }
 
+/* Conteúdo de texto sobreposto ao banner */
 .hero-content {
     position: relative;
     z-index: 2;
+    /* Fica na frente do carrossel de imagens */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
 
@@ -56,24 +70,48 @@
     margin-bottom: 30px;
 }
 
-/* --- Seção de Categorias com Carrossel --- */
+
+/* ==========================================================================
+   2. CARROSSEL DE CATEGORIAS EM DESTAQUE
+   ========================================================================== */
+/*
+ * Seção com um carrossel de rolagem infinita que exibe as principais
+ * categorias da loja. A animação pausa ao passar o mouse.
+ */
+
 .featured-categories.container {
+    position: relative;
+    overflow: hidden;
     padding-top: 60px;
     padding-bottom: 60px;
-    overflow: hidden;
-    position: relative;
 }
 
+/* Wrapper que contém os cards duplicados para o efeito de loop */
 .category-carousel-wrapper {
     display: flex;
     width: 200%;
+    /* Dobro da largura para permitir o scroll contínuo */
     animation: scroll 20s linear infinite;
 }
 
 .category-carousel-wrapper:hover {
     animation-play-state: paused;
+    /* Pausa a animação ao passar o mouse */
 }
 
+/* Animação de rolagem horizontal infinita */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+        /* Move exatamente a metade da largura total */
+    }
+}
+
+/* Card individual de cada categoria */
 .category-card {
     position: relative;
     overflow: hidden;
@@ -91,8 +129,10 @@
 
 .category-card:hover img {
     transform: scale(1.1);
+    /* Efeito de zoom na imagem */
 }
 
+/* Título sobreposto na imagem da categoria */
 .category-title {
     position: absolute;
     bottom: 0;
@@ -109,26 +149,28 @@
     font-weight: 600;
 }
 
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
 
-    100% {
-        transform: translateX(-50%);
-    }
-}
+/* ==========================================================================
+   3. VITRINE DE PRODUTOS EM DESTAQUE
+   ========================================================================== */
 
-/* --- Seção de Produtos em Destaque --- */
 .product-showcase.container {
     padding-top: 60px;
     padding-bottom: 60px;
     background-color: #fff;
 }
 
-/* Os estilos específicos de .product-grid e .product-card foram movidos para _product-grid.css */
+/* Nota: Os estilos de .product-grid e .product-card estão em _product-grid.css */
 
-/* --- Seção "Nossa Essência" --- */
+
+/* ==========================================================================
+   4. SEÇÃO INSTITUCIONAL "NOSSA ESSÊNCIA"
+   ========================================================================== */
+/*
+ * Seção com duas colunas para apresentar a marca, com uma imagem
+ * à esquerda e um texto descritivo à direita.
+ */
+
 .brand-story {
     background-color: #FDF8F8;
     padding: 80px 0;

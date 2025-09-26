@@ -1,5 +1,12 @@
-/* Em assets/css/components/_modals.css */
+/* ==========================================================================
+   1. ESTRUTURA GERAL DO MODAL DE CONFIRMAÇÃO
+   ========================================================================== */
+/*
+ * Define a sobreposição escura de fundo e o container principal do modal,
+ * que aparece centralizado na tela com uma animação sutil.
+ */
 
+/* Sobreposição que escurece o fundo da página */
 .confirm-overlay {
     position: fixed;
     top: 0;
@@ -8,13 +15,16 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 2000;
+    /* Z-index alto para ficar sobre todos os outros conteúdos */
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     animation: fadeIn 0.3s forwards;
+    /* Aplica a animação de fade-in */
 }
 
+/* O container do modal em si */
 .confirm-modal {
     background-color: #fff;
     padding: 30px;
@@ -25,7 +35,17 @@
     text-align: center;
     transform: scale(0.9);
     animation: popIn 0.3s forwards;
+    /* Aplica a animação de "pop" */
 }
+
+
+/* ==========================================================================
+   2. CONTEÚDO E BOTÕES DO MODAL
+   ========================================================================== */
+/*
+ * Estilização dos elementos internos do modal, como a mensagem de texto
+ * e os botões de ação (OK e Cancelar).
+ */
 
 .confirm-modal p {
     font-size: 1.2em;
@@ -34,12 +54,14 @@
     line-height: 1.5;
 }
 
+/* Container que alinha os botões lado a lado */
 .confirm-buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
 }
 
+/* Estilo base para todos os botões do modal */
 .confirm-buttons button {
     padding: 12px 25px;
     border: none;
@@ -50,6 +72,7 @@
     transition: all 0.2s ease;
 }
 
+/* Botão de confirmação (OK) */
 .confirm-btn-ok {
     background-color: #B5838D;
     /* Cor primária */
@@ -61,6 +84,7 @@
     transform: translateY(-2px);
 }
 
+/* Botão de cancelamento */
 .confirm-btn-cancel {
     background-color: #f0f0f0;
     /* Cor secundária/neutra */
@@ -71,13 +95,22 @@
     background-color: #e0e0e0;
 }
 
-/* Animações */
+
+/* ==========================================================================
+   3. ANIMAÇÕES (KEYFRAMES)
+   ========================================================================== */
+/*
+ * Define as animações de entrada para o overlay e o modal.
+ */
+
+/* Animação para a sobreposição aparecer suavemente */
 @keyframes fadeIn {
     to {
         opacity: 1;
     }
 }
 
+/* Animação para o modal surgir com um leve "pop" */
 @keyframes popIn {
     to {
         transform: scale(1);

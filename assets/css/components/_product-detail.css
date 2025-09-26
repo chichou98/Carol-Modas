@@ -1,7 +1,13 @@
-/* Em /assets/css/components/_product-detail.css */
+/* ==========================================================================
+   1. LAYOUT GERAL E NAVEGAÇÃO DA PÁGINA
+   ========================================================================== */
+/*
+ * Define a estrutura principal da página, o layout de duas colunas
+ * para o produto e o link "Voltar".
+ */
 
 .product-detail-page {
-    padding: 0 0;
+    padding: 0;
 }
 
 .back-to-products-link {
@@ -21,6 +27,7 @@
     transform: translateX(-5px);
 }
 
+/* Container principal que divide a página em Imagens | Informações */
 .product-layout {
     display: flex;
     flex-wrap: wrap;
@@ -28,8 +35,18 @@
     margin-bottom: 40px;
 }
 
+
+/* ==========================================================================
+   2. COLUNA DE IMAGENS DO PRODUTO (GALERIA)
+   ========================================================================== */
+/*
+ * Estilos para a coluna da esquerda, contendo a imagem principal
+ * e a galeria de miniaturas interativas.
+ */
+
 .product-images {
     flex: 1;
+    /* Ocupa o espaço disponível */
     min-width: 300px;
 }
 
@@ -47,12 +64,14 @@
     display: block;
 }
 
+/* Galeria de miniaturas */
 .thumbnail-gallery {
     display: flex;
+    justify-content: center;
     gap: 10px;
     overflow-x: auto;
+    /* Permite rolagem horizontal em telas pequenas */
     padding-bottom: 10px;
-    justify-content: center;
 }
 
 .thumbnail {
@@ -64,6 +83,7 @@
     cursor: pointer;
     transition: border-color 0.3s ease, transform 0.2s ease;
     flex-shrink: 0;
+    /* Impede que as miniaturas encolham */
 }
 
 .thumbnail.active,
@@ -72,19 +92,27 @@
     transform: translateY(3px);
 }
 
+
+/* ==========================================================================
+   3. COLUNA DE INFORMAÇÕES DO PRODUTO
+   ========================================================================== */
+/*
+ * Estilos para a coluna da direita, contendo nome do produto, marca,
+ * categoria e o bloco de preços.
+ */
+
 .product-info {
     flex: 1;
+    /* Ocupa o espaço disponível */
     min-width: 300px;
     padding-top: 10px;
 }
 
-
-
 .product-info .brand {
+    display: block;
     font-size: 0.9em;
     color: #888;
     margin-bottom: 5px;
-    display: block;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -101,12 +129,54 @@
     line-height: 1.2;
 }
 
-.product-info .price {
-    font-size: 3em;
+/* Container para os blocos de preço de Varejo e Atacado */
+.price-details-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.price-item .price-label {
+    display: block;
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.price-item .retail-price-detail {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #333;
+    line-height: 1;
+}
+
+.price-item .wholesale-price-detail {
+    font-size: 2.5em;
     font-weight: 700;
-    color: #B5838D;
+    color: var(--primary-color);
+    /* Cor de destaque do tema */
+    line-height: 1;
+}
+
+.wholesale-info-detail {
+    display: inline-block;
+    font-size: 0.9em;
+    background-color: #fdf8f8;
+    border: 1px solid #f2e6e6;
+    color: var(--primary-color);
+    padding: 8px 12px;
+    border-radius: 6px;
     margin-bottom: 25px;
 }
+
+
+/* ==========================================================================
+   4. SELETORES DE OPÇÕES (COR, TAMANHO, QUANTIDADE)
+   ========================================================================== */
 
 .selector {
     margin-bottom: 20px;
@@ -119,6 +189,7 @@
     color: #444;
 }
 
+/* Container genérico para as opções */
 .color-swatches,
 .size-options,
 .quantity-selector {
@@ -128,6 +199,7 @@
     gap: 10px;
 }
 
+/* Amostras de cor */
 .swatch {
     width: 35px;
     height: 35px;
@@ -145,6 +217,7 @@
     transform: scale(1.1);
 }
 
+/* Botões de tamanho */
 .size-btn {
     padding: 10px 18px;
     border: 1px solid #ddd;
@@ -166,6 +239,7 @@
     transform: translateY(-2px);
 }
 
+/* Seletor de quantidade */
 .quantity-selector {
     background-color: #f5f5f5;
     border-radius: 25px;
@@ -196,13 +270,20 @@
     font-size: 1.1em;
     color: #333;
     -moz-appearance: textfield;
+    /* Remove setas no Firefox */
 }
 
+/* Remove setas no Chrome, Safari, etc. */
 #product-quantity-input::-webkit-outer-spin-button,
 #product-quantity-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+
+/* ==========================================================================
+   5. BOTÃO DE COMPRA E INFORMAÇÕES ADICIONAIS
+   ========================================================================== */
 
 .btn-buy {
     width: 100%;
@@ -248,9 +329,9 @@
 }
 
 
-/* ======================================================= */
-/* SEÇÃO "SOBRE ESTE ITEM" - ESTILOS FINAIS                */
-/* ======================================================= */
+/* ==========================================================================
+   6. SEÇÃO DE DESCRIÇÃO DETALHADA ("SOBRE ESTE ITEM")
+   ========================================================================== */
 
 .product-description-details {
     margin-top: 60px;
@@ -267,6 +348,7 @@
     text-align: center;
 }
 
+/* Container para o texto formatado */
 .details-content {
     max-width: 700px;
     margin: 0 auto;
@@ -282,14 +364,9 @@
     margin-bottom: 0.5em;
 }
 
-
-.details-paragraph {
-    margin-bottom: 1em;
-}
-
-.detalhes-produto p {
-    margin-bottom: 5px;
-    margin-top: 5px;
+.details-paragraph,
+.details-content p {
+    margin: 0.1em 0;
 }
 
 .details-heading {
@@ -310,26 +387,17 @@
     margin-bottom: 0.3em;
 }
 
-.details-content p {
-    margin: 0.1em 0;
-    /* Diminui a margem vertical entre os parágrafos */
-}
-
-/* --- AQUI ESTÁ A CORREÇÃO PARA O NEGRITO --- */
+/* Garante que o texto em negrito (**) seja exibido corretamente */
 .details-content strong,
 .details-content b {
     font-weight: 700;
-    /* Garante que o texto seja realmente negrito */
     color: #222;
-    /* Opcional: deixa o negrito um pouco mais escuro para dar contraste */
 }
 
-/* --- FIM DA CORREÇÃO --- */
 
-/* ======================================================= */
-/* FIM DA SEÇÃO                                            */
-/* ======================================================= */
-
+/* ==========================================================================
+   7. SEÇÃO DE PRODUTOS RELACIONADOS
+   ========================================================================== */
 
 .related-products {
     padding-top: 80px;
@@ -346,112 +414,28 @@
 }
 
 
-/* Adicionar no final de _product-grid.css */
-
-.price-container {
-    margin: 8px 0 15px;
-}
-
-.price.retail-price {
-    font-size: 1.2em;
-    color: #B5838D;
-    font-weight: 700;
-}
-
-.price.wholesale-price {
-    font-size: 0.95em;
-    color: #555;
-    font-weight: 500;
-}
-
-.product-info .price-container {
-    margin-bottom: 25px;
-}
-
-
-.product-info .price.retail-price,
-.product-info .price.wholesale-price {
-    font-size: 2.8em;
-    font-weight: 700;
-    color: var(--primary-color);
-    /* Usa a cor primária do tema */
-    margin-bottom: 25px;
-    line-height: 1.1;
-    /* Controla a altura da linha para evitar saltos */
-}
-
-
-
-
-.price-details-container {
-    display: flex;
-    gap: 30px;
-    /* Espaço entre os preços de varejo e atacado */
-    align-items: flex-start;
-    margin-bottom: 15px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.price-item .price-label {
-    font-size: 0.9em;
-    color: #777;
-    display: block;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
-.price-item .retail-price-detail {
-    font-size: 2.5em;
-    font-weight: 600;
-    color: #333;
-    /* Cor do preço padrão */
-    line-height: 1;
-}
-
-.price-item .wholesale-price-detail {
-    font-size: 2.5em;
-    font-weight: 700;
-    /* Mais destacado */
-    color: var(--primary-color);
-    /* Cor de destaque do tema */
-    line-height: 1;
-}
-
-.wholesale-info-detail {
-    font-size: 0.9em;
-    background-color: #fdf8f8;
-    border: 1px solid #f2e6e6;
-    color: var(--primary-color);
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-bottom: 25px;
-    display: inline-block;
-}
-
-
-/* ======================================================= */
-/* AJUSTES RESPONSIVOS PARA A PÁGINa de detalhes         */
-/* ======================================================= */
+/* ==========================================================================
+   8. AJUSTES RESPONSIVOS
+   ========================================================================== */
 
 @media (max-width: 767px) {
+
+    /* Centraliza os blocos de preço em telas menores */
     .product-info .price-details-container {
-        /* Centraliza os dois blocos de preço no meio da tela */
         justify-content: center;
         gap: 20px;
-        /* Diminui o espaço entre eles no mobile */
     }
 
+    /* Alinha o label e o valor do preço verticalmente */
     .product-info .price-item {
-        /* Faz o texto e o valor ficarem um sobre o outro, centralizados */
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
+    /* Ajusta o tamanho da fonte dos preços para telas menores */
     .product-info .retail-price-detail,
     .product-info .wholesale-price-detail {
-        /* Ajusta o tamanho da fonte para telas menores */
         font-size: 2em;
     }
 }
