@@ -230,6 +230,7 @@ const shoppingCart = {
                         subtotalDisplayHTML = `
                             <p class="price">
                                 <del>R$ ${oldSubtotal.toFixed(2).replace('.', ',')}</del>
+                                <br>
                                 <strong>R$ ${subtotal.toFixed(2).replace('.', ',')}</strong>
                             </p>`;
                     } else {

@@ -172,6 +172,7 @@ export const productsData = [
         "id": 1758743166582,
         "slug": "blusa-manga-longa-rosa-salmao",
         "name": "Blusa Manga Longa - Rosa Salmão",
+        "orderId": "",
         "price": {
             "retail": 25,
             "wholesale": 20
@@ -181,7 +182,8 @@ export const productsData = [
         "images": [
             "assets/images/products/productImage-1758743159773-955563380.png",
             "assets/images/products/productImage-1758743162317-608448547.png",
-            "assets/images/products/productImage-1758743164181-314880997.png"
+            "assets/images/products/productImage-1758743164181-314880997.png",
+            "assets/images/products/productImage-1758909081830-132612005.png"
         ],
         "description": "",
         "details": [
@@ -214,6 +216,7 @@ export const productsData = [
         "id": 1758743619430,
         "slug": "blusa-manga-longa-verde-agua",
         "name": "Blusa Manga Longa - Verde-Água",
+        "orderId": "",
         "price": {
             "retail": 25,
             "wholesale": 20
@@ -230,7 +233,7 @@ export const productsData = [
             "Blusa Manga Longa Malha Lãzinha Verde-Água",
             "Esta blusa de manga longa em malha lãzinha é a peça ideal para adicionar conforto e estilo ao seu guarda-roupa. Com um toque super macio e caimento suave, ela é perfeita para os dias mais frescos, oferecendo aconchego sem abrir mão da leveza. O decote em V com delicados botões frontais adiciona um charme extra e um toque casual-chique, enquanto a cor verde-água traz uma sensação de leveza e tranquilidade para o seu look.",
             "Detalhes do Produto:",
-            "- Tecido: Malha Lanzinha",
+            "- Tecido: Malha Lãzinha",
             "- Decote: V com botões frontais",
             "- Manga: Longa",
             "- Cores: Verde-Água ",
@@ -246,6 +249,380 @@ export const productsData = [
             ],
             "sizes": [
                 "Único GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758909474289,
+        "slug": "blusa-manga-longa-malha-vermelha",
+        "name": "Blusa Manga Longa Malha - Vermelha",
+        "orderId": "",
+        "price": {
+            "retail": 25,
+            "wholesale": 20
+        },
+        "category": "Lãzinha",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758909424975-239412257.png",
+            "assets/images/products/productImage-1758909426832-718175014.png",
+            "assets/images/products/productImage-1758909429089-784536393.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa Manga Longa Malha Lãzinha Vermelha",
+            "Esta blusa de manga longa em malha lãzinha é a escolha perfeita para adicionar conforto e sofisticação ao seu guarda-roupa. Com um toque super macio e caimento fluido, ela proporciona aconchego sem perder a leveza. O decote em V com delicados botões frontais dá um charme extra, criando um look casual e elegante ao mesmo tempo. A cor vermelha vibrante traz um toque de energia e estilo, tornando a peça ideal para diversas ocasiões.",
+            "Detalhes do Produto:",
+            "- Tecido: Malha Lãzinha",
+            "- Decote: V com botões frontais",
+            "- Manga: Longa",
+            "- Cor: Vermelha",
+            "Indicação de Uso:",
+            "Versátil e fácil de combinar, esta blusa pode ser usada com calças jeans para um look casual e despojado, ou com peças de alfaiataria para um toque mais elegante. Perfeita para o dia a dia, encontros informais, passeios ou até para um home office confortável e estiloso."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Vermelho",
+                    "code": "#9e1b32"
+                }
+            ],
+            "sizes": [
+                "Único GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758910389601,
+        "slug": "blusa-manga-longa-laranja",
+        "name": "Blusa Manga Longa - Laranja",
+        "orderId": "",
+        "price": {
+            "retail": 25,
+            "wholesale": 20
+        },
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758910354113-383866085.png",
+            "assets/images/products/productImage-1758910357509-541405335.png",
+            "assets/images/products/productImage-1758910360494-394599861.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa Manga Longa Malha Canelada Laranja",
+            "Esta blusa de manga longa em cameçadp é a escolha perfeita para adicionar conforto e estilo ao seu guarda-roupa. Com um toque super macio e caimento suave, ela oferece aconchego nos dias mais frescos sem abrir mão da leveza. O decote arredondado e as mangas longas garantem um ajuste confortável e elegante. A cor laranja traz um toque de energia e modernidade, ideal para quem busca uma peça versátil e cheia de personalidade.",
+            "Detalhes do Produto:",
+            "- Tecido: Canelado",
+            "- Decote: Arredondado",
+            "- Manga: Longa",
+            "- Cor: Laranja",
+            "Indicação de Uso:",
+            "Perfeita para o dia a dia, essa blusa combina com calças jeans para um look casual ou com peças de alfaiataria para um estilo mais sofisticado. Ideal para passeios, encontros informais e até para um home office confortável e cheio de estilo."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Laranja",
+                    "code": "#ae632b"
+                }
+            ],
+            "sizes": [
+                "Único GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758911134552,
+        "slug": "blusa-de-manga-curta-vermelho-cinza-e-preto",
+        "name": "Blusa de Manga Curta - Vermelho, Cinza e Preto",
+        "orderId": "",
+        "price": {
+            "retail": 18,
+            "wholesale": 15
+        },
+        "category": "Listrado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758911132877-747239146.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta - Vermelho, Cinza e Preto",
+            "Esta blusa de manga curta é a combinação perfeita de conforto e estilo. Com seu design color block nas cores vermelho, cinza e preto, ela traz um toque moderno e descomplicado ao seu guarda-roupa. O tecido macio e a modelagem ajustada garantem um caimento perfeito e muito conforto, ideal para os dias mais leves. O detalhe do gradiente linear entre as cores confere um visual elegante e cheio de personalidade, enquanto o decote arredondado e a manga curta oferecem um ajuste fresco e estiloso.",
+            "Detalhes do Produto:",
+            "- Tecido: Confortável e macio",
+            "- Decote: Arredondado",
+            "- Manga: Curta",
+            "- Cores: Vermelho, Cinza e Preto",
+            "Indicação de Uso:",
+            "Perfeita para um visual casual e cheio de estilo, essa blusa combina bem com calças jeans, shorts ou até uma saia para um look descontraído e moderno. Ideal para passeios, encontros informais ou para um dia de trabalho com mais personalidade e conforto."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Vermelho, Cinza e Preto",
+                    "code": "linear-gradient(to bottom, #ff3333, #808080, #000000)"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758912278344,
+        "slug": "blusa-de-manga-curta-rosa-e-branco",
+        "name": "Blusa de Manga Curta - Rosa e Branco",
+        "orderId": "",
+        "price": {
+            "retail": 18,
+            "wholesale": 15
+        },
+        "category": "Listrado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758912347011-642539820.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta - Rosa e Branco",
+            "Esta blusa de manga curta combina estilo e conforto de maneira única. Com um design moderno e cores que se complementam, ela apresenta um tom de rosa suave na parte superior e um branco clean na parte inferior, criando um contraste equilibrado e elegante. O tecido é confortável e macio ao toque, garantindo um caimento perfeito. A manga curta e o decote arredondado adicionam um toque de frescor ao visual.",
+            "Detalhes do Produto:",
+            "Tecido: Confortável e macio",
+            "Decote: Arredondado",
+            "Manga: Curta",
+            "Cores: Rosa na parte superior e Branco na parte inferior",
+            "Indicação de Uso:",
+            "Ideal para uma ampla gama de ocasiões, desde passeios informais até encontros mais descontraídos. A blusa combina perfeitamente com shorts, jeans ou até peças de alfaiataria, sendo a escolha certa para quem deseja um look casual e estiloso. Perfeita também para quem busca conforto sem abrir mão de uma aparência moderna e prática."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Rosa e Branco",
+                    "code": "linear-gradient(to bottom, #F1C6C1, #FFFFFF, #F1C6C1)"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758919163828,
+        "slug": "blusa-de-manga-curta-azul-claro-branco-e-azul-marinho",
+        "name": "Blusa de Manga Curta - Azul Claro, Branco e Azul Marinho",
+        "orderId": "",
+        "price": {
+            "retail": 18,
+            "wholesale": 15
+        },
+        "category": "Listrado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758918919048-747475146.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta - Azul Claro, Branco e Azul Marinho",
+            "Esta blusa de manga curta combina elegância e conforto com um design moderno. O modelo apresenta um jogo de cores harmonioso, com um tom suave de azul claro na parte superior, seguido por um branco clean no centro e um azul marinho na parte inferior, criando um contraste vibrante e sofisticado. O tecido macio oferece um caimento perfeito, enquanto a manga curta e o decote arredondado garantem um visual fresco e descontraído.",
+            "Detalhes do Produto:",
+            "- Tecido: Confortável e macio",
+            "- Decote: Arredondado",
+            "- Manga: Curta",
+            "- Cores: Azul claro na parte superior, Branco no centro e Azul marinho na parte inferior",
+            "Indicação de Uso:",
+            "Ideal para diversas ocasiões, desde passeios casuais até encontros informais. Essa blusa pode ser combinada com shorts, jeans ou até peças mais formais, sendo a escolha perfeita para quem busca um look casual, moderno e confortável."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Azul Claro, Branco e Azul Marinho",
+                    "code": "linear-gradient(to bottom, #A9D1E8, #F4F4F4, #1A3D5D)\n"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758919384741,
+        "slug": "blusa-de-manga-curta-preto-cinza-grafite-e-cinza-claro",
+        "name": "Blusa de Manga Curta - Preto, Cinza Grafite e Cinza Claro",
+        "orderId": "",
+        "price": {
+            "retail": 18,
+            "wholesale": 15
+        },
+        "category": "Listrado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758919382126-209591899.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta - Preto, Cinza Claro e Cinza Médio",
+            "Esta blusa de manga curta combina estilo e conforto com um design moderno e sofisticado. O modelo apresenta um jogo de cores harmônicas, com um tom de preto na parte superior, seguido por um cinza claro no centro e um cinza médio na parte inferior, criando um visual equilibrado e elegante. O tecido é macio e confortável, garantindo um caimento perfeito. A manga curta e o decote arredondado adicionam frescor ao visual.",
+            "Detalhes do Produto:",
+            "- Tecido: Confortável e macio",
+            "- Decote: Arredondado",
+            "- Manga: Curta",
+            "- Cores: Preto na parte superior, Cinza claro no centro e Cinza médio na parte inferior",
+            "Indicação de Uso:",
+            "Ideal para diversas ocasiões, desde passeios casuais até encontros informais. Esta blusa pode ser combinada com jeans, shorts ou até peças mais formais, sendo a escolha perfeita para quem busca um look moderno, casual e confortável."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Preto, Cinza Grafite e Cinza Claro",
+                    "code": "linear-gradient(to bottom, #1F1F1F, #B2B2B2, #808080)"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758919905825,
+        "slug": "blusa-de-manga-curta-azul-claro",
+        "name": "Blusa de Manga Curta - Azul Claro",
+        "orderId": "",
+        "price": {
+            "retail": 15,
+            "wholesale": 13
+        },
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758919806085-161315293.jpg",
+            "assets/images/products/productImage-1758919809710-828607695.jpg",
+            "assets/images/products/productImage-1758919812098-709914599.jpg",
+            "assets/images/products/productImage-1758919814632-928275531.jpg"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta Canelada - Azul Claro",
+            "Esta blusa de manga curta canelada é a escolha perfeita para quem busca conforto com um toque moderno. O tecido canelado oferece um ajuste confortável e elástico, moldando-se ao corpo de maneira delicada. A cor azul claro, suave e fresca, é ideal para o clima quente e para ocasiões descontraídas. A manga curta e o decote arredondado proporcionam um visual leve e elegante.",
+            "Detalhes do Produto:",
+            "- Tecido: Canelado, confortável e elástico",
+            "- Decote: Arredondado",
+            "- Manga: Curta",
+            "- Cor: Azul Claro",
+            "Indicação de Uso:",
+            "Ideal para diversas ocasiões informais, como passeios, encontros casuais ou até para um look confortável no dia a dia. A blusa pode ser combinada com saias, shorts ou calças jeans, oferecendo um visual jovem e moderno."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Azul Claro",
+                    "code": "#add8e6"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758920590767,
+        "slug": "blusa-de-manga-curta-branco-suave",
+        "name": "Blusa de Manga Curta - Branco Suave",
+        "price": {
+            "retail": 15,
+            "wholesale": 13
+        },
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758920526242-148252546.png",
+            "assets/images/products/productImage-1758920529394-279745169.png",
+            "assets/images/products/productImage-1758920530925-501975284.png"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta Canelada - Branco Suave",
+            "Esta blusa de manga curta canelada é a escolha perfeita para um visual elegante e confortável. O tecido canelado oferece um ajuste leve e suave, enquanto a cor branca suave transmite frescor e sofisticação. A manga curta e o decote arredondado proporcionam um toque de delicadeza e versatilidade ao look.",
+            "Detalhes do Produto:",
+            "- Tecido: Canelado, confortável e elástico",
+            "- Decote: Arredondado",
+            "- Manga: Curta",
+            "- Cor: Branco suave (RGB: 240, 248, 255)",
+            "Indicação de Uso:",
+            "Ideal para diversas ocasiões informais e casuais, como passeios, encontros ou até para um look de trabalho descontraído. A blusa pode ser combinada com peças como saias, calças jeans ou até bermudas, oferecendo um visual clean e moderno."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Branco",
+                    "code": "#f0f8ff"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
+            ]
+        },
+        "active": true
+    },
+    {
+        "id": 1758920803617,
+        "slug": "blusa-de-manga-curta-laranja-",
+        "name": "Blusa de Manga Curta - Laranja ",
+        "price": {
+            "retail": 15,
+            "wholesale": 13
+        },
+        "category": "Canelado",
+        "brand": "Carol Modas",
+        "images": [
+            "assets/images/products/productImage-1758920760079-155606494.png",
+            "assets/images/products/productImage-1758920761575-413440801.png",
+            "assets/images/products/productImage-1758920764447-269059902.jpg"
+        ],
+        "description": "",
+        "details": [
+            "Blusa de Manga Curta Canelada - Laranja Vibrante",
+            "Esta blusa de manga curta canelada é perfeita para quem busca um visual moderno e ousado. O tecido canelado oferece um ajuste confortável e flexível, enquanto a cor laranja vibrante adiciona um toque de energia e estilo. O decote arredondado e as mangas curtas proporcionam um visual descontraído e versátil.",
+            "Detalhes do Produto:",
+            "Tecido: Canelado, confortável e elástico",
+            "Decote: Arredondado",
+            "Manga: Curta",
+            "Cor: Laranja vibrante (RGB: 255, 100, 0)",
+            "Indicação de Uso:",
+            "Ideal para diversas ocasiões casuais, como passeios ao ar livre, encontros informais ou até mesmo para um look ousado no dia a dia. A blusa pode ser combinada com jeans, saias ou até shorts, oferecendo um visual alegre e moderno."
+        ],
+        "options": {
+            "colors": [
+                {
+                    "name": "Laranja",
+                    "code": "#ff6400"
+                }
+            ],
+            "sizes": [
+                "M",
+                "G",
+                "GG"
             ]
         },
         "active": true
